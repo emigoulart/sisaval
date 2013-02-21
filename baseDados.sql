@@ -1,4 +1,3 @@
-
 /* =============== Aluno ======================*/
 DROP TABLE IF EXISTS aluno;
 CREATE TABLE aluno (
@@ -78,7 +77,7 @@ CREATE TABLE cursodisciplina (
 );
 
 ==================== ALUNODISCIPLINA ===============================
-relaciona mento aluno disciplina (aluno<->diciplina) fkdiscuplina fkaluno fkprofessor
+--relaciona mento aluno disciplina (aluno<->diciplina) fkdiscuplina fkaluno fkprofessor
 DROP TABLE IF EXISTS alunodisciplina 
 CREATE TABLE alunodisciplina(
   fk_aluno integer not null,
@@ -109,7 +108,7 @@ CREATE TABLE formulario (
   frm_ID serial,
   frm_nome varchar(50) NOT NULL,
   fk_questao integer,
-  CONTSTRIANT FK_QUESTAO_ID PRIMARY KEY (frm_ID),
+  CONSTRAINT FK_QUESTAO_ID PRIMARY KEY (frm_ID),
   CONSTRAINT FK_QUESTAO FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID)
 );
 
@@ -119,7 +118,7 @@ CREATE TABLE questao (
   qst_ID serial,
   qst_questao Text,
   fk_alternativa integer,
-  CONTSTRIANT FK_QUESTAO_ID PRIMARY KEY (qst_ID),
+  CONSTRAINT FK_QUESTAO_ID PRIMARY KEY (qst_ID),
   CONSTRAINT FK_ALTERNATIVA FOREIGN KEY(fk_alternatica) REFERENCES alternativa(qst_ID)
 );
 
