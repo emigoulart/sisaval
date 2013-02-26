@@ -128,4 +128,5 @@ CREATE TABLE alterantiva(
   alt_ID serial,
   alt_alternativa Text,
   CONSTRAINT FK_ALTERNATIVA_ID PRIMARY KEY (alt_ID)
-);
+); 
+
