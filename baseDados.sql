@@ -103,7 +103,7 @@ CREATE TABLE avaliacao (
 );
 
 ================ Formulário ===========================
-DROP TABLE IF EXISTS formulário;
+DROP TABLE IF EXISTS formulario;
 CREATE TABLE formulario (
   frm_ID serial,
   frm_nome varchar(50) NOT NULL,
