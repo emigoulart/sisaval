@@ -1,4 +1,13 @@
-DROP TABLE IF EXISTS aluno;
+DROP TABLE IF EXISTS curso cascade;
+CREATE TABLE curso (
+cur_ID serial,
+cur_nome varchar(50) NOT NULL,
+cur_tipo varchar(20) NOT NULL,
+cur_descricao text NOT NULL,
+CONSTRAINT pk_id_curso PRIMARY KEY (cur_ID)
+);
+
+DROP TABLE IF EXISTS aluno cascade;
 CREATE TABLE aluno (
   alu_mat integer not null,
   alu_nome varchar(40) NOT NULL,
@@ -10,12 +19,12 @@ CREATE TABLE aluno (
   alu_senha varchar(20) NOT NULL,
   alu_tipo char(1) NOT NULL, -- A: Administrador, U: Usuario
   fk_alu_cur integer,
-  CONSTRAINT pk_aluno_matricula PRIMARY KEY (alu_mat)
-  
+  CONSTRAINT pk_aluno_matricula PRIMARY KEY (alu_mat),
+  CONSTRAINT fk_aluno_curso FOREIGN KEY (fk_alu_cur) REFERENCES curso (cur_ID)
 );
 
 
-DROP TABLE IF EXISTS administrador;
+DROP TABLE IF EXISTS administrador cascade;
 CREATE TABLE administrador (
   adm_ID serial,
   adm_nome varchar(40) NOT NULL,
@@ -30,7 +39,7 @@ CREATE TABLE administrador (
 );
 
 
-DROP TABLE IF EXISTS professor;
+DROP TABLE IF EXISTS professor cascade;
 CREATE TABLE professor (
   prf_ID serial,
   prf_nome varchar(40) NOT NULL,
@@ -44,16 +53,7 @@ CREATE TABLE professor (
   CONSTRAINT pk_profID PRIMARY KEY (prf_ID)
 );
 
-DROP TABLE IF EXISTS curso;
-CREATE TABLE curso (
-cur_ID serial,
-cur_nome varchar(50) NOT NULL,
-cur_tipo varchar(20) NOT NULL,
-cur_descricao text NOT NULL,
-CONSTRAINT pk_id_curso PRIMARY KEY (cur_ID)
-);
-
-DROP TABLE IF EXISTS disciplina;
+DROP TABLE IF EXISTS disciplina cascade;
 CREATE TABLE disciplina (
   dis_ID serial,
   dis_nome varchar(50) NOT NULL,
@@ -62,7 +62,9 @@ CREATE TABLE disciplina (
   CONSTRAINT pk_id_disciplina PRIMARY KEY (dis_ID),
   CONSTRAINT fk_professorID FOREIGN KEY(fk_professor) REFERENCES professor(prf_ID)
 );
-DROP TABLE IF EXISTS cursodisciplina;
+
+
+DROP TABLE IF EXISTS cursodisciplina cascade;
 CREATE TABLE cursodisciplina (
    fk_Curso integer NOT NULL,
    fk_Disciplina integer NOT NULL,
@@ -71,7 +73,7 @@ CREATE TABLE cursodisciplina (
 );
 
 --relaciona mento aluno disciplina (aluno<->diciplina) fkdiscuplina fkaluno fkprofessor
-DROP TABLE IF EXISTS alunodisciplina;
+DROP TABLE IF EXISTS alunodisciplina cascade; 
 CREATE TABLE alunodisciplina(
   fk_aluno integer not null,
   fk_disciplina integer not null,
@@ -79,14 +81,14 @@ CREATE TABLE alunodisciplina(
   CONSTRAINT FK_disciplina FOREIGN KEY(fk_disciplina) REFERENCES disciplina(dis_ID)
 );
 
-DROP TABLE IF EXISTS alternativa;
+DROP TABLE IF EXISTS alternativa cascade;
 CREATE TABLE alternativa(
   alt_ID serial,
   alt_alternativa Text,
   CONSTRAINT FK_ALTERNATIVA_ID PRIMARY KEY (alt_ID)
 );
 
-DROP TABLE IF EXISTS questao;
+DROP TABLE IF EXISTS questao cascade;
 CREATE TABLE questao (
   qst_ID serial,
   qst_questao Text,
@@ -95,7 +97,7 @@ CREATE TABLE questao (
   CONSTRAINT FK_ALTERNATIVA FOREIGN KEY(fk_alternativa) REFERENCES alternativa(alt_ID)
 );
 
-DROP TABLE IF EXISTS formulario;
+DROP TABLE IF EXISTS formulario cascade;
 CREATE TABLE formulario (
   frm_ID serial,
   frm_nome varchar(50) NOT NULL,
@@ -104,7 +106,7 @@ CREATE TABLE formulario (
   CONSTRAINT FK_QUESTAO FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID)
 );
 
-DROP TABLE IF EXISTS avaliacao;
+DROP TABLE IF EXISTS avaliacao cascade;
 CREATE TABLE avaliacao (
   avl_ID serial,
   avl_disponivel char(1),
@@ -116,8 +118,5 @@ CREATE TABLE avaliacao (
   fk_formulario integer,
   CONSTRAINT PK_AVALIACAO_ID PRIMARY KEY (avl_ID),
  -- CONSTRAINT FK_ALUNO FOREIGN KEY(fk_alunoDisciplina) REFERENCES alunodisciplina(qst_ID),
-  CONSTRAINT FK_FORMULARIO FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)  
+  CONSTRAINT FK_FORMULARIO FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)    
 );
-
-
- 
