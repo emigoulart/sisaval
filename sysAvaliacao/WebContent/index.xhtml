@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>sysAvaliacao - Sistema de Avaliações pela Web V0</title>
+	<link href="resources/css/principal.css" rel="stylesheet" type="text/css" />
+</h:head>
+	<h:body>
+       <h:form>
+        <div id="fundoboxcentro"> 
+            <div id="frontBox" class="topleftboxcontent">
+                <div id="frontBoxes">
+                    <div id="usuario_box" class="usuario_box">
+                        <h:graphicImage library="imagens" name="usuario.gif" width="24" height="24" align="left" title="Usuários" alt="Usuários" />
+                        <span>Usuários</span> 
+                        <br /> 
+                        <br /> Usuários cadastrados com premissão de acesso ao Sistema de Avaliação
+                        <br /> 
+                        <h:commandButton value="Usuário" action="#{acesso.login}" />
+                    </div>
+                    <div id="admin_box" class="admin_box">
+                        <h:graphicImage library="imagens" name="admin.gif" width="24" height="24" align="left" title="Administrador" alt="Administrador"  style="padding-top:5px;padding-right:5px;" />
+                        <span>Administradores</span>
+                        <br />
+                        <br /> Administrador do Sistema de Avaliação,
+						configuração, cadastro de usuarios e de questões. <br />
+                        <h:commandButton value="Administrador" action="#{acesso.login}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </h:form>  		
+	</h:body>
+</html>

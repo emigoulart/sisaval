@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+body {
+  background: url("../imagens/fundo_pagina.png");
+}
+ 
+#fundoboxcentro{
+	width: 400px;
+	height: 410px;
+	margin:6% auto;
+/*	background: url("../imagens/fundo_box.png") no-repeat; */
+        display: table;
+}
+
+#logo {
+    background: url("../imagens/logo.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 50px;
+    margin: 33px auto 20px 156px;
+    width: 79px;
+}
+
+#frontBoxes {
+    font-size: 12px;
+    font-weight: normal;
+    height: 145px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 72px;
+    padding: 5px;
+    width: 580px;
+    z-index: 10;
+    float:left;
+}
+
+#frontBoxes SPAN {position:absolute;padding-left:0px;padding-top:10px;font-size: 16px;color:#FFB542;font-weight:bold;}
+.usuario_box {position:relative;float:left;width:230px;margin:5px;height:120px;padding-left:5px;border:1px solid #8AB5CC;color:#D6D6D6;background:#29739C;}
+ .usuario_box a    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
+ .usuario_box a:visited    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
+ .usuario_box a:active    { color: #C4D7EB; font-weight: bold; text-decoration: underline; }
+ .usuario_box a:hover    { color: #C4D7EB; font-weight: bold; text-decoration: underline; } 
+ 
+ .admin_box {position:relative;float:left;width:310px;margin:5px;height:120px;padding-left:5px;border:1px solid #8AB5CC;color:#D6D6D6;background:#29739C;}
+ .admin_box a    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
+ .admin_box a:visited    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
+ .admin_box a:active    { color: #C4D7EB; font-weight: bold; text-decoration: underline; }
+ .admin_box a:hover    { color: #C4D7EB; font-weight: bold; text-decoration: underline; } 
+ 
+ 
+  
+.topleftboxcontent {
+    width:592px;
+    height:195px;
+    background:#186A93 url("../imagens/logo.png") no-repeat top center; 
+    text-align:left; 
+    border:0 solid #76b0d6;
+    display: table;
+}
