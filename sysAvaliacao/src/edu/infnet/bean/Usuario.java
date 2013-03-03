@@ -2,7 +2,7 @@ package edu.infnet.bean;
 
 import java.util.Date;
 
-public class Pessoa {
+public class Usuario {
 	
 	protected Integer id = null;
 	protected String nome = null;

@@ -2,17 +2,17 @@ package edu.infnet.dao;
 
 import java.util.List;
 
-import edu.infnet.bean.Pessoa;
+import edu.infnet.bean.Usuario;
 
 public interface InterfaceAdminDAO {
 	
-    void salvar(Pessoa admin) throws AvalicaoDAOException;
+    void salvar(Usuario admin) throws AvalicaoDAOException;
 	
-	void atualizar(Pessoa admin) throws AvalicaoDAOException;
+	void atualizar(Usuario admin) throws AvalicaoDAOException;
 	
-	void excluir(Pessoa admin) throws AvalicaoDAOException;
+	void excluir(Usuario admin) throws AvalicaoDAOException;
 	
 	List<List> todosAdministradores() throws AvalicaoDAOException;
 	
-	Pessoa procuraAdministrador(Integer id) throws AvalicaoDAOException;
+	Usuario procuraAdministrador(Integer id) throws AvalicaoDAOException;
 }

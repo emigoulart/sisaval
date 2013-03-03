@@ -7,7 +7,7 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name="admin")
 @RequestScoped
-public class Administrador extends Pessoa{
+public class Administrador extends Usuario{
 	private Integer id;
 
 	 	

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.infnet.bean.Pessoa;
+import edu.infnet.bean.Usuario;
 import edu.infnet.util.ConAvalicaoFactory;
 
 public class AdminDAOImp implements InterfaceAdminDAO {
@@ -21,7 +21,7 @@ public class AdminDAOImp implements InterfaceAdminDAO {
 	}
 
 	@Override
-	public void salvar(Pessoa admin) throws AvalicaoDAOException {
+	public void salvar(Usuario admin) throws AvalicaoDAOException {
 		PreparedStatement ps = null;
 		Connection conexao = null;
 
@@ -51,13 +51,13 @@ public class AdminDAOImp implements InterfaceAdminDAO {
 	}
 
 	@Override
-	public void atualizar(Pessoa admin) throws AvalicaoDAOException {
+	public void atualizar(Usuario admin) throws AvalicaoDAOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void excluir(Pessoa admin) throws AvalicaoDAOException {
+	public void excluir(Usuario admin) throws AvalicaoDAOException {
 		// TODO Auto-generated method stub
 
 	}
@@ -69,7 +69,7 @@ public class AdminDAOImp implements InterfaceAdminDAO {
 	}
 
 	@Override
-	public Pessoa procuraAdministrador(Integer id)
+	public Usuario procuraAdministrador(Integer id)
 			throws AvalicaoDAOException {
 		// TODO Auto-generated method stub
 		return null;
