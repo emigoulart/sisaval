@@ -2,6 +2,7 @@ package edu.infnet.bean;
 
 import java.util.Date;
 
+
 public class Usuario {
 	
 	protected Integer id = null;
@@ -14,6 +15,10 @@ public class Usuario {
 	protected String senha = null;
 	protected String tipo = null;
 	
+	@Override
+	public String toString() {
+		return "Usuario [login=" + login + ", senha=" + senha + "]";
+	}
 	
 	public Integer getId() {
 		return id;
