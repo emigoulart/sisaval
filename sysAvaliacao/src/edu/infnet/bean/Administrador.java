@@ -1,12 +1,6 @@
 package edu.infnet.bean;
 
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
-
-@ManagedBean(name="admin")
-@RequestScoped
 public class Administrador extends Usuario{
 	private Integer id;
 
