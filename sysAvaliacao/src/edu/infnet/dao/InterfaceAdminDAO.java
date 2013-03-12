@@ -2,7 +2,9 @@ package edu.infnet.dao;
 
 import java.util.List;
 
-import edu.infnet.bean.Usuario;
+import edu.infnet.model.Usuario;
+
+
 
 public interface InterfaceAdminDAO {
 	

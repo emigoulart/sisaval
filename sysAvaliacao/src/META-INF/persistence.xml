@@ -1,0 +1,30 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+	<persistence-unit name="sysAvaliacao" transaction-type="RESOURCE_LOCAL">
+	 <provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>edu.infnet.model.Usuario</class>
+		<class>edu.infnet.model.Alternativa</class>
+		<class>edu.infnet.model.Avaliacao</class>
+		<class>edu.infnet.model.Curso</class>
+		<class>edu.infnet.model.Disciplina</class>
+		<class>edu.infnet.model.Formulario</class>
+		<class>edu.infnet.model.Questao</class>
+		<class>edu.infnet.model.Questaoalternativa</class>
+		<class>edu.infnet.model.QuestaoalternativaPK</class>
+		<class>edu.infnet.model.Turma</class>
+		<class>edu.infnet.model.TurmaAluno</class>
+		<class>edu.infnet.model.TurmaAlunoPK</class>
+		
+	<properties>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="postgres"/>
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/dbAvaliacao"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>      
+      <property name="hibernate.show_sql" value="true"/>
+      </properties>
+     </persistence-unit>
+</persistence>
+
