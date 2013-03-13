@@ -2,6 +2,8 @@ package edu.infnet.bean;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,7 +26,7 @@ public class UsuarioManagedBean implements Serializable{
 
 	//private Usuario usuarioRetorno = new Usuario();
 
-	//private final List<Usuario> lista = new ArrayList<Usuario>();
+	private List<Usuario> lista = new ArrayList<Usuario>();
 
 	//private List<Usuario> autoComplete = new ArrayList<Usuario>();
 
@@ -45,13 +47,30 @@ public class UsuarioManagedBean implements Serializable{
 		}
 
 		if(logado) {
-			return "sucesso"; //Retorna para a pagina de sucesso (Manutencção dos cadastros)
+			//return "sucesso"; //Retorna para a pagina de sucesso (Manutencção dos cadastros)
+			return "/paginas/avaliacao/listaFormularios"; 
 		}
 		else {
 			return "falhou"; // Retorna par a pagina falhou reporando erro de login/senha incinsistentes
 		}
 	}
 
+	public List<Usuario> getLista() {
+		System.out.println("Listagem");
+		return lista;
+	}
+	
+	public void setLista(List<Usuario> lista) {
+		System.out.println("Listagem2");
+		this.lista = lista;
+	}
+
+	
+	public void listar()  {
+		System.out.println("Listagem 3");
+		lista = dao.listar();
+		/*usuarioRetorno = new Usuario();*/
+	}
 
 	/*public void doLogin() throws SQLException, AvalicaoDAOException {
 	  try {

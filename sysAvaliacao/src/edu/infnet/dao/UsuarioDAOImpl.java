@@ -139,12 +139,13 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 	 */
 	@Override
 	public List<Usuario> listar() {
+		return super.todos();
 		/*	Criterio c = new Criterio();
 		c.setTotalRegistros(MAXIMO_REGISTROS);
 		c.setTamanhoPagina(MAXIMO_REGISTROS);
 		c.setRegistroInicial(1);
 		//return listar(c);
-		 */		return null;
+		 		return null;*/
 	}
 
 	/* (non-Javadoc)

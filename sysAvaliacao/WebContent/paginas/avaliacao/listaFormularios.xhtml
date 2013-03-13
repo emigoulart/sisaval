@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+
+	<style type="text/css">
+body {
+	font-size: 10px;
+}
+</style>
+</h:head>
+<body>
+	<h:form id="frmAvaliacao">
+
+		<p:panel header="#{msgs.welcome}" style="width:470px;margin:10% 25% 10% 25%;">
+		    <h:outputText value="#{usuarioBean.usuario.login}"/> 
+			<h:outputLabel value="#{msgs.loginsucesso}" />
+		</p:panel>
+		<h:commandButton action="#{usuarioBean.listar}" value="Consultar"
+				update="retorno" />
+		
+		<p:panel id="retorno" >
+			<h:outputText value="#{usuarioBean.usuario}" />
+			<p:dataTable id="tblRetorno" var="registro" value="#{usuarioBean.lista}">
+				<p:column headerText="id">
+					<h:outputText value="#{registro.matricula}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{registro.nome}" />
+				</p:column>
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{registro.login}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>`
+
+		
+		
+		
+		<p>
+		  <h:commandButton value="#{msgs.logout}" action="#{usuarioBean.logout}"/>
+		</p>
+	</h:form>
+
+
+
+</body>
+</html>
