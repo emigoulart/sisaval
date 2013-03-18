@@ -3,8 +3,6 @@ package edu.infnet.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
-
 import edu.infnet.model.Formulario;
 
 public class FormularioDAOImpl extends DaoGenericoImp<Formulario, Serializable> implements FormularioDAO {
@@ -36,11 +34,6 @@ public class FormularioDAOImpl extends DaoGenericoImp<Formulario, Serializable> 
 		return (f != null);
 	}
 
-	@Override
-	public Formulario consultarPorNome(Session session, String nome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Formulario> listar() {

@@ -24,12 +24,12 @@ public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable>  i
 
 	@Override
 	public List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno) {
-		
+
 		String sqlQuery = "from Avaliacao where fk_aluno = :aluno";
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("aluno", aluno.getMatricula());
 		//parameters.put("senha", usuario.getSenha());
-		
+
 		return super.listPesqParam(sqlQuery, parameters);
 	}
 

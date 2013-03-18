@@ -8,92 +8,91 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.UsuarioDAO;
 import edu.infnet.dao.UsuarioDAOImpl;
 import edu.infnet.model.Usuario;
+import edu.infnet.util.FacesUtils;
+import edu.infnet.util.TipoUsuario;
 
 @ManagedBean(name="usuarioBean")
 @SessionScoped
 public class UsuarioManagedBean implements Serializable{
 
 	private static final long serialVersionUID = -4350207791581637099L;
-	private Usuario usuario = new Usuario();
-
+	private Usuario usuario;
+	@SuppressWarnings("unused")
 	private boolean logado;
 
-	private final UsuarioDAO dao = new UsuarioDAOImpl();
-
-	//private Usuario usuarioRetorno = new Usuario();
+	private final UsuarioDAO dao;
 
 	private List<Usuario> lista = new ArrayList<Usuario>();
 
-	//private List<Usuario> autoComplete = new ArrayList<Usuario>();
 
 	public UsuarioManagedBean(){
-
 		usuario = new Usuario();
+		dao=  new UsuarioDAOImpl();
 	}
 
 
 	public String efetuarLogin() throws AvalicaoDAOException  {
-		System.out.println("Usuario: "+usuario); // Usado para debugar dentro do console.
 
+		String paginaRetorno = "falhou";// Retorna par a pagina falhou reparando
+		// erro de login/senha incinsistentes
+		try {
+			usuario = dao.validarLogin(usuario);
+		} catch (Exception exc) {
+			logado=false;
+			throw new AvalicaoDAOException(exc);
+		}
+
+		if (usuario!=null) {
+			logado=true;
+			// return "sucesso"; //Retorna para a pagina de sucesso (Manutencção
+			// dos cadastros)
+			if (usuario.getTipoUsuario().equalsIgnoreCase(
+					TipoUsuario.ROLE_ADMIN.toString())) {
+				usuario= new Usuario();//
+				paginaRetorno = "/paginas/cadastro/menuAdmin";
+			} else {
+
+				paginaRetorno = "/paginas/avaliacao/listaFormularios";
+			}
+
+		}
+		return paginaRetorno;
+	}
+
+	@Transactional
+	public void cadastrarUsuario() throws AvalicaoDAOException{
 		try{
-			logado= dao.validarLogin(usuario);
-		}
-		catch(Exception exc){
-			throw new AvalicaoDAOException(exc); //Retorna para paranina de Erro do Servidor (500)
+			usuario.setTipoUsuario(TipoUsuario.ROLE_ALUNO.toString());
+			dao.inserir(usuario);
+		}catch(Exception exc ){
+			throw new AvalicaoDAOException(exc);
 		}
 
-		if(logado) {
-			//return "sucesso"; //Retorna para a pagina de sucesso (Manutencção dos cadastros)
-			return "/paginas/avaliacao/listaFormularios"; 
-		}
-		else {
-			return "falhou"; // Retorna par a pagina falhou reporando erro de login/senha incinsistentes
-		}
+		FacesUtils.mensInfo("Cadastro efetuado com Sucesso.");
 	}
 
 	public List<Usuario> getLista() {
 		System.out.println("Listagem");
 		return lista;
 	}
-	
+
 	public void setLista(List<Usuario> lista) {
 		System.out.println("Listagem2");
 		this.lista = lista;
 	}
 
-	
+
 	public void listar()  {
 		System.out.println("Listagem 3");
 		lista = dao.listar();
-		/*usuarioRetorno = new Usuario();*/
 	}
 
-	/*public void doLogin() throws SQLException, AvalicaoDAOException {
-	  try {
-			this.conn = ConAvalicaoFactory.abreConexao();
-	  } catch (Exception e) {
-			throw new AvalicaoDAOException("Erro: "+e.getMessage());
-	  }
-
-	  try{
-		PreparedStatement paswdQuery = conn.prepareStatement("SELECT adm_senha FROM administrador WHERE adm_login=?");
-		paswdQuery.setString(1, usuario.getLogin());
-
-		System.out.println(paswdQuery);
-
-		rs = paswdQuery.executeQuery();
-		if(!rs.next()) return;
-		String armazenaSenha = rs.getString("adm_senha");
-		logado = usuario.getSenha().equals(armazenaSenha.trim());
-		if(!logado) return;
-	  } finally{
-		  ConAvalicaoFactory.fechaConexao(conn, null, rs);
-	  }
-	}*/
 
 	public Usuario getUsuario(){
 		return usuario;

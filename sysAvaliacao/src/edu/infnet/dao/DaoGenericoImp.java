@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class DaoGenericoImp<T, ID extends Serializable>
 implements DaoGenerico<T, ID> {
 
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	private final Class<T> oClass;//object class
@@ -33,7 +34,6 @@ implements DaoGenerico<T, ID> {
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
 	}
-
 
 	protected EntityManager getEntityManager() {
 		EntityManagerFactory emf;
@@ -86,7 +86,7 @@ implements DaoGenerico<T, ID> {
 	public T salvar(T object) {
 		getEntityManager().clear();
 		getEntityManager().persist(object);
-
+		//getEntityManager().flush();
 
 		return object;
 	}

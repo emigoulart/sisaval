@@ -1,8 +1,16 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -10,12 +18,13 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="usuario")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USUARIO_MATRICULA_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_MATRICULA_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="matricula",nullable=false)
 	private Integer matricula;
 
 	@Temporal(TemporalType.DATE)
@@ -40,7 +49,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Integer getMatricula() {
-		return this.matricula;
+		return matricula;
 	}
 
 	public void setMatricula(Integer matricula) {
@@ -48,7 +57,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Date getDtanasc() {
-		return this.dtanasc;
+		return dtanasc;
 	}
 
 	public void setDtanasc(Date dtanasc) {
@@ -56,7 +65,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -64,7 +73,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getEndereco() {
-		return this.endereco;
+		return endereco;
 	}
 
 	public void setEndereco(String endereco) {
@@ -72,7 +81,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getLogin() {
-		return this.login;
+		return login;
 	}
 
 	public void setLogin(String login) {
@@ -80,7 +89,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
@@ -88,7 +97,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getSenha() {
-		return this.senha;
+		return senha;
 	}
 
 	public void setSenha(String senha) {
@@ -96,7 +105,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getTelefone() {
-		return this.telefone;
+		return telefone;
 	}
 
 	public void setTelefone(String telefone) {
@@ -104,7 +113,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getTipoUsuario() {
-		return this.tipoUsuario;
+		return tipoUsuario;
 	}
 
 	public void setTipoUsuario(String tipoUsuario) {

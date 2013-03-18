@@ -10,4 +10,12 @@ public class Acesso {
 	public String login() {
 		return "paginas/login/paginaLogin";
 	}
+
+	public String cadastrarUsuario() {
+		return "/paginas/cadastro/cadastrarUsuario";
+	}
+
+	public String listar() {
+		return "/paginas/avaliacao/listaFormularios";
+	}
 }
