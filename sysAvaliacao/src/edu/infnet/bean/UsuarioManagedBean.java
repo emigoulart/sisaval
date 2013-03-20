@@ -6,35 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-import org.springframework.transaction.annotation.Transactional;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.UsuarioDAO;
-import edu.infnet.dao.UsuarioDAOImpl;
 import edu.infnet.model.Usuario;
 import edu.infnet.util.FacesUtils;
 import edu.infnet.util.TipoUsuario;
 
+@RequestScoped
 @ManagedBean(name="usuarioBean")
-@SessionScoped
 public class UsuarioManagedBean implements Serializable{
 
 	private static final long serialVersionUID = -4350207791581637099L;
 	private Usuario usuario;
-	@SuppressWarnings("unused")
-	private boolean logado;
 
-	private final UsuarioDAO dao;
+	public UsuarioManagedBean() {
+		usuario = new Usuario();
+	}
+
+	@SuppressWarnings("unused")
+	private boolean logado=false;
+
+
+	public UsuarioDAO getUsuarioDao() {
+		return usuarioDao;
+	}
+
+
+	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	@ManagedProperty( value = "#{usuarioDao}" )
+	private UsuarioDAO usuarioDao;
 
 	private List<Usuario> lista = new ArrayList<Usuario>();
-
-
-	public UsuarioManagedBean(){
-		usuario = new Usuario();
-		dao=  new UsuarioDAOImpl();
-	}
 
 
 	public String efetuarLogin() throws AvalicaoDAOException  {
@@ -42,7 +50,7 @@ public class UsuarioManagedBean implements Serializable{
 		String paginaRetorno = "falhou";// Retorna par a pagina falhou reparando
 		// erro de login/senha incinsistentes
 		try {
-			usuario = dao.validarLogin(usuario);
+			usuario = getUsuarioDao().validarLogin(usuario);
 		} catch (Exception exc) {
 			logado=false;
 			throw new AvalicaoDAOException(exc);
@@ -65,11 +73,11 @@ public class UsuarioManagedBean implements Serializable{
 		return paginaRetorno;
 	}
 
-	@Transactional
+
 	public void cadastrarUsuario() throws AvalicaoDAOException{
 		try{
 			usuario.setTipoUsuario(TipoUsuario.ROLE_ALUNO.toString());
-			dao.inserir(usuario);
+			getUsuarioDao().inserir(usuario);
 		}catch(Exception exc ){
 			throw new AvalicaoDAOException(exc);
 		}
@@ -90,7 +98,7 @@ public class UsuarioManagedBean implements Serializable{
 
 	public void listar()  {
 		System.out.println("Listagem 3");
-		lista = dao.listar();
+		lista = usuarioDao.listar();
 	}
 
 

@@ -6,9 +6,10 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
   <application>
+      <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
      <resource-bundle>
         <base-name>edu.infnet.bean.messages</base-name>
         <var>msgs</var>
-     </resource-bundle>
+     </resource-bundle>    
   </application>
 </faces-config>
