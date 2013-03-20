@@ -8,22 +8,391 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title>
-
-	<style type="text/css">
-body {
-	font-size: 10px;
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>systemAvaliacao - Sistema de Aval. pela Web V0</title>
+	<link href="resources/css/principal.css" rel="stylesheet"
+		type="text/css" />
 </h:head>
-<body>
-	<h:form id="frmAvaliacao">
+<h:body>
+	<p:growl id="growl" showDetail="true" />
+	<h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
+	<h:form id="formulario">
+		<p:panel closable="true" footer="Sistema de Avaliação - INFNET " style="width:100%">
+		   <p:messages id="msgs" />
+			<f:facet name="header">
+				<h:panelGrid columns="2">
+					<h:graphicImage library="imagens" name="logo.png" width="90" height="60" align="left" title="INFNET" alt="INFNET" />
+					<h:outputText value="  Formulário de Avaliação" />
+				</h:panelGrid>
+			</f:facet>
+			<h:panelGrid columns="7">
+				<h:outputLabel for="aluno" value="Aluno: *" />
+				<p:inputText id="aluno" value="Teste" required="true" label="Aluno" size="30">
+                  <f:validateLength minimum="2" /> 
+				 </p:inputText>	
+				 <h:outputLabel for="cpf" value="CPF: *" />
+				<p:inputText id="cpf" value="234.345.678-22" required="true" label="CPF" size="10">
+                  <f:validateLength minimum="17" /> 
+				 </p:inputText>	 
+				 <h:outputLabel for="modulo" value="Módulo: *" />
+				<p:inputText id="modulo" value="MIT-Engenharia de Software com Java" required="true" label="modulo" size="50">
+                  <f:validateLength minimum="50" /> 
+				 </p:inputText>	 
+			</h:panelGrid>
+			<h:panelGrid>
+			<p>Por favor, preencha essa avaliação com toda atenção. Ela é
+			muito importante para a melhoria contínua de seu curso. <br /> É através das
+			avaliações que poderemos construir um curso cada vez melhor, o que é
+			importante para você agora e para o valor de seu diploma no futuro.</p>
+			</h:panelGrid>
+			 <p:selectOneRadio id="q1p1Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q1p2Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
 
-		
+			 <p:selectOneRadio id="q1p3Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q1p4Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+			 <p:selectOneRadio id="q1p5Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q1p6Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+  
+			<p:panelGrid style="margin-top:10px"  >  
+               <f:facet name="header">  
+               <p:row>  
+                 <p:column >Avaliação geral da Pós-Graduação</p:column>
+                  <p:column colspan="2">Concordo totalmente</p:column>  
+                  <p:column colspan="2">Concordo</p:column>  
+                  <p:column colspan="2">Não concordo nem discordo</p:column>  
+                  <p:column colspan="2">Discordo</p:column>  
+                  <p:column colspan="2">Discordo totalmente</p:column>  
+                  <p:column>Não sei Avaliar</p:column>  
+               </p:row>  
+               </f:facet>
+               <p:row>
+                 <p:column>1. Até agora,o curso está atingindo as minhas espectativas.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r1" for="q1p1Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r2" for="q1p1Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r3" for="q1p1Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r4" for="q1p1Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r5" for="q1p1Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q1r6" for="q1p1Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>2.  Até agora, eu indicaria o curso para um amigo.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r1" for="q1p2Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r2" for="q1p2Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r3" for="q1p2Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r4" for="q1p2Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r5" for="q1p2Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q2r6" for="q1p2Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>3. Até agora, o curso me parece voltado para as necessidades do mercado.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r1" for="q1p3Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r2" for="q1p3Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r3" for="q1p3Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r4" for="q1p3Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r5" for="q1p3Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q3r6" for="q1p3Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>4.  Até agora, a coordenação pedagógica parece comprometida com a qualidade do curso.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r1" for="q1p4Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r2" for="q1p4Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r3" for="q1p4Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r4" for="q1p4Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r5" for="q1p4Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q4r6" for="q1p4Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>5. Até agora, minha turma parece proporcionar um networking relevante para a minha carreira.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r1" for="q1p5Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r2" for="q1p5Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r3" for="q1p5Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r4" for="q1p5Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r5" for="q1p5Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q5r6" for="q1p5Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>6.  Até agora, o atendimento da Secretaria que recebi está atingindo as minhas espectativas.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r1" for="q1p6Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r2" for="q1p6Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r3" for="q1p6Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r4" for="q1p6Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r5" for="q1p6Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p1q6r6" for="q1p6Radio" itemIndex="5"/></p:column>                               
+               </p:row>                                      
+               </p:panelGrid> 
+                
+                <p:selectOneRadio id="q2p1Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		       </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q2p2Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+
+			 <p:selectOneRadio id="q2p3Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q2p4Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+			 <p:selectOneRadio id="q2p5Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q2p6Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+ 
+             <p:panelGrid style="margin-top:10px"  >  
+               <f:facet name="header">  
+               <p:row>  
+                 <p:column >Avaliação do professor no módulo</p:column>
+                  <p:column colspan="2">Concordo totalmente</p:column>  
+                  <p:column colspan="2">Concordo</p:column>  
+                  <p:column colspan="2">Não concordo nem discordo</p:column>  
+                  <p:column colspan="2">Discordo</p:column>  
+                  <p:column colspan="2">Discordo totalmente</p:column>  
+                  <p:column>Não sei Avaliar</p:column>  
+               </p:row>  
+               </f:facet>
+               <p:row>
+                 <p:column>1. O professor contribuiu para o meu aprendizado.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r1" for="q2p1Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r2" for="q2p1Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r3" for="q2p1Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r4" for="q2p1Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r5" for="q2p1Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q1r6" for="q2p1Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>2. O professor é atencioso e esteve disponível para tirar dúvidas.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r1" for="q2p2Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r2" for="q2p2Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r3" for="q2p2Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r4" for="q2p2Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r5" for="q2p2Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q2r6" for="q2p2Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>3. O professor aproveitou bem o tempo em sala de aula.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r1" for="q2p3Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r2" for="q2p3Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r3" for="q2p3Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r4" for="q2p3Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r5" for="q2p3Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q3r6" for="q2p3Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>4. O professor utilizou o Moodle e outros recursos didáticos para ajudar no meu aprendizado.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r1" for="q2p4Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r2" for="q2p4Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r3" for="q2p4Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r4" for="q2p4Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r5" for="q2p4Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q4r6" for="q2p4Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>5. O professor aproveitou bem os recursos da sala de aula.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r1" for="q2p5Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r2" for="q2p5Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r3" for="q2p5Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r4" for="q2p5Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r5" for="q2p5Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q5r6" for="q2p5Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>6. Gostaria de cursar outros módulos com esse professors.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r1" for="q2p6Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r2" for="q2p6Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r3" for="q2p6Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r4" for="q2p6Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r5" for="q2p6Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p2q6r6" for="q2p6Radio" itemIndex="5"/></p:column>                               
+               </p:row>   
+                                                  
+             </p:panelGrid>
+                <p:selectOneRadio id="q3p1Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		       </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q3p2Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+
+			 <p:selectOneRadio id="q3p3Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+			 <p:selectOneRadio id="q3p4Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+			 <p:selectOneRadio id="q3p5Radio" value="" layout="custom">  
+		          <f:selectItem itemLabel="Option 1" itemValue="1" />  
+		          <f:selectItem itemLabel="Option 2" itemValue="2" />  
+		          <f:selectItem itemLabel="Option 3" itemValue="3" />
+		          <f:selectItem itemLabel="Option 4" itemValue="4" /> 
+		          <f:selectItem itemLabel="Option 5" itemValue="5" /> 
+		          <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+		      </p:selectOneRadio> 
+		      
+             <p:panelGrid style="margin-top:10px"  >  
+               <f:facet name="header">  
+               <p:row>  
+                 <p:column >Avaliação de conteúdo e infra-estrutura no módulo</p:column>
+                  <p:column colspan="2">Concordo totalmente</p:column>  
+                  <p:column colspan="2">Concordo</p:column>  
+                  <p:column colspan="2">Não concordo nem discordo</p:column>  
+                  <p:column colspan="2">Discordo</p:column>  
+                  <p:column colspan="2">Discordo totalmente</p:column>  
+                  <p:column>Não sei Avaliar</p:column>  
+               </p:row>  
+               </f:facet>
+               <p:row>
+                 <p:column>1. Eu adquiri as competências propostas para o módulo.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r1" for="q3p1Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r2" for="q3p1Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r3" for="q3p1Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r4" for="q3p1Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r5" for="q3p1Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q1r6" for="q3p1Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>2. O módulo foi útil para o meu crescimento profissional.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r1" for="q3p2Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r2" for="q3p2Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r3" for="q3p2Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r4" for="q3p2Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r5" for="q3p2Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q2r6" for="q3p2Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>3. A carga horária do módulo foi apropriada.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r1" for="q3p3Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r2" for="q3p3Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r3" for="q3p3Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r4" for="q3p3Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r5" for="q3p3Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q3r6" for="q3p3Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>4. O acervo da biblioteca atendeu as necessidades desse módulo.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r1" for="q3p4Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r2" for="q3p4Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r3" for="q3p4Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r4" for="q3p4Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r5" for="q3p4Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q4r6" for="q3p4Radio" itemIndex="5"/></p:column>                               
+               </p:row>
+               <p:row>
+                 <p:column>5. A configuração do(s) computadore(s) e equipamentos da sala de aula e a qualidade do suporte foi apropriada.</p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r1" for="q3p5Radio" itemIndex="0"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r2" for="q3p5Radio" itemIndex="1"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r3" for="q3p5Radio" itemIndex="2"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r4" for="q3p5Radio" itemIndex="3"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r5" for="q3p5Radio" itemIndex="4"/></p:column>
+                 <p:column colspan="2"><p:radioButton id="p3q5r6" for="q3p5Radio" itemIndex="5"/></p:column>                               
+               </p:row>                           
+             </p:panelGrid>
+            <p:row>
+               <p:column colspan="2">6. Você tem comentários e sugestões?.</p:column>
+            </p:row>               
+		</p:panel>
 	</h:form>
-
-
-
-</body>
+</h:body>
 </html>
