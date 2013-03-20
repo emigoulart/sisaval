@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,7 +29,7 @@ public class TurmaAluno implements Serializable {
 
 	//bi-directional many-to-one association to Turma
 	@ManyToOne
-	//@JoinColumn(name="fk_turma")
+	@JoinColumn(name="tur_id")
 	private Turma turma;
 
 	public TurmaAluno() {

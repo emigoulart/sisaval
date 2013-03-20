@@ -12,14 +12,16 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class DaoGenericoImp<T, ID extends Serializable>
 implements DaoGenerico<T, ID> {
 
-	@PersistenceContext
+
 	private EntityManager entityManager;
 
 	private final Class<T> oClass;//object class
@@ -30,7 +32,7 @@ implements DaoGenerico<T, ID> {
 	}
 
 
-	@PersistenceContext
+	@PersistenceContext(unitName="sysAvaliacao")
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
 	}

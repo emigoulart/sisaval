@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.infnet.model.Usuario;
 
@@ -41,6 +42,7 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 	 * @see br.eud.infnet.dao.UsuarioDAO2#validarLogin(br.edu.infnet.modelo.Usuario)
 	 */
 	@Override
+	@Transactional
 	public Usuario validarLogin(Usuario usuario) throws HibernateException{
 		Query query=null;
 		Usuario user= null;
