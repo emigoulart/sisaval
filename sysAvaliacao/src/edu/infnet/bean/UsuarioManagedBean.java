@@ -66,7 +66,7 @@ public class UsuarioManagedBean implements Serializable{
 				paginaRetorno = "/paginas/cadastro/menuAdmin";
 			} else {
 
-				paginaRetorno = "/paginas/avaliacao/listaFormularios";
+				paginaRetorno = "/paginas/avaliacao/avaliaDisciplina";
 			}
 
 		}
