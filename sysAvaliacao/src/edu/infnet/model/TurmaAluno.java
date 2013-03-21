@@ -29,7 +29,7 @@ public class TurmaAluno implements Serializable {
 
 	//bi-directional many-to-one association to Turma
 	@ManyToOne
-	@JoinColumn(name="tur_id")
+	@JoinColumn(name="fk_turma", insertable=false, updatable=false)
 	private Turma turma;
 
 	public TurmaAluno() {

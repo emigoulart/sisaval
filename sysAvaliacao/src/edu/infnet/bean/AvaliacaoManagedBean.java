@@ -26,7 +26,7 @@ public class AvaliacaoManagedBean implements Serializable {
 		
 	public AvaliacaoManagedBean(){
 
-		setAvaliacao(new Avaliacao());
+		//setAvaliacao(new Avaliacao());
 	}
 
 	public Avaliacao getAvaliacao() {
@@ -51,6 +51,10 @@ public class AvaliacaoManagedBean implements Serializable {
 		
 	}
 	
+	public void responderQuestionario(){
+		dao.incluirAvaliacao(avaliacao);
+		
+	}
 	
 
 }

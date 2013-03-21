@@ -2,6 +2,7 @@ package edu.infnet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -51,8 +52,11 @@ public class Avaliacao implements Serializable {
 	private TurmaAluno turmaaluno;
 
 	//bi-directional many-to-many association to Questaoalternativa
-	@ManyToMany(mappedBy="avaliacaos")
-	private List<Questaoalternativa> questaoalternativas;
+	//@ManyToMany(mappedBy="avaliacaos")
+	//private List<Questaoalternativa> questaoalternativas;
+	
+	@OneToMany(mappedBy="avaliacao")
+	private List<AvaliacaoRespostas> avaliacaorespostas;
 
 	public Avaliacao() {
 	}
@@ -129,12 +133,21 @@ public class Avaliacao implements Serializable {
 		this.turmaaluno = turmaaluno;
 	}
 
-	public List<Questaoalternativa> getQuestaoalternativas() {
+/*	public List<Questaoalternativa> getQuestaoalternativas() {
 		return this.questaoalternativas;
 	}
 
 	public void setQuestaoalternativas(List<Questaoalternativa> questaoalternativas) {
 		this.questaoalternativas = questaoalternativas;
+	}*/
+
+	public List<AvaliacaoRespostas> getAvaliacaorespostas() {
+		return avaliacaorespostas;
 	}
+
+	public void setAvaliacaorespostas(List<AvaliacaoRespostas> avaliacaorespostas) {
+		this.avaliacaorespostas = avaliacaorespostas;
+	}
+
 
 }

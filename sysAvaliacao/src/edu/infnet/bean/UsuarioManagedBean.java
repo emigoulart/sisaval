@@ -8,14 +8,20 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
+import edu.infnet.dao.AvaliacaoDAO;
+import edu.infnet.dao.AvaliacaoDAOImpl;
 import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.UsuarioDAO;
+import edu.infnet.dao.UsuarioDAOImpl;
+import edu.infnet.model.Avaliacao;
 import edu.infnet.model.Usuario;
 import edu.infnet.util.FacesUtils;
 import edu.infnet.util.TipoUsuario;
 
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 @ManagedBean(name="usuarioBean")
 public class UsuarioManagedBean implements Serializable{
 
@@ -24,7 +30,7 @@ public class UsuarioManagedBean implements Serializable{
 
 	public UsuarioManagedBean() {
 		usuario = new Usuario();
-	}
+	} 
 
 	@SuppressWarnings("unused")
 	private boolean logado=false;
@@ -65,8 +71,8 @@ public class UsuarioManagedBean implements Serializable{
 				usuario= new Usuario();//
 				paginaRetorno = "/paginas/cadastro/menuAdmin";
 			} else {
-
-				paginaRetorno = "/paginas/avaliacao/avaliaDisciplina";
+				listarAvaliacoes();
+				paginaRetorno = "/paginas/avaliacao/listaFormularios";
 			}
 
 		}
@@ -86,18 +92,14 @@ public class UsuarioManagedBean implements Serializable{
 	}
 
 	public List<Usuario> getLista() {
-		System.out.println("Listagem");
 		return lista;
 	}
 
 	public void setLista(List<Usuario> lista) {
-		System.out.println("Listagem2");
 		this.lista = lista;
 	}
 
-
 	public void listar()  {
-		System.out.println("Listagem 3");
 		lista = usuarioDao.listar();
 	}
 
@@ -114,4 +116,36 @@ public class UsuarioManagedBean implements Serializable{
 		logado = false;
 		return "paginaLogin";
 	}
+	
+	private Avaliacao avaliacao= new Avaliacao();
+
+	private final AvaliacaoDAO daoAvaliacao = new AvaliacaoDAOImpl();
+
+	private List<Avaliacao> listaAvaliacao = new ArrayList<Avaliacao>();
+	
+	public void listarAvaliacoes(){
+		setListaAvaliacao(daoAvaliacao.consultarAvaliacoesAluno(usuario));
+		
+	}
+	
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
+	}
+	
+	public List<Avaliacao> getListaAvaliacao() {
+		return listaAvaliacao;
+	}
+
+	public void setListaAvaliacao(List<Avaliacao> listaAvaliacao) {
+		this.listaAvaliacao = listaAvaliacao;
+	}
+
+	
+	
+	
+	
 }

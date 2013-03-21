@@ -14,6 +14,7 @@
 		type="text/css" />
 </h:head>
 <h:body>
+
 	<p:growl id="growl" showDetail="true" />
 	<h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
 	<h:form id="formulario">
@@ -27,13 +28,13 @@
 			</f:facet>
 			<h:panelGrid columns="7">
 				<h:outputLabel for="aluno" value="Aluno: *" />
-				<p:inputText id="aluno" value="Teste" required="true" label="Aluno" size="30">
+				<p:inputText id="aluno" value="" required="true" label="Aluno" size="30">
                   <f:validateLength minimum="2" /> 
 				 </p:inputText>	
-				 <h:outputLabel for="cpf" value="CPF: *" />
+ 				 <h:outputLabel for="cpf" value="CPF: *" />
 				<p:inputText id="cpf" value="234.345.678-22" required="true" label="CPF" size="10">
                   <f:validateLength minimum="17" /> 
-				 </p:inputText>	 
+				 </p:inputText>	  
 				 <h:outputLabel for="modulo" value="Módulo: *" />
 				<p:inputText id="modulo" value="MIT-Engenharia de Software com Java" required="true" label="modulo" size="50">
                   <f:validateLength minimum="50" /> 

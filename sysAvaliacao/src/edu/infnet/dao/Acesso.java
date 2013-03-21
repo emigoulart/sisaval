@@ -18,4 +18,7 @@ public class Acesso {
 	public String listar() {
 		return "/paginas/avaliacao/listaFormularios";
 	}
+	public String responder() {
+		return "/paginas/avaliacao/avaliaDisciplina";
+	}
 }

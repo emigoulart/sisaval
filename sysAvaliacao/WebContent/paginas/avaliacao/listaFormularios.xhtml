@@ -9,7 +9,7 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title>
+	<title>Avaliações INFNET</title>
 
 	<style type="text/css">
 body {
@@ -20,32 +20,55 @@ body {
 <body>
 	<h:form id="frmAvaliacao">
 
-		<p:panel header="#{msgs.welcome}" style="width:470px;margin:10% 25% 10% 25%;">
+		<p:panel header="#{msgs.welcome}" style="width:470px;margin:5% 25% 10% 25%;">
 		    <h:outputText value="#{usuarioBean.usuario.login}"/> 
 			<h:outputLabel value="#{msgs.loginsucesso}" />
 		</p:panel>
-		<h:commandButton action="#{usuarioBean.listar}" value="Consultar"
-				update="retorno" />
 		
-		<p:panel id="retorno" >
-			<h:outputText value="#{usuarioBean.usuario}" />
-			<p:dataTable id="tblRetorno" var="registro" value="#{usuarioBean.lista}">
-				<p:column headerText="id">
-					<h:outputText value="#{registro.matricula}" />
-				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{registro.nome}" />
-				</p:column>
+			<h:commandLink value =" Responder Questionario" action ="#{acesso.responder}"/>
+		 
+		<p:panel id="listagem2" style="width:700px;margin:1% 25% 10% 25%;" >
+			 <p:dataTable id="avaliacoestable" var="avaliacao" value="#{usuarioBean.listaAvaliacao}">  
+			  
+			        <p:columnGroup type="header">  
+			            <p:row>  
+			                <p:column colspan="2" headerText="Disciplina" />  
+			            </p:row>  
+			  
+			            <p:row>  
+			                <p:column headerText="Perguntas" />  
+			                <p:column headerText="Respostas" />  
+			            </p:row>  
+			        </p:columnGroup>  
+			  
+			        <p:subTable var="respostas" value="#{avaliacao.avaliacaorespostas}">  
+			            <f:facet name="header">  
+			              #{avaliacao.turmaaluno.turma.disciplina.disDescricao}   
+			            </f:facet>  
+			  
+			            <p:column>  
+			                #{respostas.alternativa.questao.qstQuestao}  
+			            </p:column>  
+			  
+			            <p:column>  
+			                #{respostas.alternativa.alternativa.altAlternativa}  
+			            </p:column>  
+			  
+			<!--             <p:column>  
+			                #{stats.assists}  
+			            </p:column>  
+			  
+			            <p:columnGroup type="footer">  
+			                <p:row>  
+			                    <p:column footerText="Totals: " style="text-align:right"/>  
+			                    <p:column footerText="#{player.allGoals}" />  
+			                    <p:column footerText="#{player.allAssists}" />  
+			                </p:row>  
+			            </p:columnGroup>   -->
+			        </p:subTable>  
+			    </p:dataTable> 
+		</p:panel>
 
-				<p:column headerText="Telefone">
-					<h:outputText value="#{registro.login}" />
-				</p:column>
-			</p:dataTable>
-		</p:panel>`
-
-		
-		
-		
 		<p>
 		  <h:commandButton value="#{msgs.logout}" action="#{usuarioBean.logout}"/>
 		</p>
