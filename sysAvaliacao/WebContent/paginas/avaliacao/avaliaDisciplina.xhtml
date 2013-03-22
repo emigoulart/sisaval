@@ -26,19 +26,23 @@
 					<h:outputText value="  Formulário de Avaliação" />
 				</h:panelGrid>
 			</f:facet>
-			<h:panelGrid columns="7">
+			<h:panelGrid columns="8">
 				<h:outputLabel for="aluno" value="Aluno: *" />
 				<p:inputText id="aluno" value="" required="true" label="Aluno" size="30">
                   <f:validateLength minimum="2" /> 
 				 </p:inputText>	
- 				 <h:outputLabel for="cpf" value="CPF: *" />
-				<p:inputText id="cpf" value="234.345.678-22" required="true" label="CPF" size="10">
+ 				 <h:outputLabel for="matricula" value="Matricula: *" />
+				<p:inputText id="matricula" value="" required="true" label="disciplina" size="10">
                   <f:validateLength minimum="17" /> 
 				 </p:inputText>	  
 				 <h:outputLabel for="modulo" value="Módulo: *" />
-				<p:inputText id="modulo" value="MIT-Engenharia de Software com Java" required="true" label="modulo" size="50">
+				<p:inputText id="modulo" value="" required="true" label="modulo" size="50">
                   <f:validateLength minimum="50" /> 
 				 </p:inputText>	 
+					 <h:outputLabel for="disciplina" value="Disciplina: *" />
+				<p:inputText id="disciplina" value="" required="true" label="disciplina" size="50">
+                  <f:validateLength minimum="50" /> 
+				 </p:inputText>	 	 
 			</h:panelGrid>
 			<h:panelGrid>
 			<p>Por favor, preencha essa avaliação com toda atenção. Ela é
@@ -391,7 +395,8 @@
                </p:row>                           
              </p:panelGrid>
             <p:row>
-               <p:column colspan="2">6. Você tem comentários e sugestões?.</p:column>
+               <h3>6. Você tem comentários e sugestões?</h3> 
+                <p:inputTextarea rows="5" cols="150" counter="counter" maxlength="400" counterTemplate="{0} caracteres restantes." autoResize="false"/> 
             </p:row>               
 		</p:panel>
 	</h:form>

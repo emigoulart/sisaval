@@ -6,25 +6,33 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
+	
 <h:head>
-     <meta http-equiv="Content-type" content="text/html charset=ISO-8859-1" />
-     <title>#{msgs.title}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
 </h:head>
-   <h:body>
-     <p:growl id="growl" showDetail="true" />
-     <h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
-       <h:form id="loginForm">
-         <p:panel  closable="true" footer="Sistema de Avaliação" header="Login" style="width:350px">
-           <h:panelGrid columns="2">
-             <h:outputLabel for="login" value="Login:" />
-             <p:inputText id="login" value="#{usuarioBean.usuario.login}" promptLabel="Informe o seu login"  autocomplete="off" required="true" />
-             
-               <h:outputLabel for="senha" value="Senha:"/>
-               <p:password minLength="6" value="#{usuarioBean.usuario.senha}" promptLabel="Digite uma senha segura" goodLabel="Boa"  weakLabel="Razoável"  strongLabel="Excelente" required="true" />		
-           </h:panelGrid>
-              <h:commandButton value="#{msgs.login}" action="#{usuarioBean.efetuarLogin}"/>
+<h:body>
+       <h:form id="loginForm" prependId="false">
+         <p:growl id="growl" showDetail="true" />
+          <p:panel  id="painelLogin" style="margin: 100px auto;width: 300px;">
+		   <f:facet name="header">Login do Sistema </f:facet>
+		     <table width="30%">
+			    <tr valign="top">
+                     <td width="28%"> 
+					    <h:panelGrid columns="2">
+                          <h:outputLabel for="login" value="Login:" />
+                          <p:inputText id="login" value="#{usuarioBean.usuario.login}" promptLabel="Informe o seu login"  autocomplete="off" required="true" />           
+                          <h:outputLabel for="senha" value="Senha:"/>
+                          <p:password minLength="6" value="#{usuarioBean.usuario.senha}" promptLabel="Digite uma senha segura" goodLabel="Boa"  weakLabel="Razoável"  strongLabel="Excelente" required="true" />		
+                        </h:panelGrid>
+					</td>
+                </tr>
+			</table>
+			<f:facet name="footer">
+              <h:commandButton value="#{msgs.login}" action="#{usuarioBean.efetuarLogin}" icon="ui-icon-circle-check" update="messages, painelUser"/>
+              <p:commandButton value="Limpar Campos" type="reset" icon="ui-icon-cancel" />
+             </f:facet>
           </p:panel>
         </h:form>
-     </h:body>
+     </h:body>   
 </html>

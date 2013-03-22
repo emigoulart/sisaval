@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 body {
   background: url("../imagens/fundo_pagina.png");
 }
@@ -32,20 +32,6 @@ body {
     float:left;
 }
 
-#frontBoxes SPAN {position:absolute;padding-left:0px;padding-top:10px;font-size: 16px;color:#FFB542;font-weight:bold;}
-.usuario_box {position:relative;float:left;width:230px;margin:5px;height:120px;padding-left:5px;border:1px solid #8AB5CC;color:#D6D6D6;background:#29739C;}
- .usuario_box a    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
- .usuario_box a:visited    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
- .usuario_box a:active    { color: #C4D7EB; font-weight: bold; text-decoration: underline; }
- .usuario_box a:hover    { color: #C4D7EB; font-weight: bold; text-decoration: underline; } 
- 
- .admin_box {position:relative;float:left;width:310px;margin:5px;height:120px;padding-left:5px;border:1px solid #8AB5CC;color:#D6D6D6;background:#29739C;}
- .admin_box a    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
- .admin_box a:visited    { color: #FFFFFF; font-weight: bold; text-decoration: underline; }
- .admin_box a:active    { color: #C4D7EB; font-weight: bold; text-decoration: underline; }
- .admin_box a:hover    { color: #C4D7EB; font-weight: bold; text-decoration: underline; } 
- 
- 
   
 .topleftboxcontent {
     width:592px;

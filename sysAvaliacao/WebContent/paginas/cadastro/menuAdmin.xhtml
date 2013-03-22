@@ -1,32 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-     <meta http-equiv="Content-type" content="text/html charset=ISO-8859-1" />
-     <title>#{msgs.title}</title>
-</h:head>
-     <h:body>
-      <p:growl id="growl" showDetail="true" />
-     <h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
-     <h:form id="loginForm">
-        <p:panel  closable="false" footer="Sistema de Avaliação" header="Menu Principal" style="width:350px">
-           <div id="menu">
-               <ul>
-                <li>
-                   <h:commandLink value ="Cadastrar Aluno" action ="#{acesso.cadastrarUsuario}"/>
-                </li>
-                <li>
-                 <h:commandLink value =" Listar Alunos" action ="#{acesso.listar}"/>                  
-                </li>        
-             </ul>
-             </div>   
-           <div id="conteudo">
-              <ui:insert name="conteudo"></ui:insert>
-           </div>
-        </p:panel>
-        </h:form>
-     </h:body>      
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:p="http://primefaces.org/ui"  
+    template="/WEB-INF/templates/template.xhtml">  
+  
+    <ui:define name="conteudo">  
+    
+    </ui:define>  
+</ui:composition> 

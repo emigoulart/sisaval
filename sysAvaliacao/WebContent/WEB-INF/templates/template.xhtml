@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Sistema de Avaliação pela Web V1.0</title>
+	<link href="../../resources/css/principal.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+
+	<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+
+	<p:growl id="messages" />
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="100" resizable="false"
+			closable="false" collapsible="true">
+			 <h:graphicImage url="../../resources/imagens/logo.png" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="25" resizable="false"
+			closable="false" collapsible="true">
+			<ui:include src="/rodape.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200px" resizable="true"
+			closable="false" collapsible="true" effect="drop">
+			<ui:include src="/menu.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<ui:insert name="conteudo" />
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+</h:body>
+</html>

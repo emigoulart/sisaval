@@ -1,46 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/template.xhtml" 
+     xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Avaliações INFNET</title>
-
-	<style type="text/css">
-body {
-	font-size: 10px;
-}
-</style>
-</h:head>
-<body>
-	<h:form id="frmAvaliacao">
-
-		<p:panel header="#{msgs.welcome}" style="width:470px;margin:5% 25% 10% 25%;">
-		    <h:outputText value="#{usuarioBean.usuario.login}"/> 
-			<h:outputLabel value="#{msgs.loginsucesso}" />
-		</p:panel>
-		
-			<h:commandLink value =" Responder Questionario" action ="#{acesso.responder}"/>
-		 
+<ui:define name="conteudo">
+	<h:form id="frmAvaliacao" prependId="false">
+		<p:growl id="growl" showDetail="true" />		 
 		<p:panel id="listagem2" style="width:700px;margin:1% 25% 10% 25%;" >
-			 <p:dataTable id="avaliacoestable" var="avaliacao" value="#{usuarioBean.listaAvaliacao}">  
-			  
-			        <p:columnGroup type="header">  
-			            <p:row>  
-			                <p:column colspan="2" headerText="Disciplina" />  
+			 <p:dataTable id="avaliacoesTable" var="avaliacao" value="#{usuarioBean.listaAvaliacao}">  
+			    <p:columnGroup type="header">  
+			      <p:row>  
+			         <p:column colspan="2" headerText="Disciplina" />  
+			       </p:row>  
+			        <p:row>  
+			           <p:column headerText="Perguntas" />  
+			           <p:column headerText="Respostas" />  
 			            </p:row>  
-			  
-			            <p:row>  
-			                <p:column headerText="Perguntas" />  
-			                <p:column headerText="Respostas" />  
-			            </p:row>  
-			        </p:columnGroup>  
-			  
+			        </p:columnGroup>  	  
 			        <p:subTable var="respostas" value="#{avaliacao.avaliacaorespostas}">  
 			            <f:facet name="header">  
 			              #{avaliacao.turmaaluno.turma.disciplina.disDescricao}   
@@ -68,13 +49,6 @@ body {
 			        </p:subTable>  
 			    </p:dataTable> 
 		</p:panel>
-
-		<p>
-		  <h:commandButton value="#{msgs.logout}" action="#{usuarioBean.logout}"/>
-		</p>
 	</h:form>
-
-
-
-</body>
-</html>
+   </ui:define>
+</ui:composition>

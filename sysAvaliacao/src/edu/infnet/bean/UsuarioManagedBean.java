@@ -114,7 +114,7 @@ public class UsuarioManagedBean implements Serializable{
 
 	public String logout(){
 		logado = false;
-		return "paginaLogin";
+		return "/paginas/login/paginaLogin";
 	}
 	
 	private Avaliacao avaliacao= new Avaliacao();
