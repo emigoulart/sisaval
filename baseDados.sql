@@ -1,4 +1,3 @@
-
 /*CREATE DATABASE "dbAvaliacao"
   WITH OWNER = postgres
        ENCODING = 'UTF8'
@@ -8,7 +7,7 @@
       CONNECTION LIMIT = -1;*/
 -- Table: usuario
  
-DROP TABLE IF EXISTS usuario cascade;
+ DROP TABLE IF EXISTS usuario cascade;
 
 CREATE TABLE usuario
 (
@@ -25,8 +24,6 @@ CREATE TABLE usuario
 );
 
 
-
-
 DROP TABLE IF EXISTS curso cascade;
 CREATE TABLE curso (
 cur_ID serial,
@@ -37,7 +34,6 @@ CONSTRAINT pk_curso PRIMARY KEY (cur_ID)
 );
 
 
-
 DROP TABLE IF EXISTS disciplina cascade;
 CREATE TABLE disciplina (
   dis_ID serial,
@@ -46,27 +42,11 @@ CREATE TABLE disciplina (
   CONSTRAINT pk_disciplina PRIMARY KEY (dis_ID)
 );
 
-DROP TABLE IF EXISTS alternativa cascade;
-CREATE TABLE alternativa(
-  alt_ID serial,
-  alt_alternativa Text NOT NULL,
-  CONSTRAINT pk_alternativa PRIMARY KEY (alt_ID)
-);
-
 DROP TABLE IF EXISTS questao cascade;
 CREATE TABLE questao (
   qst_ID serial,
   qst_questao Text NOT NULL,
   CONSTRAINT pk_questao PRIMARY KEY (qst_ID)
-);
-
-DROP TABLE IF EXISTS questaoalternativas cascade;
-CREATE TABLE questaoalternativas (
-  fk_questao integer NOT NULL,
-  fk_alternativa integer NOT NULL,
-  CONSTRAINT pk_questaoalternativa PRIMARY KEY (fk_questao, fk_alternativa),
-  CONSTRAINT fk_questaoID FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID),
-  CONSTRAINT fk_alternativaID FOREIGN KEY(fk_alternativa) REFERENCES alternativa(alt_ID)
 );
 
 DROP TABLE IF EXISTS formulario cascade;
@@ -140,5 +120,5 @@ CREATE TABLE avaliacaorespostas (
   resposta integer,
   CONSTRAINT pk_avaliacaorespostas PRIMARY KEY (fk_avaliacao, fk_questao),
   CONSTRAINT fk_avaliacaoID FOREIGN KEY(fk_avaliacao) REFERENCES avaliacao(avl_ID),
-  CONSTRAINT fk_avalrespostaalt FOREIGN KEY(fk_questao, resposta) REFERENCES questaoalternativas(fk_questao, fk_alternativa)
+  CONSTRAINT fk_avalresposta FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID)
   );
