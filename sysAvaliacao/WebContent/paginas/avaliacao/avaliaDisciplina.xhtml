@@ -27,12 +27,12 @@
 				</h:panelGrid>
 			</f:facet>
 			<h:panelGrid columns="8">
-				<h:outputLabel for="aluno" value="Aluno: *" />
-				<p:inputText id="aluno" value="" required="true" label="Aluno" size="30">
+				<h:outputLabel for="aluno" value="Aluno:" />
+				<p:inputText id="aluno" value="#{usuarioBean.usuario.nome}" required="true" label="Aluno" size="30">
                   <f:validateLength minimum="2" /> 
 				 </p:inputText>	
- 				 <h:outputLabel for="matricula" value="Matricula: *" />
-				<p:inputText id="matricula" value="" required="true" label="disciplina" size="10">
+ 				 <h:outputLabel for="matricula" value="Matricula:" />
+				<p:inputText id="matricula" value="#{usuarioBean.usuario.matricula}" required="true" label="disciplina" size="10">
                   <f:validateLength minimum="17" /> 
 				 </p:inputText>	  
 				 <h:outputLabel for="modulo" value="Módulo: *" />
@@ -396,7 +396,7 @@
              </p:panelGrid>
             <p:row>
                <h3>6. Você tem comentários e sugestões?</h3> 
-                <p:inputTextarea rows="5" cols="150" counter="counter" maxlength="400" counterTemplate="{0} caracteres restantes." autoResize="false"/> 
+                <p:inputTextarea rows="5" cols="150" counter="" maxlength="400" counterTemplate="{0} caracteres restantes." autoResize="false"/> 
             </p:row>               
 		</p:panel>
 	</h:form>
