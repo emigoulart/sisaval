@@ -25,6 +25,14 @@ import edu.infnet.util.TipoUsuario;
 @ManagedBean(name="usuarioBean")
 public class UsuarioManagedBean implements Serializable{
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "UsuarioManagedBean [usuario=" + usuario + "]";
+	}
+
 	private static final long serialVersionUID = -4350207791581637099L;
 	private Usuario usuario;
 
