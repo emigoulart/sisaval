@@ -3,7 +3,6 @@ package edu.infnet.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import edu.infnet.model.Alternativa;
 import edu.infnet.model.Questao;
 
 public class QuestaoDAOImpl  extends DaoGenericoImp<Questao, Serializable> implements QuestaoDAO {
@@ -29,11 +28,4 @@ public class QuestaoDAOImpl  extends DaoGenericoImp<Questao, Serializable> imple
 		return super.todos();
 	}
 
-	@Override
-	public List<Alternativa> alternativasQuestao(Questao questao){
-		
-		
-		return null;
-	}
-	
 }

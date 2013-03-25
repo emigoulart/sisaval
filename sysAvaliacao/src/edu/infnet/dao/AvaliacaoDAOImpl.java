@@ -15,7 +15,7 @@ public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable>  i
 	public Avaliacao consultar(Integer codigo) {
 		return super.pesquisarPorId(codigo);
 	}
-
+ 
 	@Override
 	public void incluirAvaliacao(Avaliacao avaliacao) {
 		super.salvar(avaliacao);
