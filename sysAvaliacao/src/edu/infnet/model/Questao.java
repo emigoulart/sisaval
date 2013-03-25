@@ -33,19 +33,6 @@ public class Questao implements Serializable {
 		)
 	private List<Formulario> formularios;
 
-	//bi-directional many-to-many association to Alternativa
-	@ManyToMany
-	@JoinTable(
-		name="questaoalternativas"
-		, joinColumns={
-			@JoinColumn(name="fk_questao")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="fk_alternativa")
-			}
-		)
-	private List<Alternativa> alternativas;
-
 	public Questao() {
 	}
 
@@ -71,14 +58,6 @@ public class Questao implements Serializable {
 
 	public void setFormularios(List<Formulario> formularios) {
 		this.formularios = formularios;
-	}
-
-	public List<Alternativa> getAlternativas() {
-		return this.alternativas;
-	}
-
-	public void setAlternativas(List<Alternativa> alternativas) {
-		this.alternativas = alternativas;
 	}
 
 }

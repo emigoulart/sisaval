@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
+//import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,15 +19,19 @@ public class AvaliacaoRespostas implements Serializable {
 	private AvaliacaoRespostasPK id;
 	
 	//bi-directional many-to-one association to Curso
-	@ManyToOne
+/*	@ManyToOne
 	@JoinColumns({
 		@JoinColumn(name="fk_questao", referencedColumnName="fk_questao",  insertable=false, updatable=false),
 		@JoinColumn(name="resposta", referencedColumnName="fk_alternativa",  insertable=false, updatable=false)})
-	private Questaoalternativa alternativa;
+	private Questaoalternativa alternativa;*/
+	
+	@ManyToOne
+	@JoinColumn(name="fk_questao", referencedColumnName="qst_id",  insertable=false, updatable=false)
+	private Questao questao;
 	
 	//@ManyToOne
 	//@JoinColumn	(name="resposta", referencedColumnName="alt_id")
-	//private Alternativa resposta;
+	private Integer resposta;
 
 	@ManyToOne
 	@JoinColumn	(name="fk_avaliacao",  insertable=false, updatable=false)
@@ -59,7 +63,7 @@ public class AvaliacaoRespostas implements Serializable {
 	public void setAvaliacao(Avaliacao avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-
+/*
 	public Questaoalternativa getAlternativa() {
 		return alternativa;
 	}
@@ -67,6 +71,24 @@ public class AvaliacaoRespostas implements Serializable {
 	public void setAlternativa(Questaoalternativa alternativa) {
 		this.alternativa = alternativa;
 	}
+	*/
+
+	public Integer getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(Integer resposta) {
+		this.resposta = resposta;
+	}
+
+	public Questao getQuestao() {
+		return questao;
+	}
+
+	public void setQuestao(Questao questao) {
+		this.questao = questao;
+	}
+	
 	
 	
 
