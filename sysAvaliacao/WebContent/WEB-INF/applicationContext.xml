@@ -9,8 +9,6 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
-
  <bean id="entityManagerFactory" 
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="sysAvaliacao" />
@@ -25,8 +23,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>	
    <bean id="usuarioDao" class="edu.infnet.dao.UsuarioDAOImpl">	
+   </bean>	
+   <bean id="avaliacaoDao" class="edu.infnet.dao.AvaliacaoDAOImpl">	
    </bean>
-
-
  <tx:annotation-driven  transaction-manager="transactionManager" />
 </beans>
