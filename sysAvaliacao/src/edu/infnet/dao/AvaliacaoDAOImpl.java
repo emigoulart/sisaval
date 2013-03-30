@@ -11,23 +11,25 @@ import edu.infnet.model.Usuario;
 
 public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable>  implements AvaliacaoDAO {
 
+	@SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public Avaliacao consultar(Integer codigo) {
 		return super.pesquisarPorId(codigo);
 	}
- 
+
 	@Override
 	public void incluirAvaliacao(Avaliacao avaliacao) {
 		super.salvar(avaliacao);
 
-	} 
+	}
 
 	@Override
 	public List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno) {
 		String sqlQuery = "from Avaliacao where fk_aluno = :aluno";
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("aluno", aluno.getMatricula());
-		//parameters.put("senha", usuario.getSenha());
 
 		return super.listPesqParam(sqlQuery, parameters);
 	}

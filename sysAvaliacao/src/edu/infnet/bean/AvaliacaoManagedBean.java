@@ -10,6 +10,8 @@ import javax.faces.bean.RequestScoped;
 
 import edu.infnet.dao.AvaliacaoDAO;
 import edu.infnet.model.Avaliacao;
+import edu.infnet.model.Formulario;
+import edu.infnet.model.Questao;
 import edu.infnet.model.Usuario;
 
 @ManagedBean(name="avaliacaoBean")
@@ -27,10 +29,35 @@ public class AvaliacaoManagedBean implements Serializable {
 
 	public AvaliacaoManagedBean(){
 		avaliacao= new Avaliacao();
+		formulario= new Formulario();
+	}
+
+	public void setAvaliacaoDao(AvaliacaoDAO avaliacaoDao) {
+		this.avaliacaoDao = avaliacaoDao;
 	}
 
 	public Avaliacao getAvaliacao() {
 		return avaliacao;
+	}
+
+	public Formulario formulario;
+
+	public List<Questao> questoes;
+
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
+	public Formulario getFormulario() {
+		return formulario;
+	}
+
+	public void setFormulario(Formulario formulario) {
+		this.formulario = formulario;
 	}
 
 	public AvaliacaoDAO getAvaliacaoDao() {
@@ -51,7 +78,13 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public void listarAvaliacoes(Usuario aluno){
-		setLista(avaliacaoDao.consultarAvaliacoesAluno(aluno));
+		lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
+		for (int i=0;i<lista.size();i++){
+			formulario=lista.get(i).getFormulario();
+			setFormulario(formulario);
+			setQuestoes(formulario.getQuestoes());
+		}
+		setLista(lista);
 
 	}
 
@@ -59,6 +92,7 @@ public class AvaliacaoManagedBean implements Serializable {
 		avaliacaoDao.incluirAvaliacao(avaliacao);
 
 	}
+
 
 
 }
