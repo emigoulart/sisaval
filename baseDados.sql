@@ -43,10 +43,12 @@ CREATE TABLE disciplina (
 );
 
 DROP TABLE IF EXISTS questao cascade;
-CREATE TABLE questao (
-  qst_ID serial,
-  qst_questao Text NOT NULL,
-  CONSTRAINT pk_questao PRIMARY KEY (qst_ID)
+CREATE TABLE questao
+(
+  qst_id serial NOT NULL,
+  qst_questao text NOT NULL,
+  grupo_questao integer,
+  CONSTRAINT pk_questao PRIMARY KEY (qst_id)
 );
 
 DROP TABLE IF EXISTS formulario cascade;
