@@ -1,4 +1,3 @@
-
 insert into curso (cur_nome, cur_tipo, cur_descricao)
 values ('MIT em Engenharia de Software com Java', 'Pós-Graduação','MIT em Engenharia de Software com Java' );
 
@@ -26,26 +25,33 @@ values ('Projeto de Bloco I', 'Projeto de Bloco I - Engenharia de Software');
 insert into disciplina (dis_nome, dis_descricao )
 values ('Aplicações Web', 'Aplicações Web');
 
-insert into questao(  qst_questao )
-values ('Até agora, o curso está atingindo as minhas expectativas.');
+insert into questao(  qst_questao,grupo_questao )
+values ('Até agora, a coordenação pedagógica parece comprometida com a qualidade do curso.',1);
 
-insert into questao(  qst_questao )
-values ('Até agora, eu indicaria o curso para um amigo.');
+insert into questao(  qst_questao,grupo_questao)
+values ('Até agora, minha turma parece proporcionar um networking relevante para a minha carreira.',1);
 
-insert into questao(  qst_questao )
-values ('Até agora, o curso me parece voltado para as necessidades de mercado.');
+insert into questao(  qst_questao,grupo_questao )
+values ('Até agora, o atendimento da Secretaria que recebi está atingindo as minhas espectativas.',1);
 
-insert into questao(  qst_questao )
-values ('Até agora, a coordenação pedagógica parece comprometida com a qualidade do curso.');
 
-insert into questao(  qst_questao )
-values ('O professor contribuiu para o meu aprendizado.');
+insert into questao (qst_questao,grupo_questao )
+values('O professor contribuiu para o meu aprendizado.',2);
 
-insert into questao(  qst_questao )
-values ('O professor é atencioso e esteve disponível para tirar dúvidas.');
+insert into questao (qst_questao,grupo_questao )
+values('O professor é atencioso e esteve disponível para tirar dúvidas.',2);
 
-insert into questao(  qst_questao )
-values ('O professor aproveitou bem o tempo em sala de aula.');
+insert into questao (qst_questao,grupo_questao )
+values('O professor aproveitou bem o tempo em sala de aula.',2);
+
+insert into questao (qst_questao,grupo_questao )
+values('O professor utilizou o Moodle e outros recursos didáticos para ajudar no meu aprendizado.',2);
+
+insert into questao (qst_questao,grupo_questao )
+values('O professor aproveitou bem os recursos da sala de aula.',2);
+
+insert into questao (qst_questao,grupo_questao)
+values('Gostaria de cursar outros módulos com esse professor.',2);
 
 insert into formulario (frm_nome, observacao)
 values ('Avaliação - Alunos da Pós-Graduação', 'Por favor, preencha essa avaliação com toda atenção. Ela é muito importante para a melhoria contínua de seu curso. É através das avaliações que poderemos construir um curso cada vez melhor, o que é importante para você agora e para o valor de seu diploma no futuro.');
