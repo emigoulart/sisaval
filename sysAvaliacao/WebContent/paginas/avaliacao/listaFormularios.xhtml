@@ -19,34 +19,23 @@
 			         <h:outputText value="#{usuarioBean.usuario.nome}"/>  
 			       </p:row>  
 			        <p:row>  
-			           <p:column headerText="Perguntas" />  
-			           <p:column headerText="Respostas" />  
+			           <p:column headerText="Disciplina" />  
+			           <p:column headerText="Avaliação disponível" />  
 			            </p:row>  
 			        </p:columnGroup>  	  
-			        <p:subTable var="respostas" value="#{avaliacao.avaliacaorespostas}">  
+			        <p:subTable var="respostas" value="#{avaliacao}">  
 			            <f:facet name="header">  
 			              #{avaliacao.turmaaluno.turma.disciplina.disDescricao}   
 			            </f:facet>  
 			  
 			            <p:column>  
-			                #{respostas.questao.qstQuestao}  
+			                #{avaliavao.avlDisponivel}  
 			            </p:column>  
 			  
 			            <p:column>  
-			                #{respostas.resposta}  
+			                
 			            </p:column>  
 			  
-			<!--             <p:column>  
-			                #{stats.assists}  
-			            </p:column>  
-			  
-			            <p:columnGroup type="footer">  
-			                <p:row>  
-			                    <p:column footerText="Totals: " style="text-align:right"/>  
-			                    <p:column footerText="#{player.allGoals}" />  
-			                    <p:column footerText="#{player.allAssists}" />  
-			                </p:row>  
-			            </p:columnGroup>   -->
 			        </p:subTable>  
 			    </p:dataTable> 
 		</p:panel>

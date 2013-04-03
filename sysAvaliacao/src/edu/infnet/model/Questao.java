@@ -1,8 +1,15 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 
 /**
@@ -20,24 +27,46 @@ public class Questao implements Serializable {
 	@Column(name="qst_questao")
 	private String qstQuestao;
 
+	@Column(name="grupo_questao")
+	private Integer grupoQuestao;
+
+	@Transient
+	private Integer resposta;
+
+	@Transient
+	private String tituloGrupo;
+
+	public String getTituloGrupo() {
+
+		if(getGrupoQuestao()!=null){
+			//tituloGrupo=
+			//GrupoQuestao.valueOf(getGrupoQuestao().toString()).toString();
+		}
+		return tituloGrupo;
+	}
+
+	public void setTituloGrupo(String tituloGrupo) {
+		this.tituloGrupo = tituloGrupo;
+	}
+
 	//bi-directional many-to-many association to Formulario
 	@ManyToMany
 	@JoinTable(
-		name="formularioquestoes"
-		, joinColumns={
-			@JoinColumn(name="fk_questao")
+			name="formularioquestoes"
+			, joinColumns={
+					@JoinColumn(name="fk_questao")
 			}
-		, inverseJoinColumns={
-			@JoinColumn(name="fk_formulario")
+			, inverseJoinColumns={
+					@JoinColumn(name="fk_formulario")
 			}
-		)
+			)
 	private List<Formulario> formularios;
 
 	public Questao() {
 	}
 
 	public Integer getQstId() {
-		return this.qstId;
+		return qstId;
 	}
 
 	public void setQstId(Integer qstId) {
@@ -45,7 +74,7 @@ public class Questao implements Serializable {
 	}
 
 	public String getQstQuestao() {
-		return this.qstQuestao;
+		return qstQuestao;
 	}
 
 	public void setQstQuestao(String qstQuestao) {
@@ -53,11 +82,27 @@ public class Questao implements Serializable {
 	}
 
 	public List<Formulario> getFormularios() {
-		return this.formularios;
+		return formularios;
 	}
 
 	public void setFormularios(List<Formulario> formularios) {
 		this.formularios = formularios;
+	}
+
+	public Integer getGrupoQuestao() {
+		return grupoQuestao;
+	}
+
+	public void setGrupoQuestao(Integer grupoQuestao) {
+		this.grupoQuestao = grupoQuestao;
+	}
+
+	public Integer getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(Integer resposta) {
+		this.resposta = resposta;
 	}
 
 }

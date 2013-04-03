@@ -1,8 +1,13 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -28,7 +33,7 @@ public class Formulario implements Serializable {
 
 	//bi-directional many-to-many association to Questao
 	@ManyToMany(mappedBy="formularios")
-	private List<Questao> questaos;
+	private List<Questao> questoes;
 
 	//bi-directional many-to-one association to Turma
 	@OneToMany(mappedBy="formulario")
@@ -38,7 +43,7 @@ public class Formulario implements Serializable {
 	}
 
 	public Integer getFrmId() {
-		return this.frmId;
+		return frmId;
 	}
 
 	public void setFrmId(Integer frmId) {
@@ -46,7 +51,7 @@ public class Formulario implements Serializable {
 	}
 
 	public String getFrmNome() {
-		return this.frmNome;
+		return frmNome;
 	}
 
 	public void setFrmNome(String frmNome) {
@@ -54,7 +59,7 @@ public class Formulario implements Serializable {
 	}
 
 	public String getObservacao() {
-		return this.observacao;
+		return observacao;
 	}
 
 	public void setObservacao(String observacao) {
@@ -62,7 +67,7 @@ public class Formulario implements Serializable {
 	}
 
 	public List<Avaliacao> getAvaliacaos() {
-		return this.avaliacaos;
+		return avaliacaos;
 	}
 
 	public void setAvaliacaos(List<Avaliacao> avaliacaos) {
@@ -83,16 +88,16 @@ public class Formulario implements Serializable {
 		return avaliacao;
 	}
 
-	public List<Questao> getQuestaos() {
-		return this.questaos;
+	public List<Questao> getQuestoes() {
+		return questoes;
 	}
 
-	public void setQuestaos(List<Questao> questaos) {
-		this.questaos = questaos;
+	public void setQuestaos(List<Questao> questoes) {
+		this.questoes = questoes;
 	}
 
 	public List<Turma> getTurmas() {
-		return this.turmas;
+		return turmas;
 	}
 
 	public void setTurmas(List<Turma> turmas) {

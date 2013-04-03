@@ -7,7 +7,7 @@ import edu.infnet.model.Turma;
 import edu.infnet.model.Usuario;
 
 public interface AvaliacaoDAO {
-	
+
 	public abstract Avaliacao consultar(Integer codigo);
 
 	//public abstract void atualizar(Avaliacao avaliacao);
@@ -17,6 +17,8 @@ public interface AvaliacaoDAO {
 	public abstract List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno);
 
 	public abstract List<Avaliacao> consultarAvaliacoesTurma(Turma turma);
+
+	//public abstract List<Disciplina> consultarDisciplinasAluno(Usuario aluno);
 
 	public abstract boolean existe(Integer id);
 

@@ -32,6 +32,11 @@ body {
     float:left;
 }
 
+.columnGoodStyle {
+		border: 0px solid #8E8C8C;
+		background: #E2FEE6;
+	}
+
   
 .topleftboxcontent {
     width:592px;
