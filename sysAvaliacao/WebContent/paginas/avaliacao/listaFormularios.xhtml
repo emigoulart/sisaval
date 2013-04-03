@@ -15,8 +15,7 @@
 			 <p:dataTable id="avaliacoesTable" var="avaliacao" value="#{usuarioBean.listaAvaliacao}">  
 			    <p:columnGroup type="header">  
 			      <p:row>  
-			         <p:column colspan="2" headerText="Avaliações já respondidas pelo aluno "  />
-			         <h:outputText value="#{usuarioBean.usuario.nome}"/>  
+			         <p:column colspan="2" headerText="Avaliações já respondidas pelo aluno #{usuarioBean.usuario.nome}"  />
 			       </p:row>  
 			        <p:row>  
 			           <p:column headerText="Disciplina" />  

@@ -12,7 +12,7 @@ public interface AvaliacaoDAO {
 
 	//public abstract void atualizar(Avaliacao avaliacao);
 
-	public abstract void incluirAvaliacao(Avaliacao avaliacao);
+	public abstract boolean incluirAvaliacao(Avaliacao avaliacao);
 
 	public abstract List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno);
 

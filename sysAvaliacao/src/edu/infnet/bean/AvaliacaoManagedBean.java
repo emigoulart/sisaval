@@ -123,9 +123,11 @@ public class AvaliacaoManagedBean implements Serializable {
 		}
 	}
 
-	public void responderQuestionario(){
-		avaliacaoDao.incluirAvaliacao(avaliacao);
-
+	public String responderQuestionario(){
+		if(avaliacaoDao.incluirAvaliacao(avaliacao)){
+			return "sucesso";
+		}
+		return "falhou";
 	}
 
 

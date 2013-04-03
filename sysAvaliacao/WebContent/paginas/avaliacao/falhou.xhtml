@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>#{msgs.title}</title>
+
+	<style type="text/css">
+body {
+	font-size: 10px;
+}
+</style>
+</h:head>
+<h:body>
+	<h:form id="frmFalhou">
+
+		<p:panel header="#{msgs.autErro}" style="width:470px;margin:10% 25% 10% 25%;">
+		    <h:outputText value="#{msgs.autErro_detalhado}"/> 
+		</p:panel>
+		<p>
+		  <h:commandButton value="Continue" action="paginaLogin"/>
+		</p>
+	</h:form>
+</h:body>
+</html>

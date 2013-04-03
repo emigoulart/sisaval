@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml" 
+     xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:define name="conteudo">
+	<h:form id="frmSucesso" prependId="false">
+	  
+		<p:panel header="#{msgs.sucesso}" style="width:470px;margin:10% 25% 10% 25%;">
+			<h:outputLabel value="#{msgs.sucessosalvaraval}" />
+			<p>
+		      <h:commandButton value="#{msgs.ok}" action="default"/>
+		    </p>
+		</p:panel>
+		
+	</h:form>
+  </ui:define>
+</ui:composition>

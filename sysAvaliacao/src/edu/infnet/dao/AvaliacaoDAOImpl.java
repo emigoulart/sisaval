@@ -20,13 +20,13 @@ public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable>  i
 	}
 
 	@Override
-	public void incluirAvaliacao(Avaliacao avaliacao) {
+	public boolean incluirAvaliacao(Avaliacao avaliacao) {
 		if(avaliacao.getAvlId()== null){
 			super.salvar(avaliacao);
 		}else{
 			super.atualizar(avaliacao);
 		}
-
+		return true;
 	}
 
 	@Override

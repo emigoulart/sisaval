@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/template.xhtml" 
+     xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -13,7 +14,7 @@
 	<link href="resources/css/principal.css" rel="stylesheet"
 		type="text/css" />
 </h:head>
-<h:body>
+<ui:define name="conteudo">
 	<p:growl id="growl" showDetail="true" />
 	<h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
 	<h:form id="formulario">
@@ -84,10 +85,10 @@
 			<f:facet name="footer">
 				<h:commandButton value="#{msgs.salvar}"
 					action="#{avaliacaoBean.responderQuestionario}"
-					icon="ui-icon-circle-check" update="messages, painelUser" />
+					icon="ui-icon-circle-check"  /> 
 			</f:facet>
 		</p:panel>
 	</h:form>
 
-</h:body>
-</html>
+</ui:define>
+</ui:composition>
