@@ -107,11 +107,4 @@ values ( 'S', 'N', 'N', 2, 101, 1);
 insert into avaliacao ( avl_disponivel, avl_exportada, avl_fechada, fk_turma, fk_aluno, fk_formulario)
 values ( 'S', 'N', 'N', 2, 102, 1);
 
-insert into avaliacaorespostas ( fk_avaliacao, fk_questao, resposta )
-values (1, 1, 2);
 
-insert into avaliacaorespostas ( fk_avaliacao, fk_questao, resposta )
-values (1, 2, 2);
-
-insert into avaliacaorespostas ( fk_avaliacao, fk_questao, resposta )
-values (1, 7, 1);
