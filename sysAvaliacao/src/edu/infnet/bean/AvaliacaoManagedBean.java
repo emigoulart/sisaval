@@ -17,6 +17,11 @@ import edu.infnet.model.Formulario;
 import edu.infnet.model.Questao;
 import edu.infnet.model.Usuario;
 
+/**
+ * @author Emilene Goulart
+ * @since 03/2012
+ */
+
 @ManagedBean(name="avaliacaoBean")
 @RequestScoped
 public class AvaliacaoManagedBean implements Serializable {
@@ -124,7 +129,10 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public String responderQuestionario(){
+
+		incluiAvaliacaoRespostas(avaliacao);
 		if(avaliacaoDao.incluirAvaliacao(avaliacao)){
+
 			return "sucesso";
 		}
 		return "falhou";
@@ -136,5 +144,16 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 
+	private void incluiAvaliacaoRespostas(Avaliacao avaliacao){
+		AvaliacaoRespostas avaliacaoResposta= new AvaliacaoRespostas();
+		for(int i=0;i<formulario.getQuestoes().size();i++){
+			Questao questao= formulario.getQuestoes().get(i);
+			avaliacaoResposta.setQuestao(questao);
+			avaliacaoResposta.setResposta(questao.getResposta());
+			avaliacaoResposta.setAvaliacao(avaliacao);
+			avaliacaoRespostas.add(avaliacaoResposta);
 
+		}
+		avaliacao.setAvaliacaorespostas(avaliacaoRespostas);
+	}
 }

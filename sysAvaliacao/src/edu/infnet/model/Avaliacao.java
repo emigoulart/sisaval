@@ -1,10 +1,19 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -48,21 +57,17 @@ public class Avaliacao implements Serializable {
 	@JoinColumns({
 		@JoinColumn(name="fk_aluno", referencedColumnName="fk_aluno"),
 		@JoinColumn(name="fk_turma", referencedColumnName="fk_turma")
-		})
+	})
 	private TurmaAluno turmaaluno;
 
-	//bi-directional many-to-many association to Questaoalternativa
-	//@ManyToMany(mappedBy="avaliacaos")
-	//private List<Questaoalternativa> questaoalternativas;
-	
-	@OneToMany(mappedBy="avaliacao")
+	@OneToMany(mappedBy="avaliacao", cascade = CascadeType.ALL)
 	private List<AvaliacaoRespostas> avaliacaorespostas;
 
 	public Avaliacao() {
 	}
 
 	public Integer getAvlId() {
-		return this.avlId;
+		return avlId;
 	}
 
 	public void setAvlId(Integer avlId) {
@@ -70,7 +75,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public Date getAvlDatafim() {
-		return this.avlDatafim;
+		return avlDatafim;
 	}
 
 	public void setAvlDatafim(Date avlDatafim) {
@@ -78,7 +83,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public Date getAvlDatainicio() {
-		return this.avlDatainicio;
+		return avlDatainicio;
 	}
 
 	public void setAvlDatainicio(Date avlDatainicio) {
@@ -86,7 +91,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public String getAvlDisponivel() {
-		return this.avlDisponivel;
+		return avlDisponivel;
 	}
 
 	public void setAvlDisponivel(String avlDisponivel) {
@@ -94,7 +99,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public String getAvlExportada() {
-		return this.avlExportada;
+		return avlExportada;
 	}
 
 	public void setAvlExportada(String avlExportada) {
@@ -102,7 +107,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public String getAvlFechada() {
-		return this.avlFechada;
+		return avlFechada;
 	}
 
 	public void setAvlFechada(String avlFechada) {
@@ -110,7 +115,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public String getObservacao() {
-		return this.observacao;
+		return observacao;
 	}
 
 	public void setObservacao(String observacao) {
@@ -118,7 +123,7 @@ public class Avaliacao implements Serializable {
 	}
 
 	public Formulario getFormulario() {
-		return this.formulario;
+		return formulario;
 	}
 
 	public void setFormulario(Formulario formulario) {
@@ -126,20 +131,13 @@ public class Avaliacao implements Serializable {
 	}
 
 	public TurmaAluno getTurmaaluno() {
-		return this.turmaaluno;
+		return turmaaluno;
 	}
 
 	public void setTurmaaluno(TurmaAluno turmaaluno) {
 		this.turmaaluno = turmaaluno;
 	}
 
-/*	public List<Questaoalternativa> getQuestaoalternativas() {
-		return this.questaoalternativas;
-	}
-
-	public void setQuestaoalternativas(List<Questaoalternativa> questaoalternativas) {
-		this.questaoalternativas = questaoalternativas;
-	}*/
 
 	public List<AvaliacaoRespostas> getAvaliacaorespostas() {
 		return avaliacaorespostas;

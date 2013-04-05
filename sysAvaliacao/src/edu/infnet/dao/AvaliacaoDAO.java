@@ -8,19 +8,17 @@ import edu.infnet.model.Usuario;
 
 public interface AvaliacaoDAO {
 
-	public abstract Avaliacao consultar(Integer codigo);
+	public abstract Avaliacao consultar(final Integer codigo);
 
 	//public abstract void atualizar(Avaliacao avaliacao);
 
-	public abstract boolean incluirAvaliacao(Avaliacao avaliacao);
+	public abstract boolean incluirAvaliacao(final Avaliacao avaliacao);
 
-	public abstract List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno);
+	public abstract List<Avaliacao> consultarAvaliacoesAluno(final Usuario aluno);
 
-	public abstract List<Avaliacao> consultarAvaliacoesTurma(Turma turma);
+	public abstract List<Avaliacao> consultarAvaliacoesTurma(final Turma turma);
 
-	//public abstract List<Disciplina> consultarDisciplinasAluno(Usuario aluno);
-
-	public abstract boolean existe(Integer id);
+	public abstract boolean existe(final Integer id);
 
 	public abstract List<Avaliacao> listar();
 

@@ -64,7 +64,7 @@ public class AdminDAOImp implements InterfaceAdminDAO {
 	}
 
 	@Override
-	public List<List> todosAdministradores() throws AvalicaoDAOException {
+	public List<Usuario> todosAdministradores() throws AvalicaoDAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

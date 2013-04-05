@@ -9,7 +9,7 @@ import edu.infnet.model.Avaliacao;
 import edu.infnet.model.Turma;
 import edu.infnet.model.Usuario;
 
-public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable>  implements AvaliacaoDAO {
+public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable> implements AvaliacaoDAO {
 
 	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
