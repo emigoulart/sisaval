@@ -116,11 +116,23 @@ CREATE TABLE avaliacao (
 );
 
 DROP TABLE IF EXISTS avaliacaorespostas cascade;
-CREATE TABLE avaliacaorespostas (
-  fk_avaliacao integer not null,
-  fk_questao integer not null,
+
+CREATE TABLE avaliacaorespostas
+(
+  avl_resp_id serial NOT NULL,
+  fk_avaliacao integer NOT NULL,
+  fk_questao integer NOT NULL,
   resposta integer,
-  CONSTRAINT pk_avaliacaorespostas PRIMARY KEY (fk_avaliacao, fk_questao),
-  CONSTRAINT fk_avaliacaoID FOREIGN KEY(fk_avaliacao) REFERENCES avaliacao(avl_ID),
-  CONSTRAINT fk_avalresposta FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID)
-  );
+  CONSTRAINT pk_avaliacaorespostas PRIMARY KEY (avl_resp_id),
+  CONSTRAINT fk_avaliacaoid FOREIGN KEY (fk_avaliacao)
+      REFERENCES avaliacao (avl_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_questao FOREIGN KEY (fk_questao)
+      REFERENCES questao (qst_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE avaliacaorespostas
+  OWNER TO postgres;
