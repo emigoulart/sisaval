@@ -31,28 +31,11 @@
 				</h:panelGrid>
 			</f:facet>
 			<h:panelGrid columns="8">
-				<h:outputLabel for="aluno" value="Aluno:" />
-				<p:inputText id="aluno" value="#{usuarioBean.usuario.nome}"
-					required="true" label="Aluno" size="30">
-					<f:validateLength minimum="2" />
-				</p:inputText>
-				<h:outputLabel for="matricula" value="Matricula:" />
-				<p:inputText id="matricula" value="#{usuarioBean.usuario.matricula}"
-					required="true" label="matricula" size="10">
-					<f:validateLength minimum="3" />
-				</p:inputText>
-				<h:outputLabel for="modulo" value="Módulo: *" />
-				<p:inputText id="modulo" value="Aplicações Web" required="false"
-					label="modulo" size="30">
-					<f:validateLength minimum="8" />
-				</p:inputText>
-				<h:outputLabel for="disciplina" value="Disciplina: *" />
-				<p:inputText id="disciplina"
-					value="#{avaliacaoBean.avaliacao.turmaaluno.turma.disciplina.disDescricao}"
-					required="true" label="disciplina" size="30">
-					<f:validateLength minimum="20" />
-				</p:inputText>
-			</h:panelGrid>
+				<h:outputLabel for="aluno" value="Aluno: #{usuarioBean.usuario.nome}" />
+				<h:outputLabel for="matricula" value="Matricula: #{usuarioBean.usuario.matricula}" />
+				<h:outputLabel for="modulo" value="Módulo: Aplicações Web" />
+				<h:outputLabel for="disciplina" value="Disciplina: #{avaliacaoBean.avaliacao.turmaaluno.turma.disciplina.disDescricao}" />
+                        </h:panelGrid>
 			<h:panelGrid>
 				<p>
 					Por favor, preencha essa avaliação com toda atenção. Ela é muito
