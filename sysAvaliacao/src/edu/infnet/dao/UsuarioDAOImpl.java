@@ -27,7 +27,7 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 
 	@Override
 	public void excluir(Usuario usuario) {
-		//super.deletar(usuario);
+		super.excluir(usuario);
 	}
 
 
@@ -35,8 +35,6 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 	public Usuario consultarPorNome(String nome) {
 		return new Usuario();
 	}
-
-
 
 	/* (non-Javadoc)
 	 * @see br.eud.infnet.dao.UsuarioDAO2#validarLogin(br.edu.infnet.modelo.Usuario)

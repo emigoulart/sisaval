@@ -3,16 +3,18 @@ package edu.infnet.bean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.component.menuitem.MenuItem;
 import org.primefaces.component.submenu.Submenu;
 import org.primefaces.model.DefaultMenuModel;
 import org.primefaces.model.MenuModel;
 
+
 @ManagedBean(name="menuBean")
 public class MenuBean {
 
 	private MenuModel model;
-
+	
 	public MenuBean() {
 		model = new DefaultMenuModel();
 

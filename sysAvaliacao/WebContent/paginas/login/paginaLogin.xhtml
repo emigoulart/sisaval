@@ -6,33 +6,43 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title></title>
 </h:head>
 <h:body>
-       <h:form id="loginForm" prependId="false">
-         <p:growl id="growl" showDetail="true" />
-          <p:panel  id="painelLogin" style="margin: 100px auto;width: 300px;">
-		   <f:facet name="header">Login do Sistema </f:facet>
-		     <table width="30%">
-			    <tr valign="top">
-                     <td width="28%"> 
-					    <h:panelGrid columns="2">
-                          <h:outputLabel for="login" value="Login:" />
-                          <p:inputText id="login" value="#{usuarioBean.usuario.login}" promptLabel="Informe o seu login"  autocomplete="off" required="true" />           
-                          <h:outputLabel for="senha" value="Senha:"/>
-                          <p:password minLength="6" value="#{usuarioBean.usuario.senha}" promptLabel="Digite uma senha segura" goodLabel="Boa"  weakLabel="Razoável"  strongLabel="Excelente" required="true" />		
-                        </h:panelGrid>
-					</td>
-                </tr>
+	<h:form id="loginForm" prependId="false">
+		<p:growl id="msgs" showDetail="true" sticky="flase" />
+		<p:panel id="painelLogin" style="margin: 100px auto;width: 400px;">
+			<f:facet name="header">
+			    <h:panelGroup style="display:block; text-align:center">
+			        Sistema de Avaliações
+			    </h:panelGroup>  
+			</f:facet>    
+			<table width="30%">
+				<tr valign="top">
+					<td width="28%"><h:panelGrid columns="2">
+							<h:outputLabel for="login" value="Usuario:" />
+							<p:inputText id="login" value="#{usuarioBean.usuario.login}"
+								requeredMessage="Informe o seu login" required="true" >
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<h:outputLabel for="senha" value="Senha:" />
+							<p:password minLength="6" value="#{usuarioBean.usuario.senha}"
+								requeredMessage="Digite uma senha segura"
+								required="true" />
+						</h:panelGrid></td>
+				</tr>
 			</table>
 			<f:facet name="footer">
-              <h:commandButton value="#{msgs.login}" action="#{usuarioBean.efetuarLogin}" icon="ui-icon-circle-check" update="messages, painelUser"/>
-              <p:commandButton value="Limpar Campos" type="reset" icon="ui-icon-cancel" />
-             </f:facet>
-          </p:panel>
-        </h:form>
-     </h:body>   
+				<h:panelGroup style="display:block; text-align:right">
+					<h:commandButton value="#{msgs.ok}"
+						action="#{usuarioBean.efetuarLogin}" icon="ui-icon-check" style="margin:0"
+						update="messages, painelUser" />
+				</h:panelGroup>
+			</f:facet>
+		</p:panel>
+	</h:form>
+</h:body>
 </html>

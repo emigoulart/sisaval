@@ -6,7 +6,7 @@ import org.hibernate.HibernateException;
 
 import edu.infnet.model.Usuario;
 
-public interface UsuarioDAO {
+public interface UsuarioDAO  {
 
 	public abstract Usuario consultar(Integer codigo);
 
