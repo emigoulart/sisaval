@@ -1,12 +1,13 @@
 package edu.infnet.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.Turma;
 import edu.infnet.model.Usuario;
 
-public interface AvaliacaoDAO {
+public interface AvaliacaoDAO extends Serializable{
 
 	public abstract Avaliacao consultar(final Integer codigo);
 
