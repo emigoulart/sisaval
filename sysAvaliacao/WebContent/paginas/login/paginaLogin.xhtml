@@ -13,11 +13,11 @@
 </h:head>
 <h:body>
 	<h:form id="loginForm" prependId="false">
-		<p:growl id="msgs" showDetail="true" sticky="flase" />
 		<p:panel id="painelLogin" style="margin: 100px auto;width: 400px;">
 			<f:facet name="header">
 			    <h:panelGroup style="display:block; text-align:center">
 			        Sistema de Avaliações
+			        <p:messages id="mensagem" showDetail="true" autoUpdate="true" closable="true" />
 			    </h:panelGroup>  
 			</f:facet>    
 			<table width="30%">
