@@ -11,7 +11,6 @@ import edu.infnet.model.Usuario;
 
 public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable> implements AvaliacaoDAO {
 
-	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Override
