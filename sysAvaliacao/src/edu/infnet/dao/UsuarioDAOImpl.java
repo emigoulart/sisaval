@@ -43,7 +43,7 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 	@Transactional
 	public Usuario validarLogin(Usuario usuario) throws HibernateException{
 		Query query=null;
-		Usuario user= null;
+		Usuario user= new Usuario();
 		try {
 			EntityManager entityManager=getEntityManager();
 			String sqlQuery = "from Usuario where login = :login and senha = :senha ";
@@ -69,6 +69,7 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 		if(!query.getResultList().isEmpty()){
 			user= (Usuario)query.getSingleResult();
 		}
+		
 		return user;
 	}
 

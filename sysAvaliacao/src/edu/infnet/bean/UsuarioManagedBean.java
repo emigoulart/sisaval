@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -35,9 +37,6 @@ public class UsuarioManagedBean implements Serializable {
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;
 
-	@SuppressWarnings("unused")
-	private boolean logado = false;
-
 	private List<Usuario> lista = new ArrayList<Usuario>();
 
 	public UsuarioManagedBean() {
@@ -46,28 +45,29 @@ public class UsuarioManagedBean implements Serializable {
 
 	public String efetuarLogin() throws AvalicaoDAOException {
 
-		String paginaRetorno = "falhou";
+		String paginaRetorno = logout();
 
 		try {
 			usuario = getUsuarioDao().validarLogin(usuario);
 		} catch (Exception exc) {
-			logado = false;
-			throw new AvalicaoDAOException(exc);
+			//TODO
+  			FacesUtils.mensErro("Erro inesperado"); 
+			
 		}
 
-		if (usuario != null) {
-			logado = true;
-
+		if (usuario.getLogin()!= null) {
 			if (usuario.getTipoUsuario().equalsIgnoreCase(
 					TipoUsuario.ROLE_ADMIN.toString())) {
-				usuario = new Usuario();//
 				paginaRetorno = "/paginas/cadastro/paginaAdmin";
 			} else {
 				listarAvaliacoes();
 				paginaRetorno = "/paginas/avaliacao/listaFormularios";
 			}
 
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"", "Login ou senha inválidos"));
 		}
+		
 		return paginaRetorno;
 	}
 
@@ -134,7 +134,6 @@ public class UsuarioManagedBean implements Serializable {
 	}
 
 	public String logout() {
-		logado = false;
 		return "/paginas/login/paginaLogin";
 	}
 
@@ -168,5 +167,7 @@ public class UsuarioManagedBean implements Serializable {
 	public String toString() {
 		return "UsuarioManagedBean [usuario=" + usuario + "]";
 	}
+	
+	
 
 }
