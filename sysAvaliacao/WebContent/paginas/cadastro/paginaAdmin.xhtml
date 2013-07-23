@@ -11,43 +11,6 @@
 	</h:head>
 
 	<h:body>
-		<h:form id="formAdmin">
-
-			<p:dataTable var="lista" value="#{usuarioBean.lista}"
-				id="tabelaUsuarios">
-				<f:facet name="header">Lista de Usuarios Cadastradas</f:facet>
-
-				<p:column headerText="Nome">
-
-					<h:outputText value="#{lista.nome}" />
-				</p:column>
-				<p:column headerText="Endereco">
-
-					<h:outputText value="#{lista.endereco}" />
-				</p:column>
-				<p:column headerText="Telefone">
-
-					<h:outputText value="#{lista.telefone}" />
-				</p:column>
-				<p:column headerText="Ações">
-					<p:commandLink title="Alterar" update=":formAlterar:Alterar"
-						oncomplete="dialogAlterar.show()" immediate="true">
-						<p:graphicImage value="/imagens/tick_button.png" />
-						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
-							value="#{lista}" />
-					</p:commandLink>
-					<p:commandLink title="Excluir" update=":formExcluir:Excluir"
-						oncomplete="confirmation.show()" immediate="true">
-						<p:graphicImage value="/imagens/delete_button.png" />
-						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
-							value="#{lista}" />
-					</p:commandLink>
-				</p:column>
-
-			</p:dataTable>
-
-			<p:commandButton value="Cadastrar" id="cadastrar"
-				oncomplete="dialogCadastrar.show()" />
-		</h:form>
+	
 	</h:body>
 </ui:composition>
