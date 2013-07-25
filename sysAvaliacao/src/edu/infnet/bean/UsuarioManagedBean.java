@@ -10,15 +10,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import edu.infnet.dao.AvaliacaoDAO;
 import edu.infnet.dao.AvaliacaoDAOImpl;
 import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.UsuarioDAO;
-import edu.infnet.dao.UsuarioDAOImpl;
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.Usuario;
 import edu.infnet.util.FacesUtils;
@@ -34,19 +34,33 @@ public class UsuarioManagedBean implements Serializable {
 
 	private Usuario usuario;
 	
-	private Usuario novoUsuario;
 	
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;
 
-	private List<Usuario> lista = new ArrayList<Usuario>();
+	//private List<Usuario> lista = new ArrayList<Usuario>();
+	
+	private DataModel<Usuario> listaUsuarios;
 
 	public UsuarioManagedBean() {
-		 lista = new UsuarioDAOImpl().listar();
-		 usuario = new Usuario();
-		 setNovoUsuario(new Usuario());
-		 
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
+	
 	}
+	
+	  public DataModel<Usuario> getListarUsuarios() {
+	        List<Usuario> lista = getUsuarioDao().listar();
+	        listaUsuarios = new ListDataModel<Usuario>(lista);
+	        return listaUsuarios;
+	    }
+	  
+	  public void excluirUsuarios (ActionEvent actionEvent) {
+		  	        Usuario usuarioTemp = (Usuario)(listaUsuarios.getRowData());
+	        usuarioDao.excluir(usuarioTemp);
+	      //  return "index";
+	 
+	    }
 
 	public String efetuarLogin() throws AvalicaoDAOException {
 
@@ -56,11 +70,12 @@ public class UsuarioManagedBean implements Serializable {
 			usuario = getUsuarioDao().validarLogin(usuario);
 		} catch (Exception exc) {
 			//TODO
+			log.error(exc);
   			FacesUtils.mensErro("Erro inesperado"); 
 			
 		}
 
-		if (usuario.getLogin()!= null) {
+		if (usuario.getTipoUsuario()!= null) {
 			if (usuario.getTipoUsuario().equalsIgnoreCase(
 					TipoUsuario.ROLE_ADMIN.toString())) {
 				log.info("logado como ADMIN");
@@ -86,27 +101,7 @@ public class UsuarioManagedBean implements Serializable {
 		this.usuarioDao = usuarioDao;
 	}
 
-	public Usuario getNovoUsuario() {
-		return novoUsuario;
-	}
 
-	public void setNovoUsuario(Usuario novoUsuario) {
-		this.novoUsuario = novoUsuario;
-	}
-	
-	public void cadastrarUsuario(ActionEvent actionEvent) throws AvalicaoDAOException{
-		try {
-			log.debug(usuario.toString());
-			log.debug(novoUsuario.toString());
-			usuarioDao = new UsuarioDAOImpl();
-			getUsuarioDao().inserir(this.novoUsuario);
-		} catch (Exception exc) {
-			throw new AvalicaoDAOException(exc);
-		}
-
-		FacesUtils.mensInfo("Cadastro efetuado com Sucesso.");
-		
-	}
 	
 	public void alterarUsuario() throws AvalicaoDAOException{
 		try {
@@ -124,7 +119,7 @@ public class UsuarioManagedBean implements Serializable {
 		}
 	}
 	
-	public List<Usuario> getLista() {
+/*	public List<Usuario> getLista() {
 		UsuarioDAOImpl udao = new UsuarioDAOImpl();
 		try{
 			lista = udao.todos();
@@ -140,7 +135,7 @@ public class UsuarioManagedBean implements Serializable {
 
 	public void listar()  {
 		lista = usuarioDao.listar();
-	}
+	}*/
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -149,7 +144,7 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
 	public String logout() {
 		return "/paginas/login/paginaLogin";
 	}

@@ -1,12 +1,13 @@
 package edu.infnet.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 
 import edu.infnet.model.Usuario;
 
-public interface UsuarioDAO  {
+public interface UsuarioDAO extends Serializable {
 
 	public abstract Usuario consultar(Integer codigo);
 

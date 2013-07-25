@@ -2,6 +2,8 @@ package edu.infnet.bean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.menuitem.MenuItem;
@@ -11,30 +13,39 @@ import org.primefaces.model.MenuModel;
 
 
 @ManagedBean(name="menuBean")
+@SessionScoped
 public class MenuBean {
 
-	private MenuModel model;
+private MenuModel model;
+
+
+@ManagedProperty(value="#{usuarioBean}")
+ private UsuarioManagedBean usuarioBean;
 	
 	public MenuBean() {
 		model = new DefaultMenuModel();
 
 		// Menu Inicial
-		Submenu submenu = new Submenu();
-		submenu.setLabel("Adminitração");
-
+		Submenu submenu = new Submenu();		
+		submenu.setLabel("Administração");
 		MenuItem item = new MenuItem();
-		item.setValue("Cadastra Usuarios");
-		item.setUrl("../cadastro/cadastrarUsuario.jsf");
+		item.setValue("Cadastrar Usuarios");
+		item.setUrl("../cadastro/cadastrarUsuario.xhtml");
 		submenu.getChildren().add(item);
 		
 		item = new MenuItem();
-		item.setValue("Lista Formularios");
-		item.setUrl("../avaliacao/listaFormularios.jsf");
+		item.setValue("Listar Usuarios");
+		item.setUrl("../cadastro/listarUsuarios.xhtml");
+		submenu.getChildren().add(item);
+				
+		item = new MenuItem();
+		item.setValue("Listar Formularios");
+		item.setUrl("../avaliacao/listaFormularios.xhtml");
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
-		item.setValue("Avalia a Disciplina");
-		item.setUrl("../avaliacao/avaliaDisciplina.jsf");
+		item.setValue("Avaliar a Disciplina");
+		item.setUrl("../avaliacao/avaliaDisciplina.xhtml");
 		submenu.getChildren().add(item);
 		
 		model.addSubmenu(submenu);
@@ -77,4 +88,14 @@ public class MenuBean {
 				summary, null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
+	
+	public UsuarioManagedBean getUsuarioBean() {
+		return usuarioBean;
+	}
+
+	public void setUsuarioBean(UsuarioManagedBean usuarioBean) {
+		this.usuarioBean = usuarioBean;
+	}
+
+
 }

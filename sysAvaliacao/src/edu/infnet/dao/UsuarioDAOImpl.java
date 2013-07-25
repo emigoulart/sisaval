@@ -18,7 +18,6 @@ import edu.infnet.model.Usuario;
 @Repository
 public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implements UsuarioDAO {
 
-	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger LOGGER = Logger
