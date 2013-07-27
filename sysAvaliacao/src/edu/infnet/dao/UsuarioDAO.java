@@ -11,7 +11,7 @@ public interface UsuarioDAO extends Serializable {
 
 	public abstract Usuario consultar(Integer codigo);
 
-	//public abstract void atualizar(Usuario usuario);
+    public abstract Usuario atualizar(Usuario usuario);
 
 	public abstract void inserir(Usuario usuario);
 

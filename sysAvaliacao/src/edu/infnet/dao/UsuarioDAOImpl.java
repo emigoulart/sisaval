@@ -98,6 +98,10 @@ public class UsuarioDAOImpl extends DaoGenericoImp<Usuario, Serializable> implem
 
 	}
 
+	@Override
+	public Usuario atualizar(Usuario usuario) {
+		return super.atualizar(usuario);
 
+	}
 
 }

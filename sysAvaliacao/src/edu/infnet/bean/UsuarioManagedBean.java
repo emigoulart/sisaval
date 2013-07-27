@@ -24,6 +24,11 @@ import edu.infnet.model.Usuario;
 import edu.infnet.util.FacesUtils;
 import edu.infnet.util.TipoUsuario;
 
+/** Sistema de Avaliacão Online - INFNET
+ * @author Aline Carlos
+ * @author Eduardo dVargas
+ * @author Emilene Goulart
+ */
 @ManagedBean(name = "usuarioBean")
 @SessionScoped
 public class UsuarioManagedBean implements Serializable {
@@ -34,11 +39,10 @@ public class UsuarioManagedBean implements Serializable {
 
 	private Usuario usuario;
 	
-	
+	private Usuario usuarioAlteracao= new Usuario();
+		
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;
-
-	//private List<Usuario> lista = new ArrayList<Usuario>();
 	
 	private DataModel<Usuario> listaUsuarios;
 
@@ -58,7 +62,6 @@ public class UsuarioManagedBean implements Serializable {
 	  public void excluirUsuarios (ActionEvent actionEvent) {
 		  	        Usuario usuarioTemp = (Usuario)(listaUsuarios.getRowData());
 	        usuarioDao.excluir(usuarioTemp);
-	      //  return "index";
 	 
 	    }
 
@@ -69,7 +72,6 @@ public class UsuarioManagedBean implements Serializable {
 		try {
 			usuario = getUsuarioDao().validarLogin(usuario);
 		} catch (Exception exc) {
-			//TODO
 			log.error(exc);
   			FacesUtils.mensErro("Erro inesperado"); 
 			
@@ -100,12 +102,16 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuarioDao(UsuarioDAO usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
+	
+	  public void prepararAlterarUsuario(ActionEvent actionEvent){
+	        usuarioAlteracao = (Usuario)(listaUsuarios.getRowData());
+	    }
 
 
 	
-	public void alterarUsuario() throws AvalicaoDAOException{
+	public void alterarUsuario(ActionEvent actionEvent) throws AvalicaoDAOException{
 		try {
-			//TODO implementar ???
+			usuarioDao.atualizar(usuarioAlteracao);
 		} catch (Exception exc) {
 			throw new AvalicaoDAOException(exc);
 		}
@@ -119,23 +125,6 @@ public class UsuarioManagedBean implements Serializable {
 		}
 	}
 	
-/*	public List<Usuario> getLista() {
-		UsuarioDAOImpl udao = new UsuarioDAOImpl();
-		try{
-			lista = udao.todos();
-		} catch (Exception e){
-			Logger.getLogger(UsuarioManagedBean.class.getName()).log(Level.DEBUG, null, e);
-		}
-		return lista;
-	}
-
-	public void setLista(List<Usuario> lista) {
-		this.lista = lista;
-	}
-
-	public void listar()  {
-		lista = usuarioDao.listar();
-	}*/
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -174,6 +163,14 @@ public class UsuarioManagedBean implements Serializable {
 
 	public void setListaAvaliacao(List<Avaliacao> listaAvaliacao) {
 		this.listaAvaliacao = listaAvaliacao;
+	}
+
+	public Usuario getUsuarioAlteracao() {
+		return usuarioAlteracao;
+	}
+
+	public void setUsuarioAlteracao(Usuario usuarioAlteracao) {
+		this.usuarioAlteracao = usuarioAlteracao;
 	}
 
 	public String toString() {
