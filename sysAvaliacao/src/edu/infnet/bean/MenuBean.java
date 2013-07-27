@@ -18,7 +18,6 @@ public class MenuBean {
 
 private MenuModel model;
 
-
 @ManagedProperty(value="#{usuarioBean}")
  private UsuarioManagedBean usuarioBean;
 	
@@ -29,12 +28,9 @@ private MenuModel model;
 		Submenu submenu = new Submenu();		
 		submenu.setLabel("Administração");
 		MenuItem item = new MenuItem();
-		item.setValue("Cadastrar Usuarios");
-		item.setUrl("../cadastro/cadastrarUsuario.xhtml");
-		submenu.getChildren().add(item);
 		
 		item = new MenuItem();
-		item.setValue("Listar Usuarios");
+		item.setValue("Cadastrar Usuarios");
 		item.setUrl("../cadastro/listarUsuarios.xhtml");
 		submenu.getChildren().add(item);
 				
