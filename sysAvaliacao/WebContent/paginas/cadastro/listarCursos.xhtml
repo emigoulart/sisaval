@@ -1,0 +1,97 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formCadCurso">
+			<p:dataTable id="tabelaCursos" var="curso"
+				emptyMessage="Nenhum curso cadastrado."
+				value="#{cadCursoBean.listarCursos}">
+				<f:facet name="header">Lista dos Cursos Cadastrados</f:facet>
+				<p:column headerText="Curso">
+					<h:outputText id="curso" value="#{curso.curNome}" />
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText id="tipo" value="#{curso.curTipo}" />
+				</p:column>
+				<p:column headerText="Descricao">
+					<h:outputText id="descricao" value="#{curso.curDescricao}" />
+				</p:column>
+				<p:column headerText="Açoes">
+					<p:commandLink title="Alterar"
+						actionListener="#{cadCursoBean.prepararAlterarCurso}"
+						oncomplete="dialogAlterar.show()" immediate="true"
+						update=":formAlterar">
+						<p:graphicImage library="imagens" name="editar16.png" />
+						<f:setPropertyActionListener
+							target="#{cadCursoBean.cursoSelecionado}" value="#{curso}" />
+					</p:commandLink>
+					<p:commandLink title="Excluir" oncomplete="confirmation.show()"
+						immediate="true" update=":formExcluir">
+						<p:graphicImage library="imagens" name="excluir16.png" />
+						<f:setPropertyActionListener target="#{cadCursoBean.curso}"
+							value="#{curso}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="Cadastrar" id="cadastrar"
+				oncomplete="dialogCadastrar.show()" />
+		</h:form>
+		<p:dialog id="Alterar" header="Alterar" widgetVar="dialogAlterar">
+			<h:form id="formAlterar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelAlterar" columns="2">
+					<h:outputText value="Nome:" />
+					<p:inputText value="#{cadCursoBean.cursoSelecionado.curNome}" />
+					<h:outputText value="Tipo:" />
+					<p:inputText value="#{cadCursoBean.cursoSelecionado.curTipo}" />
+					<h:outputText value="Descricao:" />
+					<p:inputText value="#{cadCursoBean.cursoSelecionado.curDescricao}" />
+				</p:panelGrid>
+				<p:commandButton value="Alterar"
+					actionListener="#{cadCursoBean.alterarCurso}"
+					update=":formCadCurso:tabelaCursos"
+					oncomplete="dialogAlterar.hide()" />
+			</h:form>
+		</p:dialog>
+		<p:dialog id="Cadastrar" header="Cadastrar"
+			widgetVar="dialogCadastrar">
+			<h:form id="formCadastrar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelCadastrar" columns="2">
+					<h:outputLabel for="nome" value="Nome: *" />
+					<p:inputText id="nome" label="nome"
+						value="#{cadCursoBean.curso.curNome}" required="true" />
+					<h:outputText value="Tipo:" />
+					<p:inputText id="tipo" label="tipo"
+						value="#{cadCursoBean.curso.curTipo}" />
+					<h:outputText value="Descricao:" />
+					<p:inputText value="#{cadCursoBean.curso.curDescricao}" />
+					<f:facet name="footer">
+						<p:commandButton actionListener="#{cadCursoBean.cadastrarCurso}"
+							value="#{msgs.salvar}" icon="ui-icon-circle-check"
+							style="margin:0" oncomplete="dialogCadastrar.hide()"
+							update=":formCadCurso:tabelaCursos" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<h:form id="formExcluir">
+			<p:confirmDialog id="Excluir"
+				message="Você confirma excluir o curso #{cadCursoBean.curso.curNome}? "
+				header="Excluir" severity="alert" widgetVar="confirmation"
+				width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
+				<p:commandButton value="Sim"
+					actionListener="#{cadCursoBean.excluirCurso}"
+					update=":formCadCurso:tabelaCursos"
+					oncomplete="confirmation.hide()" />
+				<p:commandButton value="Não" onclick="confirmation.hide()"
+					type="button" />
+			</p:confirmDialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
