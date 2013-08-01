@@ -2,6 +2,7 @@ package edu.infnet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -14,6 +15,7 @@ public class Curso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cur_id")
 	private Integer curId;
 
@@ -86,5 +88,20 @@ public class Curso implements Serializable {
 
 		return turma;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("Curso [%s, nome=%s]",
+				super.toString(), s(curNome));
+	}
+	protected static String s(String string, int length) {
+		if (string != null && string.length() > length) {
+			string = string.substring(0, length).trim() + "...";
+		}
+		return s(string);
+	}
 
+	protected static String s(String string) {
+		return string == null ? null : "\"" + string + "\"";
+	}
 }

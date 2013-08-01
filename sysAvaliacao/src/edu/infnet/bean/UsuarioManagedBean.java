@@ -39,7 +39,7 @@ public class UsuarioManagedBean implements Serializable {
 
 	private Usuario usuario;
 	
-	private Usuario usuarioAlteracao= new Usuario();
+	private Usuario usuarioAlteracao = new Usuario();
 		
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;

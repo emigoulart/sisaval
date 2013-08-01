@@ -63,7 +63,6 @@ implements DaoGenerico<T, ID> {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public T atualizar(T object) {
 		getEntityManager().merge(object);
-
 		return object;
 
 	}

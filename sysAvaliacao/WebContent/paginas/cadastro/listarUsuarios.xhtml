@@ -25,91 +25,131 @@
 				<p:column headerText="Telefone">
 					<h:outputText id="telefone" value="#{usuario.telefone}" />
 				</p:column>
-					<p:column headerText="Açoes">
+				<p:column headerText="Açoes">
 					<p:commandLink title="Alterar"
-					    actionListener="#{usuarioBean.prepararAlterarUsuario}"
-						oncomplete="dialogAlterar.show()" immediate="true">
-						<p:graphicImage library="imagens" name="editar16.png"  />						
-						<f:setPropertyActionListener target="#{usuarioBean.usuarioAlteracao}" value="#{usuario}" />
+						actionListener="#{usuarioBean.prepararAlterarUsuario}"
+						oncomplete="dialogAlterar.show()" immediate="true"
+						update=":formAlterar">
+						<p:graphicImage library="imagens" name="editar16.png" />
+						<f:setPropertyActionListener
+							target="#{usuarioBean.usuarioAlteracao}" value="#{usuario}" />
 					</p:commandLink>
-					<p:commandLink title="Excluir" actionListener="#{usuarioBean.excluirUsuarios}"
-						oncomplete="confirmation.show()" immediate="true">
-						<p:graphicImage library="imagens" name="excluir16.png" />	
-						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />					
+					<p:commandLink title="Excluir"
+						oncomplete="confirmation.show()" immediate="true"
+						update=":formExcluir">
+						<p:graphicImage library="imagens" name="excluir16.png" />
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
+							value="#{usuario}" />
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
-			<p:commandButton value="Cadastrar" id="cadastrar" 
+			<p:commandButton value="Cadastrar" id="cadastrar"
 				oncomplete="dialogCadastrar.show()" />
 		</h:form>
-	
-			<p:dialog id="Alterar" header="Alterar" widgetVar="dialogAlterar">
-			<h:form id="formAlterar"
-				resizable="false" modal="true" appendToBody="true">
+
+		<p:dialog id="Alterar" header="Alterar" widgetVar="dialogAlterar">
+			<h:form id="formAlterar" resizable="false" modal="true"
+				appendToBody="true">
 				<p:panelGrid id="panelAlterar" columns="2">
-					<h:outputText value="Nome:" />
-					<p:inputText value="#{usuarioBean.usuarioAlteracao.nome}" />
+					<h:outputLabel for="nome" value="Nome: *" />
+					<p:inputText id="nome" label="nome"
+						value="#{usuarioBean.usuarioAlteracao.nome}" required="true" />
 					<h:outputText value="Endereco:" />
-					<p:inputText value="#{usuarioBean.usuarioAlteracao.endereco}" />
+					<p:inputText id="endereco" label="endereco"
+						value="#{usuarioBean.usuarioAlteracao.endereco}" />
 					<h:outputText value="Telefone:" />
-					<p:inputText value="#{usuarioBean.usuarioAlteracao.telefone}" />
+					<p:inputMask value="#{usuarioBean.usuarioAlteracao.telefone}"
+						mask="(99)9999-9999" />
+
+					<h:outputText value="Email: *" />
+					<p:inputText id="email"
+						value="#{usuarioBean.usuarioAlteracao.email}" required="true" />
+
+					<h:outputLabel value="Data Nascimento:" />
+					<p:calendar value="#{usuarioBean.usuarioAlteracao.dtanasc}" navigator="true" display="inline"
+						id="nascimento" showOn="button" />
+
+					<h:outputText value="Login: *" />
+					<p:inputText id="login" label="login"
+						value="#{usuarioBean.usuarioAlteracao.login}" required="true" />
+
+					<h:outputText value="Tipo de Usuário: *" />
+					<p:selectOneMenu id="tipoUsuario"
+						value="#{usuarioBean.usuarioAlteracao.tipoUsuario}">
+						<f:selectItem itemLabel="Selecione Um" itemValue="" />
+						<f:selectItem itemLabel="Administrador" itemValue="1" />
+						<f:selectItem itemLabel="Aluno" itemValue="2" />
+						<f:selectItem itemLabel="Professor" itemValue="3" />
+					</p:selectOneMenu>
+
 				</p:panelGrid>
 				<p:commandButton value="Alterar"
 					actionListener="#{usuarioBean.alterarUsuario}"
 					update=":formAdmin:tabelaUsuarios"
 					oncomplete="dialogAlterar.hide()" />
-				</h:form>
-			</p:dialog>			
-		<p:dialog id="Cadastrar" header="Cadastrar" widgetVar="dialogCadastrar">
-			<h:form id="formCadastrar"
-				resizable="false" modal="true" appendToBody="true">
-		<p:panelGrid id="panelCadastrar" columns="2">
-       	<h:outputLabel for="nome" value="Nome: *" />
-			<p:inputText id="nome" label="nome"
-				value="#{cadastroBean.novoUsuario.nome}" required="true" />
-			<h:outputText value="Endereco:" />
-			<p:inputText id="endereco" label="endereco"
-				value="#{cadastroBean.novoUsuario.endereco}" />
-			<h:outputText value="Telefone:" />
-			<p:inputText value="#{cadastroBean.novoUsuario.telefone}" />
-
-			<h:outputText value="Email: *" />
-			<p:inputText id="email" value="#{cadastroBean.novoUsuario.email}" required="true"/>
-
-			<h:outputLabel value="Data Nascimento:" />
-			<p:inputText id="nascimento" value="#{cadastroBean.novoUsuario.dtanasc}" />
-
-			<h:outputText value="Login: *" />
-			<p:inputText id="login" label="login"
-				value="#{cadastroBean.novoUsuario.login}" required="true" />
-
-			<h:outputText value="Senha: *" />
-			<p:password id="senha" label="senha"
-				value="#{cadastroBean.novoUsuario.senha}" required="true" />
-
-			<h:outputText value="Tipo de Usuário: *" />
-			<p:inputText id="tipoUsuario" value="#{cadastroBean.novoUsuario.tipoUsuario}" required="true" />
-			<f:facet name="footer">
-			<p:commandButton  actionListener="#{cadastroBean.cadastrarUsuario}" value="#{msgs.salvar}"  icon="ui-icon-circle-check"
-					style="margin:0" oncomplete="dialogCadastrar.hide()" update=":formAdmin:tabelaUsuarios"/>
-			</f:facet>	
-			</p:panelGrid>			
 			</h:form>
-			</p:dialog>
-					
-			<h:form id="formExcluir">
-			<p:confirmDialog id="Excluir"
-				message="Você confirma excluir?"
-				header="Excluir" severity="alert" widgetVar="confirmation"
+		</p:dialog>
+		<p:dialog id="Cadastrar" header="Cadastrar"
+			widgetVar="dialogCadastrar">
+			<h:form id="formCadastrar" resizable="false" modal="true"
 				appendToBody="true">
-				<p:commandButton  value="Sim"
-				update=":formAdmin:tabelaUsuarios"
-				 oncomplete="confirmation.hide()"/>
-				<p:commandButton  value="Não"
-					onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
+				<p:panelGrid id="panelCadastrar" columns="2">
+					<h:outputLabel for="nome" value="Nome: *" />
+					<p:inputText id="nome" label="nome"
+						value="#{cadastroBean.novoUsuario.nome}" required="true" />
+					<h:outputText value="Endereco:" />
+					<p:inputText id="endereco" label="endereco"
+						value="#{cadastroBean.novoUsuario.endereco}" />
+					<h:outputText value="Telefone:" />
+					<p:inputMask value="#{cadastroBean.novoUsuario.telefone}"
+						mask="(99)9999-9999" />
+
+					<h:outputText value="Email: *" />
+					<p:inputText id="email" value="#{cadastroBean.novoUsuario.email}"
+						required="true" />
+
+					<h:outputLabel value="Data Nascimento:" />
+					<p:calendar value="#{cadastroBean.novoUsuario.dtanasc}"  navigator="true" display="inline"
+						id="nascimento" showOn="button" />
+
+					<h:outputText value="Login: *" />
+					<p:inputText id="login" label="login"
+						value="#{cadastroBean.novoUsuario.login}" required="true" />
+
+					<h:outputText value="Senha: *" />
+					<p:password id="senha" label="senha"
+						value="#{cadastroBean.novoUsuario.senha}" required="true" />
+
+					<h:outputText value="Tipo de Usuário: *" />
+					<p:selectOneMenu id="tipoUsuario"
+						value="#{cadastroBean.novoUsuario.tipoUsuario}">
+						<f:selectItem itemLabel="Selecione Um" itemValue="" />
+						<f:selectItem itemLabel="Administrador" itemValue="1" />
+						<f:selectItem itemLabel="Aluno" itemValue="2" />
+						<f:selectItem itemLabel="Professor" itemValue="3" />
+					</p:selectOneMenu>
+
+					<f:facet name="footer">
+						<p:commandButton actionListener="#{cadastroBean.cadastrarUsuario}"
+							value="#{msgs.salvar}" icon="ui-icon-circle-check"
+							style="margin:0" oncomplete="dialogCadastrar.hide()"
+							update=":formAdmin:tabelaUsuarios" />
+					</f:facet>
+				</p:panelGrid>
 			</h:form>
-			
-		
+		</p:dialog>
+
+		<h:form id="formExcluir">
+			<p:confirmDialog id="Excluir"
+				message="Você confirma excluir o #{usuarioBean.usuario.nome}?"
+				header="Excluir" severity="alert" widgetVar="confirmation"
+				width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
+				<p:commandButton value="Sim" actionListener="#{usuarioBean.excluirUsuarios}" update=":formAdmin:tabelaUsuarios"
+					oncomplete="confirmation.hide()" />
+				<p:commandButton value="Não" onclick="confirmation.hide()" type="button" />
+			</p:confirmDialog>
+		</h:form>
+
+
 	</ui:define>
 </ui:composition>

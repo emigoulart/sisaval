@@ -29,7 +29,7 @@ public class CadastroUsuarioManagedBean implements Serializable {
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;
 
-
+	
 	public CadastroUsuarioManagedBean() {
 		
 		if(novoUsuario == null){
@@ -58,7 +58,6 @@ public class CadastroUsuarioManagedBean implements Serializable {
 		
 	}
 	
-
 	public Usuario getNovoUsuario() {
 		return novoUsuario;
 	}

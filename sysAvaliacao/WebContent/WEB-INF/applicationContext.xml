@@ -22,9 +22,8 @@
           class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>	
-   <bean id="usuarioDao" class="edu.infnet.dao.UsuarioDAOImpl">	
-   </bean>	
-   <bean id="avaliacaoDao" class="edu.infnet.dao.AvaliacaoDAOImpl">	
-   </bean>
+   <bean id="usuarioDao"    class="edu.infnet.dao.UsuarioDAOImpl" />	
+   <bean id="avaliacaoDao"  class="edu.infnet.dao.AvaliacaoDAOImpl" />	
+   <bean id="cursoDao"      class="edu.infnet.dao.CursoDAOImpl" />
  <tx:annotation-driven  transaction-manager="transactionManager" />
 </beans>

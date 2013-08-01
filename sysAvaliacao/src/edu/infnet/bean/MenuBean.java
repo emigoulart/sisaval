@@ -1,5 +1,7 @@
 package edu.infnet.bean;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,29 +13,35 @@ import org.primefaces.component.submenu.Submenu;
 import org.primefaces.model.DefaultMenuModel;
 import org.primefaces.model.MenuModel;
 
-
-@ManagedBean(name="menuBean")
+@ManagedBean(name = "menuBean")
 @SessionScoped
-public class MenuBean {
+public class MenuBean implements Serializable {
 
-private MenuModel model;
+	private static final long serialVersionUID = 1L;
 
-@ManagedProperty(value="#{usuarioBean}")
- private UsuarioManagedBean usuarioBean;
-	
+	private MenuModel model;
+
+	@ManagedProperty(value = "#{usuarioBean}")
+	private UsuarioManagedBean usuarioBean;
+
 	public MenuBean() {
 		model = new DefaultMenuModel();
 
 		// Menu Inicial
-		Submenu submenu = new Submenu();		
+		Submenu submenu = new Submenu();
 		submenu.setLabel("Administração");
 		MenuItem item = new MenuItem();
-		
+
 		item = new MenuItem();
 		item.setValue("Cadastrar Usuarios");
 		item.setUrl("../cadastro/listarUsuarios.xhtml");
 		submenu.getChildren().add(item);
-				
+
+		item = new MenuItem();
+		item.setValue("Cadastrar Cursos");
+		item.setUrl("../cadastro/listarCursos.xhtml");
+		submenu.getChildren().add(item);
+
 		item = new MenuItem();
 		item.setValue("Listar Formularios");
 		item.setUrl("../avaliacao/listaFormularios.xhtml");
@@ -43,11 +51,11 @@ private MenuModel model;
 		item.setValue("Avaliar a Disciplina");
 		item.setUrl("../avaliacao/avaliaDisciplina.xhtml");
 		submenu.getChildren().add(item);
-		
+
 		model.addSubmenu(submenu);
 
 		// Second submenu
-        submenu = new Submenu();
+		submenu = new Submenu();
 		submenu.setLabel("Sistema");
 
 		item = new MenuItem();
@@ -55,10 +63,10 @@ private MenuModel model;
 		item.setUrl("../../");
 		submenu.getChildren().add(item);
 
-//		item = new MenuItem();
-//		item.setValue("Dynamic Menuitem 2.2");
-//		item.setUrl("#");
-//		submenu.getChildren().add(item);
+		// item = new MenuItem();
+		// item.setValue("Dynamic Menuitem 2.2");
+		// item.setUrl("#");
+		// submenu.getChildren().add(item);
 
 		model.addSubmenu(submenu);
 	}
@@ -84,7 +92,7 @@ private MenuModel model;
 				summary, null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-	
+
 	public UsuarioManagedBean getUsuarioBean() {
 		return usuarioBean;
 	}
@@ -92,6 +100,5 @@ private MenuModel model;
 	public void setUsuarioBean(UsuarioManagedBean usuarioBean) {
 		this.usuarioBean = usuarioBean;
 	}
-
 
 }
