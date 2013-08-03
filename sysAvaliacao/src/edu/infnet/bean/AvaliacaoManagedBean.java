@@ -68,7 +68,7 @@ public class AvaliacaoManagedBean implements Serializable {
 
 	public Formulario formulario;
 
-	public List<Questao> questoes;
+	public List<Questao> questoes= new ArrayList<Questao>();
 
 	public List<Questao> getQuestoes() {
 		return questoes;
@@ -115,24 +115,23 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public void listarAvaliacoes(Usuario aluno){
-		if(lista == null){
+		 if(lista == null){
 			lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
 			for (int i=0;i<lista.size();i++){
 				formulario=lista.get(i).getFormulario();
 				setFormulario(formulario);
-				if(formulario.getAvaliacaos().size()>0){
-					setAvaliacao(formulario.getAvaliacaos().get(0));//TODO teste para pegar a primeira avaliacao
-				}
+				setAvaliacao(lista.get(0));//TODO
+				setQuestoes(formulario.getQuestoes());
 			}
 			setLista(lista);
 		}
 	}
+	
+	
 
 	public String responderQuestionario(){
-
 		incluiAvaliacaoRespostas(avaliacao);
 		if(avaliacaoDao.incluirAvaliacao(avaliacao)){
-
 			return "sucesso";
 		}
 		return "falhou";
@@ -144,9 +143,9 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 
-	private void incluiAvaliacaoRespostas(Avaliacao avaliacao){
-		AvaliacaoRespostas avaliacaoResposta= new AvaliacaoRespostas();
+	private void incluiAvaliacaoRespostas(Avaliacao avaliacao){		
 		for(int i=0;i<formulario.getQuestoes().size();i++){
+			AvaliacaoRespostas avaliacaoResposta= new AvaliacaoRespostas();
 			Questao questao= formulario.getQuestoes().get(i);
 			avaliacaoResposta.setQuestao(questao);
 			avaliacaoResposta.setResposta(questao.getResposta());
