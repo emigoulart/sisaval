@@ -35,11 +35,9 @@
 							target="#{usuarioBean.usuarioAlteracao}" value="#{usuario}" />
 					</p:commandLink>
 					<p:commandLink title="Excluir"
-						oncomplete="confirmation.show()" immediate="true"
-						update=":formExcluir">
-						<p:graphicImage library="imagens" name="excluir16.png" />
-						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
-							value="#{usuario}" />
+						actionListener="#{usuarioBean.excluirUsuarios}"
+						oncomplete="confirmation.show()" immediate="true">
+						<p:graphicImage library="imagens" name="excluir16.png" />				
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
@@ -66,8 +64,8 @@
 						value="#{usuarioBean.usuarioAlteracao.email}" required="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<p:calendar value="#{usuarioBean.usuarioAlteracao.dtanasc}" navigator="true" display="inline"
-						id="nascimento" showOn="button" />
+					<p:calendar value="#{usuarioBean.usuarioAlteracao.dtanasc}"
+						navigator="true" display="inline" id="nascimento" showOn="button" />
 
 					<h:outputText value="Login: *" />
 					<p:inputText id="login" label="login"
@@ -109,8 +107,8 @@
 						required="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<p:calendar value="#{cadastroBean.novoUsuario.dtanasc}"  navigator="true" display="inline"
-						id="nascimento" showOn="button" />
+					<p:calendar value="#{cadastroBean.novoUsuario.dtanasc}"
+						navigator="true" display="inline" id="nascimento" showOn="button" />
 
 					<h:outputText value="Login: *" />
 					<p:inputText id="login" label="login"
@@ -138,18 +136,15 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-
 		<h:form id="formExcluir">
-			<p:confirmDialog id="Excluir"
-				message="Você confirma excluir o #{usuarioBean.usuario.nome}?"
+			<p:confirmDialog id="Excluir" message="Você confirma excluir?"
 				header="Excluir" severity="alert" widgetVar="confirmation"
-				width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
-				<p:commandButton value="Sim" actionListener="#{usuarioBean.excluirUsuarios}" update=":formAdmin:tabelaUsuarios"
+				appendToBody="true">
+				<p:commandButton value="Sim" update=":formAdmin:tabelaUsuarios"
 					oncomplete="confirmation.hide()" />
-				<p:commandButton value="Não" onclick="confirmation.hide()" type="button" />
+				<p:commandButton value="Não" onclick="confirmation.hide()"
+					type="button" />
 			</p:confirmDialog>
 		</h:form>
-
-
 	</ui:define>
 </ui:composition>
