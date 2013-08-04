@@ -1,0 +1,126 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formDisciplina">
+			<p:dataTable id="tblDisciplina" var="dis"
+				emptyMessage="Nenhuma disciplina cadastrada."
+				value="#{cadDisciplinaBean.listarDisciplinas}">
+				<f:facet name="header">Lista das Disciplinas Cadastradas</f:facet>
+				<p:column headerText="Disciplina">
+					<h:outputText id="ldisciplina" value="#{dis.disNome}" />
+				</p:column>
+				<p:column headerText="Descricao">
+					<h:outputText id="ldescricao" value="#{dis.disDescricao}" />
+				</p:column>
+				<p:column headerText="Data Início">
+					<h:outputText id="linicio" value="#{dis.dis_dtainicio}">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Data Término">
+					<h:outputText id="ltermino" value="#{dis.dis_dtatermino}">
+					<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Açoes">
+					<p:commandLink title="Alterar"
+						actionListener="#{cadDisciplinaBean.prepararAlterarDisciplina}"
+						oncomplete="dialogAlterar.show()" immediate="true"
+						update=":formAlterar">
+						<p:graphicImage library="imagens" name="editar16.png" />
+						<f:setPropertyActionListener
+							target="#{cadDisciplinaBean.disciplinaSelecionada}"
+							value="#{dis}" />
+					</p:commandLink>
+					<p:commandLink title="Excluir"
+						actionListener="#{cadDisciplinaBean.prepararExcluirDisciplina}"
+						oncomplete="confirmation.show()" immediate="true"
+						update=":formExcluir">
+						<p:graphicImage library="imagens" name="excluir16.png" />
+						<f:setPropertyActionListener
+							target="#{cadDisciplinaBean.disciplinaSelecionada}"
+							value="#{dis}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="Cadastrar" id="cadastrar"
+				oncomplete="dialogCadastrar.show()" />
+		</h:form>
+		<p:dialog id="Alterar" header="Alterar" widgetVar="dialogAlterar">
+			<h:form id="formAlterar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelAlterar" columns="2">
+					<h:outputText value="Disciplina :" />
+					<p:inputText
+						value="#{cadDisciplinaBean.disciplinaSelecionada.disNome}" />
+					<h:outputText value="Descricao:" />
+					<p:inputText
+						value="#{cadDisciplinaBean.disciplinaSelecionada.disDescricao}" />
+					<h:outputLabel value="Data Inicio: * " />
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020"
+						value="#{cadDisciplinaBean.disciplinaSelecionada.dis_dtainicio}"
+						navigator="true" display="inline" id="inicio" showOn="button" />
+					<h:outputLabel value="Data Término:" />
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020"
+						value="#{cadDisciplinaBean.disciplinaSelecionada.dis_dtatermino}"
+						navigator="true" display="inline" id="termino" showOn="button" />
+				</p:panelGrid>
+				<p:commandButton value="Alterar"
+					actionListener="#{cadDisciplinaBean.alterarDisciplina}"
+					update=":formDisciplina:tblDisciplina"
+					oncomplete="dialogAlterar.hide()" />
+			</h:form>
+		</p:dialog>
+		<p:dialog id="Cadastrar" header="Cadastrar"
+			widgetVar="dialogCadastrar">
+			<h:form id="formCadastrar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelCadastrar" columns="2">
+					<h:outputText value="Disciplina :" />
+					<p:inputText value="#{cadDisciplinaBean.disciplina.disNome}" />
+					<h:outputText value="Descricao:" />
+					<p:inputText value="#{cadDisciplinaBean.disciplina.disDescricao}" />
+					<h:outputLabel value="Data Inicio: * " />
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020"
+						value="#{cadDisciplinaBean.disciplina.dis_dtainicio}"
+						navigator="true" display="inline" id="inicio" showOn="button" />
+					<h:outputLabel value="Data Término:" />
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020"
+						value="#{cadDisciplinaBean.disciplina.dis_dtatermino}"
+						navigator="true" display="inline" id="termino" showOn="button" />
+					<f:facet name="footer">
+						<p:commandButton
+							actionListener="#{cadDisciplinaBean.cadastrarDisciplina}"
+							value="#{msgs.salvar}" icon="ui-icon-circle-check"
+							style="margin:0" oncomplete="dialogCadastrar.hide()"
+							update=":formDisciplina:tblDisciplina" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<p:confirmDialog id="Excluir"
+			message="Confirma excluir a Disciplina ? " header="Excluir"
+			severity="alert" widgetVar="confirmation" width="400"
+			showEffect="clip" hideEffect="fold" appendToBody="true">
+
+			<h:form id="formExcluir">
+				<p:commandButton value="Sim"
+					actionListener="#{cadDisciplinaBean.excluirDisciplina}"
+					update=":formDisciplina:tblDisciplina"
+					oncomplete="confirmation.hide()" />
+				<p:commandButton value="Não" onclick="confirmation.hide()"
+					type="button" />
+			</h:form>
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>

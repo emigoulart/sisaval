@@ -1,18 +1,26 @@
 
-<persistence version="2.0" 
-             xmlns="http://java.sun.com/xml/ns/persistence" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="sysAvaliacao" transaction-type="RESOURCE_LOCAL">
-	 <provider>org.hibernate.ejb.HibernatePersistence</provider>		
-	<properties>
-      <property name="hibernate.connection.username" value="postgres"/>
-      <property name="hibernate.connection.password" value="postgres"/>
-      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/dbAvaliacao"/>
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>      
-      <property name="hibernate.show_sql" value="true"/>
-      </properties>
-     </persistence-unit>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="sysAvaliacao"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="postgres" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:postgresql://localhost:5432/dbAvaliacao" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Echo all executed SQL to stdout -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="false" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
+		</properties>
+	</persistence-unit>
 </persistence>
 
