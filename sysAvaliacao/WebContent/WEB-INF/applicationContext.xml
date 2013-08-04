@@ -25,5 +25,7 @@
    <bean id="usuarioDao"    class="edu.infnet.dao.UsuarioDAOImpl" />	
    <bean id="avaliacaoDao"  class="edu.infnet.dao.AvaliacaoDAOImpl" />	
    <bean id="cursoDao"      class="edu.infnet.dao.CursoDAOImpl" />
+   <bean id="disciplinaDao" class="edu.infnet.dao.DisciplinaDAOImpl" />
+   
  <tx:annotation-driven  transaction-manager="transactionManager" />
 </beans>

@@ -2,6 +2,8 @@ package edu.infnet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,6 +25,12 @@ public class Disciplina implements Serializable {
 	@Column(name="dis_nome")
 	private String disNome;
 
+	@Temporal(TemporalType.DATE)
+	private Date dis_dtainicio;
+
+	@Temporal(TemporalType.DATE)
+	private Date dis_dtatermino;
+	
 	//bi-directional many-to-one association to Turma
 	@OneToMany(mappedBy="disciplina")
 	private List<Turma> turmas;
@@ -52,6 +60,23 @@ public class Disciplina implements Serializable {
 
 	public void setDisNome(String disNome) {
 		this.disNome = disNome;
+	}
+
+	
+	public Date getDis_dtainicio() {
+		return dis_dtainicio;
+	}
+
+	public void setDis_dtainicio(Date dis_dtainicio) {
+		this.dis_dtainicio = dis_dtainicio;
+	}
+
+	public Date getDis_dtatermino() {
+		return dis_dtatermino;
+	}
+
+	public void setDis_dtatermino(Date dis_dtatermino) {
+		this.dis_dtatermino = dis_dtatermino;
 	}
 
 	public List<Turma> getTurmas() {

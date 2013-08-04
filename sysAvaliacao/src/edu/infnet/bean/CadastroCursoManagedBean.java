@@ -27,11 +27,11 @@ import edu.infnet.util.FacesUtils;
 
 @ManagedBean(name = "cadCursoBean")
 @SessionScoped
-public class CadastroCursoMB implements Serializable {
+public class CadastroCursoManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(CadastroCursoMB.class);
+	private static final Logger log = Logger.getLogger(CadastroCursoManagedBean.class);
 
 	private DataModel<Curso> cursoLista;
 
@@ -42,12 +42,12 @@ public class CadastroCursoMB implements Serializable {
 	@ManagedProperty(value = "#{cursoDao}")
 	private CursoDAO cursoDAO;
 
-	public CadastroCursoMB() {
+	public CadastroCursoManagedBean() {
 		if (curso == null) {
 			curso = new Curso();
 		}
 
-		if(cursoSelecionado == null){
+		if (cursoSelecionado == null) {
 			cursoSelecionado = new Curso();
 		}
 	}
@@ -89,6 +89,7 @@ public class CadastroCursoMB implements Serializable {
 			log.info(curso.getCurNome());
 			getCursoDAO().inserir(curso);
 			FacesUtils.mensInfo("Curso cadastrado com Sucesso.");
+			cursoLista = null;
 		} catch (Exception exc) {
 			throw new AvalicaoDAOException(exc);
 		}
@@ -106,12 +107,16 @@ public class CadastroCursoMB implements Serializable {
 		} catch (Exception exc) {
 			throw new AvalicaoDAOException(exc);
 		}
-	}	
+	}
 
-	 public void excluirCurso(ActionEvent actionEvent) {
-	    Curso cursoTemp = cursoLista.getRowData();
-        cursoDAO.excluir(cursoTemp);
+	public void prepararExcluirCurso(ActionEvent actionEvent) {
+		cursoSelecionado = (Curso) (cursoLista.getRowData());
+	}
 
-}
+	public void excluirCurso(ActionEvent actionEvent) {
+		// log.info("Em Excluir curso: "+cursoSelecionado.getCurNome());
+		cursoDAO.excluir(cursoSelecionado);
+		cursoLista = null;
+	}
 
 }

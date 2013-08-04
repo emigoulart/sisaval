@@ -33,13 +33,13 @@ public class MenuBean implements Serializable {
 		MenuItem item = new MenuItem();
 
 		item = new MenuItem();
-		item.setValue("Cadastrar Usuarios");
-		item.setUrl("../cadastro/listarUsuarios.xhtml");
+		item.setValue("Cadastrar Cursos");
+		item.setUrl("../cadastro/listarCursos.xhtml");
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
-		item.setValue("Cadastrar Cursos");
-		item.setUrl("../cadastro/listarCursos.xhtml");
+		item.setValue("Cadastrar Disciplinas");
+		item.setUrl("../cadastro/listarDisciplinas.xhtml");
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
@@ -48,8 +48,13 @@ public class MenuBean implements Serializable {
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
-		item.setValue("Avaliar a Disciplina");
-		item.setUrl("../avaliacao/avaliaDisciplina.xhtml");
+		item.setValue("Cadastrar Turmas");
+		item.setUrl("../cadastro/listarTurmas.xhtml");
+		submenu.getChildren().add(item);
+
+		item = new MenuItem();
+		item.setValue("Cadastrar Usuarios");
+		item.setUrl("../cadastro/listarUsuarios.xhtml");
 		submenu.getChildren().add(item);
 
 		model.addSubmenu(submenu);
@@ -57,16 +62,16 @@ public class MenuBean implements Serializable {
 		// Second submenu
 		submenu = new Submenu();
 		submenu.setLabel("Sistema");
+		
+		item = new MenuItem();
+		item.setValue("Avaliar a Disciplina");
+		item.setUrl("../avaliacao/avaliaDisciplina.xhtml");
+		submenu.getChildren().add(item);
 
 		item = new MenuItem();
 		item.setValue("Logout");
 		item.setUrl("../../");
 		submenu.getChildren().add(item);
-
-		// item = new MenuItem();
-		// item.setValue("Dynamic Menuitem 2.2");
-		// item.setUrl("#");
-		// submenu.getChildren().add(item);
 
 		model.addSubmenu(submenu);
 	}

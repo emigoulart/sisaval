@@ -39,6 +39,8 @@ CREATE TABLE disciplina (
   dis_ID serial,
   dis_nome varchar(50) NOT NULL,
   dis_descricao text NOT NULL,
+  dis_dtatermino date,
+  dis_dtainicio date
   CONSTRAINT pk_disciplina PRIMARY KEY (dis_ID)
 );
 

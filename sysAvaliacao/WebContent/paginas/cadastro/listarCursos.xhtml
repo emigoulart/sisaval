@@ -29,11 +29,13 @@
 						<f:setPropertyActionListener
 							target="#{cadCursoBean.cursoSelecionado}" value="#{curso}" />
 					</p:commandLink>
-					<p:commandLink title="Excluir" oncomplete="confirmation.show()"
-						immediate="true" update=":formExcluir">
+					<p:commandLink title="Excluir"
+						actionListener="#{cadCursoBean.prepararExcluirCurso}"
+						oncomplete="confirmation.show()" immediate="true"
+						update=":formExcluir">
 						<p:graphicImage library="imagens" name="excluir16.png" />
-						<f:setPropertyActionListener target="#{cadCursoBean.curso}"
-							value="#{curso}" />
+						<f:setPropertyActionListener
+							target="#{cadCursoBean.cursoSelecionado}" value="#{curso}" />
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
@@ -79,19 +81,20 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-		<h:form id="formExcluir">
-			<p:confirmDialog id="Excluir"
-				message="Você confirma excluir o curso #{cadCursoBean.curso.curNome}? "
-				header="Excluir" severity="alert" widgetVar="confirmation"
-				width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
+		<p:confirmDialog id="Excluir"
+			message="Confirma excluir o curso ? "
+			header="Excluir" severity="alert" widgetVar="confirmation"
+			width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
+
+			<h:form id="formExcluir">
 				<p:commandButton value="Sim"
 					actionListener="#{cadCursoBean.excluirCurso}"
 					update=":formCadCurso:tabelaCursos"
 					oncomplete="confirmation.hide()" />
 				<p:commandButton value="Não" onclick="confirmation.hide()"
 					type="button" />
-			</p:confirmDialog>
-		</h:form>
+			</h:form>
+		</p:confirmDialog>
 
 	</ui:define>
 </ui:composition>
