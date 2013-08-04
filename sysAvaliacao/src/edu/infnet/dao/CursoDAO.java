@@ -7,7 +7,6 @@ import edu.infnet.model.Curso;
 
 public interface CursoDAO extends Serializable {
 	
-	
     public abstract Curso consultar(Integer codigo);
 
     public abstract Curso atualizar(Curso curso);
