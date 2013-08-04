@@ -37,7 +37,7 @@
 					<p:commandLink title="Excluir"
 						actionListener="#{usuarioBean.excluirUsuarios}"
 						oncomplete="confirmation.show()" immediate="true">
-						<p:graphicImage library="imagens" name="excluir16.png" />				
+						<p:graphicImage library="imagens" name="excluir16.png" />
 					</p:commandLink>
 				</p:column>
 			</p:dataTable>
@@ -64,8 +64,10 @@
 						value="#{usuarioBean.usuarioAlteracao.email}" required="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<p:calendar value="#{usuarioBean.usuarioAlteracao.dtanasc}"
-						navigator="true" display="inline" id="nascimento" showOn="button" />
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020"
+						value="#{usuarioBean.usuarioAlteracao.dtanasc}" navigator="true"
+						display="inline" id="nascimento" showOn="button" />
 
 					<h:outputText value="Login: *" />
 					<p:inputText id="login" label="login"
@@ -107,7 +109,8 @@
 						required="true" />
 
 					<h:outputLabel value="Data Nascimento:" />
-					<p:calendar value="#{cadastroBean.novoUsuario.dtanasc}"
+					<p:calendar readonlyInput="true" pattern="dd-mm-yyyy"
+						yearRange="1900:2020" value="#{cadastroBean.novoUsuario.dtanasc}"
 						navigator="true" display="inline" id="nascimento" showOn="button" />
 
 					<h:outputText value="Login: *" />
@@ -136,15 +139,17 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-		<h:form id="formExcluir">
-			<p:confirmDialog id="Excluir" message="Você confirma excluir?"
-				header="Excluir" severity="alert" widgetVar="confirmation"
-				appendToBody="true">
+
+		<p:confirmDialog id="Excluir" message="Você confirma excluir?"
+			header="Excluir" severity="alert" widgetVar="confirmation"
+			appendToBody="true">
+			<h:form id="formExcluir">
 				<p:commandButton value="Sim" update=":formAdmin:tabelaUsuarios"
 					oncomplete="confirmation.hide()" />
 				<p:commandButton value="Não" onclick="confirmation.hide()"
 					type="button" />
-			</p:confirmDialog>
-		</h:form>
+			</h:form>
+		</p:confirmDialog>
+
 	</ui:define>
 </ui:composition>
