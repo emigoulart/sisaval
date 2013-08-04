@@ -67,7 +67,12 @@ public class MenuBean implements Serializable {
 		item.setValue("Avaliar a Disciplina");
 		item.setUrl("../avaliacao/avaliaDisciplina.xhtml");
 		submenu.getChildren().add(item);
-
+		
+		item = new MenuItem();
+		item.setValue("Exporta Dados");
+		item.setUrl("../avaliacao/exportacao.xhtml");
+		submenu.getChildren().add(item);
+		
 		item = new MenuItem();
 		item.setValue("Logout");
 		item.setUrl("../../");

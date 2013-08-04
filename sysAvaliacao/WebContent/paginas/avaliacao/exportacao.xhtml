@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formExportacao">
+			<p:dataTable var="usuario" value="#{usuarioBean.listarUsuarios}"
+				id="tabelaUsuarios">
+				<f:facet name="header">Lista de Usuarios Cadastrados</f:facet>
+				<p:column headerText="Usuario">
+					<h:outputText id="login" value="#{usuario.login}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText id="nome" value="#{usuario.nome}" />
+				</p:column>
+				<p:column headerText="Endereco">
+					<h:outputText id="endereco" value="#{usuario.endereco}" />
+				</p:column>
+				<p:column headerText="Telefone">
+					<h:outputText id="telefone" value="#{usuario.telefone}" />
+				</p:column>
+			</p:dataTable>
+			<h:panelGrid columns="2">
+				<p:panel header="Exporta os dados">
+					<h:commandLink>
+						<p:graphicImage library="imagens" name="excel.png" />
+						<p:dataExporter type="xls" target="tabelaUsuarios" fileName="usuario" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage library="imagens" name="pdf.png" />
+						<p:dataExporter type="pdf" target="tabelaUsuarios" fileName="usuario" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage library="imagens" name="csv.png" />
+						<p:dataExporter type="csv" target="tabelaUsuarios" fileName="usuario" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage library="imagens" name="xml.png" />
+						<p:dataExporter type="xml" target="tabelaUsuarios" fileName="usuario" />
+					</h:commandLink>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
