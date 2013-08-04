@@ -13,7 +13,6 @@ import javax.faces.bean.RequestScoped;
 import edu.infnet.dao.AvaliacaoDAO;
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.AvaliacaoRespostas;
-import edu.infnet.model.Formulario;
 import edu.infnet.model.Questao;
 import edu.infnet.model.Usuario;
 
@@ -22,11 +21,12 @@ import edu.infnet.model.Usuario;
  * @since 03/2012
  */
 
-@ManagedBean(name="avaliacaoBean")
+@ManagedBean(name="avaliacaoRespostasBean")
 @RequestScoped
-public class AvaliacaoManagedBean implements Serializable {
+public class AvaliacaoRespostasManagedBean implements Serializable {
 
-	private static final long serialVersionUID = -4917267200847463255L;
+	private static final long serialVersionUID = 1L;
+
 
 	private Avaliacao avaliacao;
 
@@ -40,7 +40,7 @@ public class AvaliacaoManagedBean implements Serializable {
 	@ManagedProperty("#{usuarioBean.usuario}") 
 	private Usuario aluno;
  
-	public AvaliacaoManagedBean(){
+	public AvaliacaoRespostasManagedBean(){
 
 	}
 
@@ -78,7 +78,6 @@ public class AvaliacaoManagedBean implements Serializable {
 		return avaliacao;
 	}
 
-	public Formulario formulario;
 
 	public List<Questao> questoes= new ArrayList<Questao>();
 
@@ -90,13 +89,6 @@ public class AvaliacaoManagedBean implements Serializable {
 		this.questoes = questoes;
 	}
 
-	public Formulario getFormulario() {
-		return formulario;
-	}
-
-	public void setFormulario(Formulario formulario) {
-		this.formulario = formulario;
-	}
 
 	public AvaliacaoDAO getAvaliacaoDao() {
 		return avaliacaoDao;
@@ -129,10 +121,8 @@ public class AvaliacaoManagedBean implements Serializable {
 		 if(lista == null){
 			lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
 			for (int i=0;i<lista.size();i++){
-				formulario=lista.get(i).getFormulario();
-				setFormulario(formulario);
 				setAvaliacao(lista.get(0));//TODO
-				setQuestoes(formulario.getQuestoes());
+				setAvaliacaoRespostas(avaliacao.getAvaliacaorespostas());
 			}
 			setLista(lista);
 		}
@@ -140,30 +130,9 @@ public class AvaliacaoManagedBean implements Serializable {
 	
 	
 
-	public String responderQuestionario(){
-		incluiAvaliacaoRespostas(avaliacao);
-		if(avaliacaoDao.incluirAvaliacao(avaliacao)){
-			return "sucesso";
-		}
-		return "falhou";
-	}
-
-
 	public Map<String, Object> getQuestoesRespostas() {
 		return questoesRespostas;
 	}
 
 
-	private void incluiAvaliacaoRespostas(Avaliacao avaliacao){		
-		for(int i=0;i<formulario.getQuestoes().size();i++){
-			AvaliacaoRespostas avaliacaoResposta= new AvaliacaoRespostas();
-			Questao questao= formulario.getQuestoes().get(i);
-			avaliacaoResposta.setQuestao(questao);
-			avaliacaoResposta.setResposta(questao.getResposta());
-			avaliacaoResposta.setAvaliacao(avaliacao);
-			avaliacaoRespostas.add(avaliacaoResposta);
-
-		}
-		avaliacao.setAvaliacaorespostas(avaliacaoRespostas);
-	}
 }

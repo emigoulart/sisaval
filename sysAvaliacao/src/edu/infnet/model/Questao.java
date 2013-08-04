@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 
@@ -35,6 +36,9 @@ public class Questao implements Serializable {
 
 	@Transient
 	private String tituloGrupo;
+	
+	@OneToMany(mappedBy="questao")
+	private List<AvaliacaoRespostas> avaliacaorespostas;
 
 	public String getTituloGrupo() {
 
@@ -103,6 +107,14 @@ public class Questao implements Serializable {
 
 	public void setResposta(Integer resposta) {
 		this.resposta = resposta;
+	}
+
+	public List<AvaliacaoRespostas> getAvaliacaorespostas() {
+		return avaliacaorespostas;
+	}
+
+	public void setAvaliacaorespostas(List<AvaliacaoRespostas> avaliacaorespostas) {
+		this.avaliacaorespostas = avaliacaorespostas;
 	}
 
 }

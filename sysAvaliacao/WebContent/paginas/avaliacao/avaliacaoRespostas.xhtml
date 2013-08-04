@@ -19,8 +19,8 @@
 	<h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
 	<h:form id="formulario">
 		<h:dataTable
-			value="#{avaliacaoBean.lista}" />
-		<p:panel closable="true" footer="Sistema de Avaliação - INFNET "
+			value="#{avaliacaoRespostasBean.lista}" />
+		<p:panel  footer="Sistema de Avaliação - INFNET "
 			style="width:100%">
 			<p:messages id="msgs" />
 			<f:facet name="header">
@@ -38,38 +38,29 @@
                         </h:panelGrid>
 			<h:panelGrid>
 				<p>
-					Por favor, preencha essa avaliação com toda atenção. Ela é muito
-					importante para a melhoria contínua de seu curso. <br /> É através
-					das avaliações que poderemos construir um curso cada vez melhor, o
-					que é importante para você agora e para o valor de seu diploma no
-					futuro.
+				Avaliação encerrada.
 				</p>
 			</h:panelGrid>
-	         <p:dataTable value ="#{avaliacaoBean.formulario.questoes}" 
-             var ="questao" rowKey ="#{questao.qstId}" >   
+	         <p:dataTable value ="#{avaliacaoRespostasBean.avaliacaoRespostas}" 
+             var ="avaliacaorespostas" rowKey ="#{questao.qstId}">   
 			 <p:column style="width: 40%" border="1">			 
 			 	<f:facet name="header">  
             		Avaliação Geral Pós Graduação 
         	   </f:facet>	   	   		 
- 				<h:outputLabel value="#{questao.qstQuestao}"/>
+ 				<h:outputLabel value="#{avaliacaorespostas.questao.qstQuestao}"/>
  				</p:column>
  		  <p:column  style="width: 60%">	      
-   		  	<p:selectOneRadio value="#{questao.resposta}" id="resposta" required="true" requiredMessage="Por favor informar todas as respostas">
-            <f:selectItems value="#{avaliacaoBean.populatedQuestoesResposta}" var="resposta" itemValue="#{resposta}" style="text-align:center;"/>
+   		  	<p:selectOneRadio value="#{avaliacaorespostas.resposta}" id="resposta" disabled="true">
+            <f:selectItems value="#{avaliacaoRespostasBean.populatedQuestoesResposta}" var="resposta" itemValue="#{resposta}"  style="text-align:center;"/>
            </p:selectOneRadio>
 			 </p:column>			                               
              </p:dataTable> 
 			<p:row>
-				<h3>6. Você tem comentários e sugestões?</h3>
-				<p:inputTextarea rows="5" cols="150" maxlength="255"
-					counterTemplate="{0} caracteres restantes." autoResize="false"
-					value="#{avaliacaoBean.avaliacao.observacao}" />
+				<h3>6. Comentários e sugestões</h3>
+					<h:outputLabel for="aluno" value= "#{avaliacaoRespostasBean.avaliacao.observacao}" />
 			</p:row>
-			<f:facet name="footer">
-				<h:commandButton value="#{msgs.salvar}"
-					action="#{avaliacaoBean.responderQuestionario}"
-					icon="ui-icon-circle-check"  /> 
-			</f:facet>
+				
+		
 		</p:panel>
 	</h:form>
 

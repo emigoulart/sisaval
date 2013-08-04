@@ -30,7 +30,7 @@ public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable> im
 
 	@Override
 	public List<Avaliacao> consultarAvaliacoesAluno(Usuario aluno) {
-		String sqlQuery = "from Avaliacao where fk_aluno = :aluno and avl_disponivel='S'" ;
+		String sqlQuery = "from Avaliacao where fk_aluno = :aluno " ;
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("aluno", aluno.getMatricula());
 
