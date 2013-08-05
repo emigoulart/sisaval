@@ -20,6 +20,7 @@ import edu.infnet.model.Disciplina;
 import edu.infnet.model.Formulario;
 import edu.infnet.model.Questao;
 import edu.infnet.model.Usuario;
+import edu.infnet.util.EnviaAvaliacaoEmail;
 
 /**
  * @author Emilene Goulart
@@ -196,6 +197,12 @@ public class AvaliacaoManagedBean implements Serializable {
 	public String responderQuestionario() {
 		incluiAvaliacaoRespostas(avaliacao);
 		if (avaliacaoDao.incluirAvaliacao(avaliacao)) {
+			EnviaAvaliacaoEmail ee= new EnviaAvaliacaoEmail();
+			try{
+				ee.sendEmail(avaliacao);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 			return "sucesso";
 		}
 		return "falhou";

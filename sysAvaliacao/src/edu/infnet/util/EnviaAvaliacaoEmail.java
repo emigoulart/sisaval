@@ -12,19 +12,18 @@ public class EnviaAvaliacaoEmail {
 	public void sendEmail(Avaliacao avaliacao) throws EmailException {
 	    
 		   SimpleEmail email = new SimpleEmail();
-		   //Utilize o hostname do seu provedor de email
-		   //System.out.println("alterando hostname...");
 		   email.setHostName("smtp.gmail.com");
 		   //Quando a porta utilizada não é a padrão (gmail = 465)
 		   email.setSmtpPort(465);
+		   
 		   //Adicione os destinatários
-		   email.addTo("aline.carlos@gmail.com", "Aline");
-		   //Configure o seu email do qual enviará
+		   email.addTo(avaliacao.getTurmaaluno().getAluno().getEmail(), avaliacao.getTurmaaluno().getAluno().getNome());
+
 		   email.setFrom("avaliacaogrupof@gmail.com", "Avaliação - Grupo F");
-		   //Adicione um assunto
+
 		   email.setSubject("Avaliação Realizada!");
-		   //Adicione a mensagem do email
 		   email.setMsg(this.preparaCorpo(avaliacao));
+		   
 		   //Para autenticar no servidor é necessário chamar os dois métodos abaixo
 		   email.setSSLOnConnect(true);
 		   email.setAuthentication("avaliacaogrupof", "102030qwe");
@@ -37,18 +36,49 @@ public class EnviaAvaliacaoEmail {
 		
 		conteudo.append("Agradecemos a sua participação na avaliação.");
 		conteudo.append(separador);
+		conteudo.append(separador);
 		conteudo.append("Disciplina:  ");
 		conteudo.append(avaliacao.getTurmaaluno().getTurma().getDisciplina().getDisDescricao());
 		conteudo.append(separador);
+		conteudo.append(separador);
 		Iterator<AvaliacaoRespostas> respostas = avaliacao.getAvaliacaorespostas().iterator();
 		AvaliacaoRespostas resposta;
+		int nroResposta;
+		String descricaoResposta;
 		while(respostas.hasNext()){
 			resposta = respostas.next();
 			conteudo.append(resposta.getQuestao().getQstQuestao());
-			conteudo.append(resposta.getResposta());
+			conteudo.append(" Resposta: ");
+			nroResposta = resposta.getResposta();
+			switch (nroResposta) {
+			case 1:
+				descricaoResposta ="Concordo Totalmente";
+				break;
+			case 2:
+				descricaoResposta ="Concordo";
+				break;
+			case 3:
+				descricaoResposta ="Não Concordo nem Discordo";
+				break;
+			case 4:
+				descricaoResposta ="Discordo";
+				break;
+			case 5:
+				descricaoResposta ="Discordo Totalmente";
+				break;
+			case 6:
+				descricaoResposta ="Não sei avaliar";
+				break;
+			default:
+				descricaoResposta = "Questão não resposta";
+			}
+			
+			conteudo.append(descricaoResposta);
 			conteudo.append(separador);
 		}
-		
+		conteudo.append(separador);
+		conteudo.append("Observação: ");
+		conteudo.append(avaliacao.getObservacao());
 		
 		return conteudo.toString();
 	}
