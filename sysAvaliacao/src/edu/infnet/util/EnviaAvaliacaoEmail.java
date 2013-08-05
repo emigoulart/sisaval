@@ -37,7 +37,7 @@ public class EnviaAvaliacaoEmail {
 		conteudo.append("Agradecemos a sua participação na avaliação.");
 		conteudo.append(separador);
 		conteudo.append(separador);
-		conteudo.append("Disciplina:  ");
+		conteudo.append("Disciplina: ");
 		conteudo.append(avaliacao.getTurmaaluno().getTurma().getDisciplina().getDisDescricao());
 		conteudo.append(separador);
 		conteudo.append(separador);

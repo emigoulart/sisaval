@@ -201,6 +201,7 @@ public class AvaliacaoManagedBean implements Serializable {
 			try{
 				ee.sendEmail(avaliacao);
 			} catch (Exception e){
+				//Colocar no log?
 				e.printStackTrace();
 			}
 			return "sucesso";
