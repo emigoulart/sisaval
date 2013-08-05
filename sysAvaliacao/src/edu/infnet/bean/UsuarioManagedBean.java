@@ -24,7 +24,9 @@ import edu.infnet.model.Usuario;
 import edu.infnet.util.FacesUtils;
 import edu.infnet.util.TipoUsuario;
 
-/** Sistema de Avaliacão Online - INFNET
+/**
+ * Sistema de Avaliacão Online - INFNET
+ * 
  * @author Aline Carlos
  * @author Eduardo dVargas
  * @author Emilene Goulart
@@ -32,38 +34,40 @@ import edu.infnet.util.TipoUsuario;
 @ManagedBean(name = "usuarioBean")
 @SessionScoped
 public class UsuarioManagedBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	private static final Logger log = Logger.getLogger(UsuarioManagedBean.class);
+
+	private static final Logger log = Logger
+			.getLogger(UsuarioManagedBean.class);
 
 	private Usuario usuario;
-	
+
 	private Usuario usuarioAlteracao = new Usuario();
-		
+
 	@ManagedProperty(value = "#{usuarioDao}")
 	private UsuarioDAO usuarioDao;
-	
+
 	private DataModel<Usuario> listaUsuarios;
 
 	public UsuarioManagedBean() {
 		if (usuario == null) {
 			usuario = new Usuario();
 		}
-	
+
 	}
-	
-	  public DataModel<Usuario> getListarUsuarios() {
-	        List<Usuario> lista = getUsuarioDao().listar();
-	        listaUsuarios = new ListDataModel<Usuario>(lista);
-	        return listaUsuarios;
-	    }
-	  
-	  public void excluirUsuarios (ActionEvent actionEvent) {
-		  	        Usuario usuarioTemp = (Usuario)(listaUsuarios.getRowData());
-	        usuarioDao.excluir(usuarioTemp);
-	 
-	    }
+
+	public DataModel<Usuario> getListarUsuarios() {
+		List<Usuario> lista = getUsuarioDao().listar();
+		listaUsuarios = new ListDataModel<Usuario>(lista);
+		return listaUsuarios;
+	}
+
+	public void excluirUsuarios(ActionEvent actionEvent) {
+		Usuario usuarioTemp = (Usuario) (listaUsuarios.getRowData());
+		usuarioDao.excluir(usuarioTemp);
+		listaUsuarios = null;
+
+	}
 
 	public String efetuarLogin() throws AvalicaoDAOException {
 
@@ -73,11 +77,11 @@ public class UsuarioManagedBean implements Serializable {
 			usuario = getUsuarioDao().validarLogin(usuario);
 		} catch (Exception exc) {
 			log.error(exc);
-  			FacesUtils.mensErro("Erro inesperado"); 
-			
+			FacesUtils.mensErro("Erro inesperado");
+
 		}
 
-		if (usuario.getTipoUsuario()!= null) {
+		if (usuario.getTipoUsuario() != null) {
 			if (usuario.getTipoUsuario().equalsIgnoreCase(
 					TipoUsuario.ROLE_ADMIN.toString())) {
 				log.info("logado como ADMIN");
@@ -88,10 +92,13 @@ public class UsuarioManagedBean implements Serializable {
 				paginaRetorno = "/paginas/avaliacao/listaFormularios";
 			}
 
-		}else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"", "Login ou senha inválidos"));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "",
+							"Login ou senha inválidos"));
 		}
-		
+
 		return paginaRetorno;
 	}
 
@@ -102,30 +109,28 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuarioDao(UsuarioDAO usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
-	
-	  public void prepararAlterarUsuario(ActionEvent actionEvent){
-	        usuarioAlteracao = (Usuario)(listaUsuarios.getRowData());
-	    }
 
+	public void prepararAlterarUsuario(ActionEvent actionEvent) {
+		usuarioAlteracao = (Usuario) (listaUsuarios.getRowData());
+	}
 
-	
-	public void alterarUsuario(ActionEvent actionEvent) throws AvalicaoDAOException{
+	public void alterarUsuario(ActionEvent actionEvent)
+			throws AvalicaoDAOException {
 		try {
 			usuarioDao.atualizar(usuarioAlteracao);
 		} catch (Exception exc) {
 			throw new AvalicaoDAOException(exc);
 		}
 	}
-	
-	public void excluirUsuario() throws AvalicaoDAOException{
+
+	public void excluirUsuario() throws AvalicaoDAOException {
 		try {
 			usuarioDao.excluir(usuario);
 		} catch (Exception exc) {
 			throw new AvalicaoDAOException(exc);
 		}
 	}
-	
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -133,7 +138,7 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public String logout() {
 		return "/paginas/login/paginaLogin";
 	}
@@ -146,7 +151,6 @@ public class UsuarioManagedBean implements Serializable {
 
 	public void listarAvaliacoes() {
 		setListaAvaliacao(daoAvaliacao.consultarAvaliacoesAluno(usuario));
-
 	}
 
 	public Avaliacao getAvaliacao() {
@@ -176,8 +180,5 @@ public class UsuarioManagedBean implements Serializable {
 	public String toString() {
 		return "UsuarioManagedBean [usuario=" + usuario + "]";
 	}
-
-	
-	
 
 }

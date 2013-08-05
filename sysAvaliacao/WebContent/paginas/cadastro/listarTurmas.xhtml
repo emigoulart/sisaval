@@ -1,0 +1,40 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formturma">
+			<p:dataTable id="tblturma" var="turma" 	 value="#{cadTurmaBean.listarTurmas}"
+			paginator="true" rows="10" scrollable="true" emptyMessage="Nenhuma turma cadastrada."
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"    
+            rowsPerPageTemplate="5,10,15">  
+            <p:ajax event="rowSelect" update=":formUsuarios:tblUsuario"/> 
+   		    <f:facet name="header">Lista das Turmas Cadastradas</f:facet>
+				<p:column headerText="Inicio">
+					<h:outputText id="inicio" value="#{turma.prazoinicial}" />
+				</p:column>
+				<p:column headerText="Término">
+					<h:outputText id="termino" value="#{turma.prazofinal}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		<h:form id="formUsuarios">
+			<p:dataTable id="tblUsuario" var="usuario" value="#{usuarioBean.listarUsuarios}"
+			paginator="true" rows="10" scrollable="true" emptyMessage="Nenhum Usuario cadastrado."
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"    
+            rowsPerPageTemplate="5,10,15">  
+           			<f:facet name="header">Lista de Usuarios Cadastrados</f:facet>
+				<p:column headerText="Usuario">
+					<h:outputText id="login" value="#{usuario.login}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText id="nome" value="#{usuario.nome}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>	
+	</ui:define>		
+</ui:composition>

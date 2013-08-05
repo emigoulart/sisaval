@@ -49,7 +49,6 @@ public class CadastroUsuarioManagedBean implements Serializable {
 	public void cadastrarUsuario() throws AvalicaoDAOException{
 		try {
 			log.debug(novoUsuario.toString());
-			System.out.println(novoUsuario.getNome());
 			getUsuarioDao().inserir(novoUsuario);
 			FacesUtils.mensInfo("Cadastro efetuado com Sucesso.");
 		} catch (Exception exc) {

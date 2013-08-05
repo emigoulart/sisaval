@@ -1,15 +1,16 @@
 package edu.infnet.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import edu.infnet.model.Turma;
 import edu.infnet.model.TurmaAluno;
 
-public interface TurmaDAO {
+public interface TurmaDAO extends Serializable {
 	
 	public abstract Turma consultar(Integer codigo);
 
-	public abstract void atualizar(Turma turma);
+	public abstract Turma atualizar(Turma turma);
 
 	public abstract void inserir(Turma turma);
 
