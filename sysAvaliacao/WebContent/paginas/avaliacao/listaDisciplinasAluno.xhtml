@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formAvaliacaoDisciplina">
+			<p:dataTable var="avaliacao" value="#{avaliacaoBean.listarDisciplinas}"
+				id="tabelaDisciplinaAvaliacao">
+				<f:facet name="header">Disciplinas Aluno #{usuarioBean.usuario.nome}</f:facet>
+				<p:column headerText="Disciplina">
+					<h:outputText id="Disciplina"
+						value="#{avaliacao.turmaaluno.turma.disciplina.disDescricao}" />
+				</p:column>
+				<p:column headerText="Data Início">
+					<h:outputText id="linicio" value="#{dis.dis_dtainicio}">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Data Término">
+					<h:outputText id="ltermino" value="#{dis.dis_dtatermino}">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+				<p:commandLink title="Responder Avaliação"
+					action="avaliaDisciplina.xhtml"
+				   immediate="true">
+					<p:graphicImage library="imagens" name="editar16.png" />
+				</p:commandLink>
+				<p:commandLink title="Visualizar Avaliação"
+					action="avaliacaoRespostas.xhtml"
+					 immediate="true" value="Visualizar Avaliação">
+				</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
