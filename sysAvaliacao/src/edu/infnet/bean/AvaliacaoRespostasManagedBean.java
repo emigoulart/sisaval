@@ -9,10 +9,14 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import edu.infnet.dao.AvaliacaoDAO;
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.AvaliacaoRespostas;
+import edu.infnet.model.Disciplina;
 import edu.infnet.model.Questao;
 import edu.infnet.model.Usuario;
 
@@ -39,10 +43,21 @@ public class AvaliacaoRespostasManagedBean implements Serializable {
 	
 	@ManagedProperty("#{usuarioBean.usuario}") 
 	private Usuario aluno;
+	
+
+	private Disciplina disciplina= new Disciplina();
+	
+	private DataModel<Avaliacao> listaAvaliacaoDisciplina;
+
  
 	public AvaliacaoRespostasManagedBean(){
 
 	}
+	
+	  public DataModel<Avaliacao> getListarDisciplinas() {
+		  listaAvaliacaoDisciplina = new ListDataModel<Avaliacao>(lista);
+	      return listaAvaliacaoDisciplina;
+	    }
 
 	private static Map<String,Object> questoesRespostas;
 	
@@ -132,6 +147,14 @@ public class AvaliacaoRespostasManagedBean implements Serializable {
 
 	public Map<String, Object> getQuestoesRespostas() {
 		return questoesRespostas;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 

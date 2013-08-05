@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.infnet.model.Avaliacao;
+import edu.infnet.model.Disciplina;
 import edu.infnet.model.Turma;
 import edu.infnet.model.Usuario;
 
@@ -35,6 +36,21 @@ public class AvaliacaoDAOImpl extends DaoGenericoImp<Avaliacao, Serializable> im
 		parameters.put("aluno", aluno.getMatricula());
 
 		return super.listPesqParam(sqlQuery, parameters);
+	}
+	
+	@Override
+	public Avaliacao consultarAvaliacoesDisciplinaAluno(final Usuario aluno, final Disciplina disciplina) {
+		Avaliacao avaliacao= new Avaliacao();
+		String sqlQuery = "from Avaliacao a where a.turmaaluno.aluno.matricula = :aluno and a.turmaaluno.turma.disciplina.disId= :disciplina " ;
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("aluno", aluno.getMatricula());
+		parameters.put("disciplina", disciplina.getDisId());
+		 if(!super.listPesqParam(sqlQuery, parameters).isEmpty()){
+			 avaliacao=super.listPesqParam(sqlQuery, parameters).get(0);
+		 }
+		 
+		 return avaliacao;
+
 	}
 
 	@Override

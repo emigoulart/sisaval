@@ -31,6 +31,20 @@ public class TurmaAluno implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="fk_turma", insertable=false, updatable=false)
 	private Turma turma;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_aluno", insertable=false, updatable=false)
+	private Usuario aluno;
+	
+
+
+	public Usuario getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Usuario aluno) {
+		this.aluno = aluno;
+	}
 
 	public TurmaAluno() {
 	}

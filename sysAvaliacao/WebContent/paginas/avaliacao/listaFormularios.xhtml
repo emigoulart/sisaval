@@ -25,19 +25,11 @@
 			        <p:subTable var="respostas" value="#{avaliacao}">  
 			            <f:facet name="header">  
 			              #{avaliacao.turmaaluno.turma.disciplina.disDescricao}   
-			            </f:facet>  
-			  
-			            <p:column>  
-			                #{avaliavao.avlDisponivel}  
-			            </p:column>  
-			  
-			            <p:column>  
-			                
-			            </p:column>  
-			  
+			            </f:facet>  			  			  			  
 			        </p:subTable>  
 			    </p:dataTable> 
 		</p:panel>
+		<p:commandButton  id="visuaizar" action="avaliacaoRespostas.xhtml" value="Visualizar"/>
 	</h:form>
    </ui:define>
 </ui:composition>
