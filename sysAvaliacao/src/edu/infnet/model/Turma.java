@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,9 @@ public class Turma implements Serializable {
 	@Column(name="tur_id")
 	private Integer turId;
 
-	@Column(name="fk_professor")
-	private Integer fkProfessor;
+	@ManyToOne
+	@JoinColumn(name="fk_professor")
+	private Usuario professor;
 
 	@Temporal(TemporalType.DATE)
 	private Date prazofinal;
@@ -42,11 +44,9 @@ public class Turma implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="fk_curso")
 	private Curso curso;
-
-	//bi-directional many-to-one association to Disciplina
-	@ManyToOne
-	@JoinColumn(name="fk_disciplina")
-	private Disciplina disciplina;
+	
+	@OneToMany(mappedBy="turma", cascade = CascadeType.ALL)
+	private List<Disciplina> disciplinas;
 
 	//bi-directional many-to-one association to Formulario
 	@ManyToOne
@@ -68,12 +68,13 @@ public class Turma implements Serializable {
 		this.turId = turId;
 	}
 
-	public Integer getFkProfessor() {
-		return fkProfessor;
+
+	public Usuario getProfessor() {
+		return professor;
 	}
 
-	public void setFkProfessor(Integer fkProfessor) {
-		this.fkProfessor = fkProfessor;
+	public void setProfessor(Usuario professor) {
+		this.professor = professor;
 	}
 
 	public Date getPrazofinal() {
@@ -100,12 +101,12 @@ public class Turma implements Serializable {
 		this.curso = curso;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
+	public void setDisciplina(List<Disciplina> disciplina) {
+		this.disciplinas = disciplina;
 	}
 
 	public Formulario getFormulario() {

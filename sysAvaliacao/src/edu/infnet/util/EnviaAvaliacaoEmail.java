@@ -38,7 +38,7 @@ public class EnviaAvaliacaoEmail {
 		conteudo.append(separador);
 		conteudo.append(separador);
 		conteudo.append("Disciplina: ");
-		conteudo.append(avaliacao.getTurmaaluno().getTurma().getDisciplina().getDisDescricao());
+		conteudo.append(avaliacao.getTurmaaluno().getTurma().getDisciplinas().get(0).getDisDescricao());
 		conteudo.append(separador);
 		conteudo.append(separador);
 		Iterator<AvaliacaoRespostas> respostas = avaliacao.getAvaliacaorespostas().iterator();

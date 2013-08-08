@@ -10,12 +10,16 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formAvaliacaoDisciplina">
-			<p:dataTable var="avaliacao" value="#{avaliacaoBean.listarDisciplinas}"
+			<p:dataTable var="disciplina" value="#{turmaAlunoBean.listarDisciplina}"
 				id="tabelaDisciplinaAvaliacao">
-				<f:facet name="header">Disciplinas Aluno #{usuarioBean.usuario.nome}</f:facet>
+				<f:facet name="header">Turma: #{turmaAlunoBean.turma.turId} - Disciplinas a avaliar  -  Aluno: #{usuarioBean.usuario.nome}</f:facet>
+				<p:column headerText="Professor">
+					<h:outputText id="turma"
+						value="#{turmaAlunoBean.turma.professor.nome}" />
+				</p:column>				
 				<p:column headerText="Disciplina">
 					<h:outputText id="Disciplina"
-						value="#{avaliacao.turmaaluno.turma.disciplina.disDescricao}" />
+						value="#{disciplina.disDescricao}" />
 				</p:column>
 				<p:column headerText="Data Início">
 					<h:outputText id="linicio" value="#{dis.dis_dtainicio}">
@@ -32,10 +36,6 @@
 					action="avaliaDisciplina.xhtml"
 				   immediate="true">
 					<p:graphicImage library="imagens" name="editar16.png" />
-				</p:commandLink>
-				<p:commandLink title="Visualizar Avaliação"
-					action="avaliacaoRespostas.xhtml"
-					 immediate="true" value="Visualizar Avaliação">
 				</p:commandLink>
 				</p:column>
 			</p:dataTable>

@@ -19,7 +19,7 @@
 	<h:panelGroup layout="block" styleClass="topboxcontent"></h:panelGroup>
 	<h:form id="formulario">
 		<h:dataTable
-			value="#{avaliacaoBean.lista}" />
+			value="#{avaliacaoBean.questoes}" />
 		<p:panel closable="true" footer="Sistema de Avaliação - INFNET "
 			style="width:100%">
 			<p:messages id="msgs" />
@@ -34,7 +34,7 @@
 				<h:outputLabel for="aluno" value="Aluno: #{usuarioBean.usuario.nome}" />
 				<h:outputLabel for="matricula" value="Matricula: #{usuarioBean.usuario.matricula}" />
 				<h:outputLabel for="modulo" value="Módulo: Aplicações Web" />
-				<h:outputLabel for="disciplina" value="Disciplina: #{avaliacaoBean.avaliacao.turmaaluno.turma.disciplina.disDescricao}" />
+				<h:outputLabel for="disciplina" value="Disciplina: #{avaliacaoBean.disciplina.disDescricao}" />
                         </h:panelGrid>
 			<h:panelGrid>
 				<p>
@@ -45,7 +45,7 @@
 					futuro.
 				</p>
 			</h:panelGrid>
-	         <p:dataTable value ="#{avaliacaoBean.formulario.questoes}" 
+	         <p:dataTable value ="#{avaliacaoBean.questoes}" 
              var ="questao" rowKey ="#{questao.qstId}" >   
 			 <p:column style="width: 40%" border="1">			 
 			 	<f:facet name="header">  

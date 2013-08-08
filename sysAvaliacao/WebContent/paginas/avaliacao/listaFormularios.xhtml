@@ -1,35 +1,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition template="/WEB-INF/templates/template.xhtml" 
-     xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="conteudo">
-	<h:form id="frmAvaliacao" prependId="false">
-		<p:growl id="growl" showDetail="true" />		 
-		<p:panel id="listagem2" style="width:700px;margin:1% 25% 10% 25%;" >
-			 <p:dataTable id="avaliacoesTable" var="avaliacao" value="#{usuarioBean.listaAvaliacao}">  
-			    <p:columnGroup type="header">  
-			      <p:row>  
-			         <p:column colspan="2" headerText="Avaliações já respondidas pelo aluno #{usuarioBean.usuario.nome}"  />
-			       </p:row>  
-			        <p:row>  
-			           <p:column headerText="Disciplina" />  
-			           <p:column headerText="Avaliação disponível" />  
-			            </p:row>  
-			        </p:columnGroup>  	  
-			        <p:subTable var="respostas" value="#{avaliacao}">  
-			            <f:facet name="header">  
-			              #{avaliacao.turmaaluno.turma.disciplina.disDescricao}   
-			            </f:facet>  			  			  			  
-			        </p:subTable>  
-			    </p:dataTable> 
-		</p:panel>
-		<p:commandButton  id="visuaizar" action="avaliacaoRespostas.xhtml" value="Visualizar"/>
-	</h:form>
-   </ui:define>
+	<ui:define name="conteudo">
+		<h:form id="formAvaliacaoDisciplina">
+			<p:dataTable var="disciplina" value="#{turmaAlunoBean.listarDisciplina}"
+				id="tabelaDisciplinaAvaliacao">
+				<f:facet name="header">Turma:#{turmaAlunoBean.turma.turId} - Avaliações já respondidas pelo  Aluno #{usuarioBean.usuario.nome}</f:facet>
+				<p:column headerText="Professor">
+					<h:outputText id="professor"
+						value="#{turmaAlunoBean.turma.professor.nome}" />
+				</p:column>				
+				<p:column headerText="Disciplina">
+					<h:outputText id="Disciplina"
+						value="#{disciplina.disDescricao}" />
+				</p:column>
+				<p:column headerText="Data Início">
+					<h:outputText id="linicio" value="#{dis.dis_dtainicio}">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Data Término">
+					<h:outputText id="ltermino" value="#{dis.dis_dtatermino}">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+				<p:commandLink title="Visualizar Avaliação"
+					actionListener="#{turmaAlunoBean.prepararDadosTurma}"
+					action="avaliacaoRespostas.xhtml"
+					 immediate="true" value="Visualizar Avaliação">
+				</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
 </ui:composition>

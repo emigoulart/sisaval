@@ -1,10 +1,16 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.util.Date;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -31,9 +37,29 @@ public class Disciplina implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dis_dtatermino;
 	
-	//bi-directional many-to-one association to Turma
-	@OneToMany(mappedBy="disciplina")
-	private List<Turma> turmas;
+	@ManyToOne
+	@JoinColumn(name="fk_turma")
+	private Turma turma;
+	
+	@Transient
+	private boolean disponivel;
+	
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
 
 	public Disciplina() {
 	}
@@ -77,28 +103,6 @@ public class Disciplina implements Serializable {
 
 	public void setDis_dtatermino(Date dis_dtatermino) {
 		this.dis_dtatermino = dis_dtatermino;
-	}
-
-	public List<Turma> getTurmas() {
-		return this.turmas;
-	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
-
-	public Turma addTurma(Turma turma) {
-		getTurmas().add(turma);
-		turma.setDisciplina(this);
-
-		return turma;
-	}
-
-	public Turma removeTurma(Turma turma) {
-		getTurmas().remove(turma);
-		turma.setDisciplina(null);
-
-		return turma;
 	}
 
 }

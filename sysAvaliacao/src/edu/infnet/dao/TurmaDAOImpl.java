@@ -1,10 +1,13 @@
 package edu.infnet.dao;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.infnet.model.Turma;
 import edu.infnet.model.TurmaAluno;
+import edu.infnet.model.Usuario;
 
 public class TurmaDAOImpl extends DaoGenericoImp<Turma, Serializable> implements TurmaDAO{
 
@@ -53,6 +56,20 @@ public class TurmaDAOImpl extends DaoGenericoImp<Turma, Serializable> implements
 	public void excluir(Integer codigo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Turma consultarPorAluno(Usuario aluno) {
+		Turma turma= new Turma();
+		
+		String sqlQuery = " select t from Turma t left join t.turmaalunos as ta where fk_aluno = :aluno" ;
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("aluno", aluno.getMatricula());
+	
+		 if(!super.listPesqParam(sqlQuery, parameters).isEmpty()){
+			 turma= super.listPesqParam(sqlQuery, parameters).get(0);
+		 }
+		 return turma;
 	}
 
 	

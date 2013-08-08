@@ -14,11 +14,13 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import edu.infnet.dao.AvaliacaoDAO;
+import edu.infnet.dao.QuestaoDAO;
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.AvaliacaoRespostas;
 import edu.infnet.model.Disciplina;
 import edu.infnet.model.Formulario;
 import edu.infnet.model.Questao;
+import edu.infnet.model.Turma;
 import edu.infnet.model.Usuario;
 import edu.infnet.util.EnviaAvaliacaoEmail;
 
@@ -30,6 +32,14 @@ import edu.infnet.util.EnviaAvaliacaoEmail;
 @ManagedBean(name = "avaliacaoBean")
 @RequestScoped
 public class AvaliacaoManagedBean implements Serializable {
+
+	public QuestaoDAO getQuestaoDao() {
+		return questaoDao;
+	}
+
+	public void setQuestaoDao(QuestaoDAO questaoDao) {
+		this.questaoDao = questaoDao;
+	}
 
 	private static final long serialVersionUID = -4917267200847463255L;
 
@@ -44,6 +54,12 @@ public class AvaliacaoManagedBean implements Serializable {
 
 	@ManagedProperty("#{usuarioBean.usuario}")
 	private Usuario aluno;
+	
+	@ManagedProperty("#{turmaAlunoBean.turma}")
+	private Turma turma;
+	
+	@ManagedProperty(value = "#{questaoDao}")
+	private QuestaoDAO questaoDao;
 
 	private Disciplina disciplina ;
 
@@ -66,8 +82,11 @@ public class AvaliacaoManagedBean implements Serializable {
 	public List<Questao> questoes = new ArrayList<Questao>();
 
 	public AvaliacaoManagedBean() {
-		if(disciplina == null){
-		 disciplina= new Disciplina();
+		if (avaliacao == null) {
+			avaliacao = new Avaliacao();
+		}
+		if (disciplina == null) {
+			disciplina = new Disciplina();
 		}
 
 	}
@@ -84,6 +103,9 @@ public class AvaliacaoManagedBean implements Serializable {
 		return avaliacaoDao;
 	}
 
+	/**
+	 * Verifica se existe avaliacao disponível para a disciplina
+	 */
 	public boolean getAvaliacaoDisponivel() {
 		boolean disponivel=false;
 		Avaliacao avaliacaoDisciplina = avaliacaoDao
@@ -108,7 +130,6 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public DataModel<Avaliacao> getListarDisciplinas() {
-		//lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
 		listaAvaliacaoDisciplina = new ListDataModel<Avaliacao>(getLista());
 		return listaAvaliacaoDisciplina;
 	}
@@ -118,6 +139,7 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public List<Questao> getQuestoes() {
+		 questoes= questaoDao.listar();
 		return questoes;
 	}
 
@@ -157,14 +179,22 @@ public class AvaliacaoManagedBean implements Serializable {
 		this.disciplina = disciplina;
 	}
 
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
 	public void setQuestoes(List<Questao> questoes) {
 		this.questoes = questoes;
 	}
 
 	private void incluiAvaliacaoRespostas(Avaliacao avaliacao) {
-		for (int i = 0; i < formulario.getQuestoes().size(); i++) {
+		for (int i = 0; i < getQuestoes().size(); i++) {
 			AvaliacaoRespostas avaliacaoResposta = new AvaliacaoRespostas();
-			Questao questao = formulario.getQuestoes().get(i);
+			Questao questao = getQuestoes().get(i);
 			avaliacaoResposta.setQuestao(questao);
 			avaliacaoResposta.setResposta(questao.getResposta());
 			avaliacaoResposta.setAvaliacao(avaliacao);
@@ -172,6 +202,14 @@ public class AvaliacaoManagedBean implements Serializable {
 
 		}
 		avaliacao.setAvaliacaorespostas(avaliacaoRespostas);
+		//TODO  ver porque nao esta salvando corretamnte essa parte
+		/*TurmaAluno turmaAluno= new TurmaAluno();
+		TurmaAlunoPK pk = new TurmaAlunoPK();
+		pk.setFkAluno(aluno.getMatricula());
+		pk.setFkTurma(turma.getTurId());
+		turmaAluno.setId(pk);
+		avaliacao.setTurmaaluno(turmaAluno);*/
+		
 	}
 
 	public void listarAvaliacoes(Usuario aluno) {
@@ -189,7 +227,7 @@ public class AvaliacaoManagedBean implements Serializable {
 
 	public void prepararConsultaDisciplina(ActionEvent actionEvent) {
 		disciplina = (Disciplina) (listaAvaliacaoDisciplina.getRowData()
-				.getTurmaaluno().getTurma().getDisciplina());
+				.getTurmaaluno().getTurma().getDisciplinas());
 		setDisciplina(disciplina);
 		
 	}

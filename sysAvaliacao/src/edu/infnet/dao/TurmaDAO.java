@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.infnet.model.Turma;
 import edu.infnet.model.TurmaAluno;
+import edu.infnet.model.Usuario;
 
 public interface TurmaDAO extends Serializable {
 	
@@ -20,7 +21,7 @@ public interface TurmaDAO extends Serializable {
 
 	public abstract boolean existe(Integer id);
 
-	//public abstract Turma consultarPorAluno(Session session, A nome);
+	public abstract Turma consultarPorAluno(final Usuario aluno);
 
 	public abstract List<Turma> listar();
 	

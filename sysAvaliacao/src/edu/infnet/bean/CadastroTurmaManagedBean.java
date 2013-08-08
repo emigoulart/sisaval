@@ -10,8 +10,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
-import org.apache.log4j.Logger;
-
 import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.TurmaDAO;
 import edu.infnet.model.Turma;
@@ -32,7 +30,7 @@ public class CadastroTurmaManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(CadastroTurmaManagedBean.class);
+//	private static final Logger log = Logger.getLogger(CadastroTurmaManagedBean.class);
 	
 	private Turma turma;
 	

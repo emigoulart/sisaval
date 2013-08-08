@@ -27,7 +27,6 @@ public class TurmaAluno implements Serializable {
 	@OneToMany(mappedBy="turmaaluno")
 	private List<Avaliacao> avaliacaos;
 
-	//bi-directional many-to-one association to Turma
 	@ManyToOne
 	@JoinColumn(name="fk_turma", insertable=false, updatable=false)
 	private Turma turma;
@@ -36,8 +35,6 @@ public class TurmaAluno implements Serializable {
 	@JoinColumn(name="fk_aluno", insertable=false, updatable=false)
 	private Usuario aluno;
 	
-
-
 	public Usuario getAluno() {
 		return aluno;
 	}
