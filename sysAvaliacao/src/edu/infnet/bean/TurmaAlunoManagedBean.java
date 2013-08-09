@@ -91,6 +91,9 @@ public class TurmaAlunoManagedBean implements Serializable {
 			listaDisciplinaAluno = getDisciplinaDAO().listarDisciplinasPorAluno(aluno);
 			listaDisciplina = new ListDataModel<Disciplina>(
 					listaDisciplinaAluno);
+			if(listaDisciplinaAluno.get(0)!=null){
+			setTurma(listaDisciplinaAluno.get(0).getTurma());
+			}
 		return listaDisciplina;
 	}
 

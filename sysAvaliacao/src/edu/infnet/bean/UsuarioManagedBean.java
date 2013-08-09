@@ -72,7 +72,7 @@ public class UsuarioManagedBean implements Serializable {
 
 	public String efetuarLogin() throws AvalicaoDAOException {
 
-		String paginaRetorno = logout();
+		String paginaRetorno = "";
 
 		try {
 			usuario = getUsuarioDao().validarLogin(usuario);
@@ -141,9 +141,9 @@ public class UsuarioManagedBean implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public String logout() {
+	/*public String logout() {
 		return "/paginas/login/paginaLogin";
-	}
+	}*/
 
 	private Avaliacao avaliacao = new Avaliacao();
 
