@@ -15,7 +15,7 @@
 		<p:panel header="#{msgs.welcome}" style="width:470px;margin:10% 25% 10% 25%;">
 		    <h:outputText value="#{usuarioBean.usuario.login}"/> 
 			<h:outputLabel value="#{msgs.loginsucesso}" />
-		    <h:commandButton value="#{msgs.logout}" action="#{usuarioBean.logout}"/>
+		    <h:commandButton value="#{msgs.logout}" action="#{usuarioBean.getLogout}"/>
 		</p:panel>    
 	</h:form>
 </ui:define>
