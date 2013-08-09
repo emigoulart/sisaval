@@ -11,7 +11,10 @@
 	<ui:define name="conteudo">
 		<h:form id="formAdmin">
 			<p:dataTable var="usuario" value="#{usuarioBean.listarUsuarios}"
-				id="tabelaUsuarios">
+				id="tabelaUsuarios" paginator="true" rows="10"
+				scrollable="true" emptyMessage="Nenhuma turma cadastrada."
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" resizableColumns="true">
 				<f:facet name="header">Lista de Usuarios Cadastrados</f:facet>
 				<p:column headerText="Usuario">
 					<h:outputText id="login" value="#{usuario.login}" />
