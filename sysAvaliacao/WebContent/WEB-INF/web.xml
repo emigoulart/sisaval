@@ -37,6 +37,10 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+    <context-param>
+    <param-name>jsfsecurity.protected</param-name>
+    <param-value>/paginas/cadastro=1,/paginas/avaliacao=2</param-value>
+  </context-param>
   <listener>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 </listener>

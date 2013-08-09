@@ -11,4 +11,7 @@
         <var>msgs</var>
      </resource-bundle>    
   </application>
+<lifecycle>
+   <phase-listener>edu.infnet.util.ControleAcesso</phase-listener>
+</lifecycle>   
 </faces-config>
