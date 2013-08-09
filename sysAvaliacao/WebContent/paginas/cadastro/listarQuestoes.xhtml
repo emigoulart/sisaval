@@ -1,0 +1,98 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="formCadQuestao">
+			<p:dataTable id="tabelaQuestoes" var="qst"
+				value="#{cadQuestaoBean.listarQuestoes}" paginator="true" rows="10"
+				scrollable="true" emptyMessage="Nenhuma questão cadastrada."
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" resizableColumns="true">
+				<f:facet name="header">Lista das Questões Cadastradas</f:facet>
+				<p:column headerText="Questão">
+					<h:outputText id="questao" value="#{qst.qstQuestao}" />
+				</p:column>
+				<p:column headerText="Grupo">
+					<h:outputText id="grupo" value="#{qst.grupoQuestao}" />
+				</p:column>
+
+				<p:column headerText="Açoes">
+					<p:commandLink title="Alterar"
+						actionListener="#{cadQuestaoBean.prepararAlterarQuestao}"
+						oncomplete="dialogAlterar.show()" immediate="true"
+						update=":formAlterar">
+						<p:graphicImage library="imagens" name="editar16.png" />
+						<f:setPropertyActionListener
+							target="#{cadQuestaoBean.questaoSelecionada}" value="#{qst}" />
+					</p:commandLink>
+					<p:commandLink title="Excluir"
+						actionListener="#{cadQuestaoBean.prepararExcluirQuestao}"
+						oncomplete="confirmation.show()" immediate="true"
+						update=":formExcluir">
+						<p:graphicImage library="imagens" name="excluir16.png" />
+						<f:setPropertyActionListener
+							target="#{cadQuestaoBean.questaoSelecionada}" value="#{qst}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="Cadastrar" id="cadastrar"
+				oncomplete="dialogCadastrar.show()" />
+		</h:form>
+		<p:dialog id="Alterar" header="Alterar" widgetVar="dialogAlterar">
+			<h:form id="formAlterar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelAlterar" columns="2">
+					<h:outputText value="Nome:" />
+					<p:inputText
+						value="#{cadQuestaoBean.questaoSelecionada.qstQuestao}" />
+					<h:outputText value="Tipo:" />
+					<p:inputText
+						value="#{cadQuestaoBean.questaoSelecionada.grupoQuestao}" />
+				</p:panelGrid>
+				<p:commandButton value="Alterar"
+					actionListener="#{cadQuestaoBean.alterarQuestao}"
+					update=":formCadQuestao:tabelaQuestoes"
+					oncomplete="dialogAlterar.hide()" />
+			</h:form>
+		</p:dialog>
+		<p:dialog id="Cadastrar" header="Cadastrar"
+			widgetVar="dialogCadastrar">
+			<h:form id="formCadastrar" resizable="false" modal="true"
+				appendToBody="true">
+				<p:panelGrid id="panelCadastrar" columns="2">
+					<h:outputLabel for="questao" value="Questão: *" />
+					<p:inputText id="questao" label="questao"
+						value="#{cadQuestaoBean.questao.qstQuestao}" required="true" />
+					<h:outputText value="Grupo:" />
+					<p:inputText id="grupo" label="grupo"
+						value="#{cadQuestaoBean.questao.grupoQuestao}" />
+					<f:facet name="footer">
+						<p:commandButton
+							actionListener="#{cadQuestaoBean.cadastrarQuestao}"
+							value="#{msgs.salvar}" icon="ui-icon-circle-check"
+							style="margin:0" oncomplete="dialogCadastrar.hide()"
+							update=":formCadQuestao:tabelaQuestoes" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<p:confirmDialog id="Excluir" message="Confirma excluir a Questão ? "
+			header="Excluir" severity="alert" widgetVar="confirmation"
+			width="400" showEffect="clip" hideEffect="fold" appendToBody="true">
+
+			<h:form id="formExcluir">
+				<p:commandButton value="Sim"
+					actionListener="#{cadQuestaoBean.excluirQuestao}"
+					update=":formCadQuestao:tabelaQuestoes"
+					oncomplete="confirmation.hide()" />
+				<p:commandButton value="Não" onclick="confirmation.hide()"
+					type="button" />
+			</h:form>
+		</p:confirmDialog>
+
+	</ui:define>
+</ui:composition>

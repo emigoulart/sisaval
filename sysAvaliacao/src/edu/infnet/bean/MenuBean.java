@@ -44,7 +44,7 @@ public class MenuBean implements Serializable {
 
 		item = new MenuItem();
 		item.setValue("Cadastrar Questões");
-		item.setUrl("../avaliacao/listaQuestoes.xhtml");
+		item.setUrl("../cadastro/listarQuestoes.xhtml");
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
