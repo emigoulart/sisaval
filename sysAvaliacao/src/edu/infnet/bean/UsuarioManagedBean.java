@@ -21,6 +21,7 @@ import edu.infnet.dao.AvalicaoDAOException;
 import edu.infnet.dao.UsuarioDAO;
 import edu.infnet.model.Avaliacao;
 import edu.infnet.model.Usuario;
+import edu.infnet.util.AcessoUtil;
 import edu.infnet.util.FacesUtils;
 import edu.infnet.util.TipoUsuario;
 
@@ -75,6 +76,7 @@ public class UsuarioManagedBean implements Serializable {
 
 		try {
 			usuario = getUsuarioDao().validarLogin(usuario);
+			paginaRetorno = AcessoUtil.logIn("", usuario);
 		} catch (Exception exc) {
 			log.error(exc);
 			FacesUtils.mensErro("Erro inesperado");
@@ -175,6 +177,11 @@ public class UsuarioManagedBean implements Serializable {
 
 	public void setUsuarioAlteracao(Usuario usuarioAlteracao) {
 		this.usuarioAlteracao = usuarioAlteracao;
+	}
+	public String getLogout(){
+		AcessoUtil.logOut();
+		usuario = new Usuario();
+		return "";
 	}
 
 	public String toString() {

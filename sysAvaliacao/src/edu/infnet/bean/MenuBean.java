@@ -75,7 +75,7 @@ public class MenuBean implements Serializable {
 		
 		item = new MenuItem();
 		item.setValue("Logout");
-		item.setUrl("../../");
+		item.setUrl("../login/logout.xhtml");
 		submenu.getChildren().add(item);
 
 		model.addSubmenu(submenu);
