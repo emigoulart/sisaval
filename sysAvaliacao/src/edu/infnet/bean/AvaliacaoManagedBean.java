@@ -214,14 +214,13 @@ public class AvaliacaoManagedBean implements Serializable {
 	}
 
 	public void listarAvaliacoes(Usuario aluno) {
-		if (lista == null) {
+		//deve voltar a fazer a consulta para atualizar o formulario, no caso de avaliacao respondida
 			lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
 			for (int i = 0; i < lista.size(); i++) {
 				formulario = lista.get(i).getFormulario();
 				setFormulario(formulario);
 				setAvaliacao(lista.get(0));// TODO
 				setQuestoes(formulario.getQuestoes());
-			}
 			setLista(lista);
 		}
 	}

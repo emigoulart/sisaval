@@ -80,11 +80,9 @@ public class TurmaAlunoManagedBean implements Serializable {
 	}
 
 	public DataModel<Disciplina> getListarDisciplina() {
-		if (listaDisciplina == null) {
 			turma = getTurmaDAO().consultarPorAluno(aluno);
 			listaDisciplina = new ListDataModel<Disciplina>(
 					turma.getDisciplinas());
-		}
 		return listaDisciplina;
 	}
 
