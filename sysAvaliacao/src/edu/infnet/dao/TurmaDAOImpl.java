@@ -62,7 +62,9 @@ public class TurmaDAOImpl extends DaoGenericoImp<Turma, Serializable> implements
 	public Turma consultarPorAluno(Usuario aluno) {
 		Turma turma= new Turma();
 		
-		String sqlQuery = " select t from Turma t left join t.turmaalunos as ta where fk_aluno = :aluno" ;
+		String sqlQuery = " select t from Turma t left join t.turmaalunos as ta left join t.disciplinas as disc where fk_aluno = :aluno "
+				+ " and disc.disId not in ( select a.disciplina.disId from Avaliacao a where a.aluno = :aluno)";
+				//+ " and fk_aluno not in ( select a.aluno from Avaliacao a ) )" ;
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("aluno", aluno.getMatricula());
 	

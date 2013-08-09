@@ -17,7 +17,7 @@ public class EnviaAvaliacaoEmail {
 		   email.setSmtpPort(465);
 		   
 		   //Adicione os destinatários
-		   email.addTo(avaliacao.getTurmaaluno().getAluno().getEmail(), avaliacao.getTurmaaluno().getAluno().getNome());
+		   email.addTo(avaliacao.getAluno().getEmail(), avaliacao.getAluno().getNome());
 
 		   email.setFrom("avaliacaogrupof@gmail.com", "Avaliação - Grupo F");
 
@@ -38,7 +38,7 @@ public class EnviaAvaliacaoEmail {
 		conteudo.append(separador);
 		conteudo.append(separador);
 		conteudo.append("Disciplina: ");
-		conteudo.append(avaliacao.getTurmaaluno().getTurma().getDisciplinas().get(0).getDisDescricao());
+	   conteudo.append(avaliacao.getDisciplina().getDisDescricao());
 		conteudo.append(separador);
 		conteudo.append(separador);
 		Iterator<AvaliacaoRespostas> respostas = avaliacao.getAvaliacaorespostas().iterator();

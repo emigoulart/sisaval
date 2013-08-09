@@ -1,13 +1,11 @@
 package edu.infnet.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,8 +22,8 @@ public class TurmaAluno implements Serializable {
 	private TurmaAlunoPK id;
 
 	//bi-directional many-to-one association to Avaliacao
-	@OneToMany(mappedBy="turmaaluno")
-	private List<Avaliacao> avaliacaos;
+	//@OneToMany(mappedBy="turmaaluno")
+	//private List<Avaliacao> avaliacaos;
 
 	@ManyToOne
 	@JoinColumn(name="fk_turma", insertable=false, updatable=false)
@@ -54,28 +52,28 @@ public class TurmaAluno implements Serializable {
 		this.id = id;
 	}
 
-	public List<Avaliacao> getAvaliacaos() {
+/*	public List<Avaliacao> getAvaliacaos() {
 		return avaliacaos;
 	}
 
 	public void setAvaliacaos(List<Avaliacao> avaliacaos) {
 		this.avaliacaos = avaliacaos;
-	}
+	}*/
 
-	public Avaliacao addAvaliacao(Avaliacao avaliacao) {
+/*	public Avaliacao addAvaliacao(Avaliacao avaliacao) {
 		getAvaliacaos().add(avaliacao);
-		avaliacao.setTurmaaluno(this);
+		//avaliacao.setTurmaaluno(this);
 
 		return avaliacao;
 	}
 
 	public Avaliacao removeAvaliacao(Avaliacao avaliacao) {
 		getAvaliacaos().remove(avaliacao);
-		avaliacao.setTurmaaluno(null);
-
-		return avaliacao;
+		//avaliacao.setTurmaaluno(null);
+*/
+	/*	return avaliacao;
 	}
-
+*/
 	public Turma getTurma() {
 		return turma;
 	}

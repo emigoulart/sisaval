@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -54,14 +53,18 @@ public class Avaliacao implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="fk_formulario")
 	private Formulario formulario;
-
-	//bi-directional many-to-one association to TurmaAluno
+	
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="fk_aluno", referencedColumnName="fk_aluno"),
-		@JoinColumn(name="fk_turma", referencedColumnName="fk_turma")
-	})
-	private TurmaAluno turmaaluno;
+	@JoinColumn(name="fk_disciplina",nullable=false)
+	private Disciplina disciplina;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_aluno",nullable=false)
+	private Usuario aluno;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_turma",nullable=false)
+	private Turma turma;
 
 	@OneToMany(mappedBy="avaliacao", cascade = CascadeType.ALL)
 	private List<AvaliacaoRespostas> avaliacaorespostas;
@@ -133,21 +136,37 @@ public class Avaliacao implements Serializable {
 		this.formulario = formulario;
 	}
 
-	public TurmaAluno getTurmaaluno() {
-		return turmaaluno;
-	}
-
-	public void setTurmaaluno(TurmaAluno turmaaluno) {
-		this.turmaaluno = turmaaluno;
-	}
-
 
 	public List<AvaliacaoRespostas> getAvaliacaorespostas() {
 		return avaliacaorespostas;
 	}
 
+	public Usuario getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Usuario aluno) {
+		this.aluno = aluno;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
 	public void setAvaliacaorespostas(List<AvaliacaoRespostas> avaliacaorespostas) {
 		this.avaliacaorespostas = avaliacaorespostas;
+	}
+	
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 

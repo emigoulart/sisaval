@@ -61,6 +61,7 @@ public class AvaliacaoManagedBean implements Serializable {
 	@ManagedProperty(value = "#{questaoDao}")
 	private QuestaoDAO questaoDao;
 
+	@ManagedProperty("#{turmaAlunoBean.disciplinaEscolhida}")
 	private Disciplina disciplina ;
 
 	private DataModel<Avaliacao> listaAvaliacaoDisciplina;
@@ -202,13 +203,13 @@ public class AvaliacaoManagedBean implements Serializable {
 
 		}
 		avaliacao.setAvaliacaorespostas(avaliacaoRespostas);
-		//TODO  ver porque nao esta salvando corretamnte essa parte
-		/*TurmaAluno turmaAluno= new TurmaAluno();
-		TurmaAlunoPK pk = new TurmaAlunoPK();
-		pk.setFkAluno(aluno.getMatricula());
-		pk.setFkTurma(turma.getTurId());
-		turmaAluno.setId(pk);
-		avaliacao.setTurmaaluno(turmaAluno);*/
+		avaliacao.setAluno(aluno);
+		avaliacao.setTurma(turma);
+		avaliacao.setDisciplina(disciplina);
+		avaliacao.setAvlDatainicio(new java.util.Date());
+		avaliacao.setAvlDatafim(new java.util.Date());
+		avaliacao.setAvlFechada("S");
+		avaliacao.setAvlDisponivel("N");
 		
 	}
 
@@ -227,8 +228,7 @@ public class AvaliacaoManagedBean implements Serializable {
 
 	public void prepararConsultaDisciplina(ActionEvent actionEvent) {
 		disciplina = (Disciplina) (listaAvaliacaoDisciplina.getRowData()
-				.getTurmaaluno().getTurma().getDisciplinas());
-		setDisciplina(disciplina);
+				.getDisciplina());
 		
 	}
 

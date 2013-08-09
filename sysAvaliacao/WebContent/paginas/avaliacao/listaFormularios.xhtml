@@ -10,30 +10,29 @@
 
 	<ui:define name="conteudo">
 		<h:form id="formAvaliacaoDisciplina">
-			<p:dataTable var="disciplina" value="#{turmaAlunoBean.listarDisciplina}"
+			<p:dataTable var="avaliacao" value="#{avaliacaoRespostasBean.lista}"
 				id="tabelaDisciplinaAvaliacao">
 				<f:facet name="header">Turma:#{turmaAlunoBean.turma.turId} - Avaliações já respondidas pelo  Aluno #{usuarioBean.usuario.nome}</f:facet>
 				<p:column headerText="Professor">
 					<h:outputText id="professor"
-						value="#{turmaAlunoBean.turma.professor.nome}" />
+						value="#{avaliacao.turma.professor.nome}" />
 				</p:column>				
 				<p:column headerText="Disciplina">
 					<h:outputText id="Disciplina"
-						value="#{disciplina.disDescricao}" />
+						value="#{avaliacao.disciplina.disDescricao}" />
 				</p:column>
 				<p:column headerText="Data Início">
-					<h:outputText id="linicio" value="#{dis.dis_dtainicio}">
+					<h:outputText id="linicio" value="#{avaliacao.disciplina.dis_dtainicio}">
 						<f:convertDateTime pattern="dd-mm-yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Data Término">
-					<h:outputText id="ltermino" value="#{dis.dis_dtatermino}">
+					<h:outputText id="ltermino" value="#{avaliacao.disciplina.dis_dtatermino}">
 						<f:convertDateTime pattern="dd-mm-yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column>
 				<p:commandLink title="Visualizar Avaliação"
-					actionListener="#{turmaAlunoBean.prepararDadosTurma}"
 					action="avaliacaoRespostas.xhtml"
 					 immediate="true" value="Visualizar Avaliação">
 				</p:commandLink>

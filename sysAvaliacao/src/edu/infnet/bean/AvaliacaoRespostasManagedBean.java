@@ -135,7 +135,7 @@ public class AvaliacaoRespostasManagedBean implements Serializable {
 		 if(lista == null){
 			lista = avaliacaoDao.consultarAvaliacoesAluno(aluno);
 			for (int i=0;i<lista.size();i++){
-				setAvaliacao(lista.get(0));//TODO
+				setAvaliacao(lista.get(i));//TODO
 				setAvaliacaoRespostas(avaliacao.getAvaliacaorespostas());
 			}
 			setLista(lista);
