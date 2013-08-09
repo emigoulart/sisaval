@@ -43,8 +43,8 @@ public class MenuBean implements Serializable {
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
-		item.setValue("Listar Formularios");
-		item.setUrl("../avaliacao/listaFormularios.xhtml");
+		item.setValue("Cadastrar Questões");
+		item.setUrl("../avaliacao/listaQuestoes.xhtml");
 		submenu.getChildren().add(item);
 
 		item = new MenuItem();
@@ -66,6 +66,11 @@ public class MenuBean implements Serializable {
 		item = new MenuItem();
 		item.setValue("Avaliar Disciplina");
 		item.setUrl("../avaliacao/listaDisciplinasAluno.xhtml");
+		submenu.getChildren().add(item);
+		
+		item = new MenuItem();
+		item.setValue("Listar Avaliações");
+		item.setUrl("../avaliacao/listaFormularios.xhtml");
 		submenu.getChildren().add(item);
 		
 		item = new MenuItem();
