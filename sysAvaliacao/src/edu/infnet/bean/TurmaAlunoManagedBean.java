@@ -1,6 +1,8 @@
 package edu.infnet.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -9,6 +11,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import edu.infnet.dao.DisciplinaDAO;
 import edu.infnet.dao.TurmaDAO;
 import edu.infnet.model.Disciplina;
 import edu.infnet.model.Turma;
@@ -32,6 +35,8 @@ public class TurmaAlunoManagedBean implements Serializable {
 	private Turma turma;
 
 	private DataModel<Disciplina> listaDisciplina;
+	
+	private List<Disciplina> listaDisciplinaAluno= new ArrayList<Disciplina>();
 
 	@ManagedProperty("#{usuarioBean.usuario}")
 	private Usuario aluno;
@@ -39,6 +44,9 @@ public class TurmaAlunoManagedBean implements Serializable {
 	@ManagedProperty(value = "#{turmaDao}")
 	private TurmaDAO turmaDAO;
 
+	@ManagedProperty(value = "#{disciplinaDao}")
+	private DisciplinaDAO disciplinaDAO;
+	
 	private Disciplina disciplinaEscolhida = new Disciplina();
 
 	public TurmaAlunoManagedBean() {
@@ -80,10 +88,18 @@ public class TurmaAlunoManagedBean implements Serializable {
 	}
 
 	public DataModel<Disciplina> getListarDisciplina() {
-			turma = getTurmaDAO().consultarPorAluno(aluno);
+			listaDisciplinaAluno = getDisciplinaDAO().listarDisciplinasPorAluno(aluno);
 			listaDisciplina = new ListDataModel<Disciplina>(
-					turma.getDisciplinas());
+					listaDisciplinaAluno);
 		return listaDisciplina;
+	}
+
+	public DisciplinaDAO getDisciplinaDAO() {
+		return disciplinaDAO;
+	}
+
+	public void setDisciplinaDAO(DisciplinaDAO disciplinaDAO) {
+		this.disciplinaDAO = disciplinaDAO;
 	}
 
 	public void prepararDadosTurma(ActionEvent actionEvent) {

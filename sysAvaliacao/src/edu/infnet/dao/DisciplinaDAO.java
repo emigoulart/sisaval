@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import edu.infnet.model.Disciplina;
+import edu.infnet.model.Usuario;
 
 public interface DisciplinaDAO extends Serializable {
 	
@@ -18,5 +19,7 @@ public interface DisciplinaDAO extends Serializable {
 	public abstract Disciplina consultarPorNome(String nome);
 
 	public abstract List<Disciplina> listar();
+
+	public abstract List<Disciplina> listarDisciplinasPorAluno(Usuario aluno);
 
 }

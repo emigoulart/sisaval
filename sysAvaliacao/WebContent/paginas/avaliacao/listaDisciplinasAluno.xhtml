@@ -15,7 +15,7 @@
 				<f:facet name="header">Turma: #{turmaAlunoBean.turma.turId} - Disciplinas a avaliar  -  Aluno: #{usuarioBean.usuario.nome}</f:facet>
 				<p:column headerText="Professor">
 					<h:outputText id="turma"
-						value="#{turmaAlunoBean.turma.professor.nome}" />
+						value="#{disciplina.turma.professor.nome}" />
 				</p:column>				
 				<p:column headerText="Disciplina">
 					<h:outputText id="Disciplina"
