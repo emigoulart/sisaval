@@ -136,5 +136,25 @@ CREATE TABLE avaliacaorespostas
 WITH (
   OIDS=FALSE
 );
+--correcao da tabela disciplina
+ DROP TABLE disciplina cascade;
+
+CREATE TABLE disciplina
+(
+  dis_id serial NOT NULL,
+  dis_nome character varying(50) NOT NULL,
+  dis_descricao text NOT NULL,
+  dis_dtainicio date,
+  dis_dtatermino date,
+  fk_turma integer,
+  CONSTRAINT pk_disciplina PRIMARY KEY (dis_id),
+  CONSTRAINT fk_discturma FOREIGN KEY (fk_turma)
+      REFERENCES turma (tur_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
 ALTER TABLE avaliacaorespostas
+
   OWNER TO postgres;
