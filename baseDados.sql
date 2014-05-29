@@ -155,6 +155,12 @@ CREATE TABLE disciplina
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE avaliacaorespostas
 
-  OWNER TO postgres;
+ALTER TABLE avaliacao
+   ADD COLUMN fk_disciplina integer;
+   ALTER TABLE avaliacao
+  ADD CONSTRAINT fk_avaliacaodisc FOREIGN KEY (fk_disciplina)
+      REFERENCES disciplina (dis_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE avaliacaorespostas
+OWNER TO postgres;
