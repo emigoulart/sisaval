@@ -1,10 +1,10 @@
 /*CREATE DATABASE "dbAvaliacao"
-  WITH OWNER = postgres
-       ENCODING = 'UTF8'
-       TABLESPACE = pg_default
-       LC_COLLATE = 'Portuguese_Brazil.1252'
-     LC_CTYPE = 'Portuguese_Brazil.1252'
-      CONNECTION LIMIT = -1;*/
+WITH OWNER = postgres
+ENCODING = 'UTF8'
+TABLESPACE = pg_default
+LC_COLLATE = 'Portuguese_Brazil.1252'
+LC_CTYPE = 'Portuguese_Brazil.1252'
+CONNECTION LIMIT = -1;*/
 -- Table: usuario
  
  DROP TABLE IF EXISTS usuario cascade;
@@ -34,14 +34,38 @@ CONSTRAINT pk_curso PRIMARY KEY (cur_ID)
 );
 
 
+--cursodisciplina
+DROP TABLE IF EXISTS turma cascade;
+CREATE TABLE turma (
+   tur_ID serial,
+   fk_curso integer NOT NULL,
+   fk_professor integer NOT NULL,
+   fk_formulario integer NOT NULL,
+   prazoinicial date not null,
+   prazofinal date not null,
+   CONSTRAINT pk_turma PRIMARY KEY (tur_id),
+   CONSTRAINT fk_cursoturma FOREIGN KEY(fk_curso) REFERENCES curso(cur_ID),
+   CONSTRAINT fk_professorturma FOREIGN KEY(fk_professor) REFERENCES usuario(matricula),
+   CONSTRAINT fk_formularioturma FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)
+);
+
 DROP TABLE IF EXISTS disciplina cascade;
-CREATE TABLE disciplina (
-  dis_ID serial,
-  dis_nome varchar(50) NOT NULL,
+
+CREATE TABLE disciplina
+(
+  dis_id serial NOT NULL,
+  dis_nome character varying(50) NOT NULL,
   dis_descricao text NOT NULL,
+  dis_dtainicio date,
   dis_dtatermino date,
-  dis_dtainicio date
-  CONSTRAINT pk_disciplina PRIMARY KEY (dis_ID)
+  fk_turma integer,
+  CONSTRAINT pk_disciplina PRIMARY KEY (dis_id),
+  CONSTRAINT fk_discturma FOREIGN KEY (fk_turma)
+      REFERENCES turma (tur_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
 );
 
 DROP TABLE IF EXISTS questao cascade;
@@ -70,26 +94,11 @@ CREATE TABLE formularioquestoes (
   CONSTRAINT fk_frmquestoesID FOREIGN KEY(fk_questao) REFERENCES questao(qst_ID)
 );
 
---cursodisciplina
-DROP TABLE IF EXISTS turma cascade;
-CREATE TABLE turma (
-   tur_ID serial,  
-   fk_curso integer NOT NULL,
-   fk_disciplina integer NOT NULL,
-   fk_professor integer NOT NULL,
-   fk_formulario integer NOT NULL,
-   prazoinicial date not null,
-   prazofinal date not null,
-   CONSTRAINT pk_turma PRIMARY KEY (tur_id),
-   CONSTRAINT fk_cursoturma FOREIGN KEY(fk_curso) REFERENCES curso(cur_ID),
-   CONSTRAINT fk_disciplinaturma FOREIGN KEY(fk_disciplina) REFERENCES disciplina(dis_ID),
-   CONSTRAINT fk_professorturma FOREIGN KEY(fk_professor) REFERENCES usuario(matricula),
-   CONSTRAINT fk_formularioturma FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)
-);
+
 
 --relacionamento aluno disciplina (aluno<->diciplina) fkdiscuplina fkaluno fkprofessor
 -- Chamar De TURMA
-DROP TABLE IF EXISTS turmaalunos cascade; 
+DROP TABLE IF EXISTS turmaalunos cascade;
 CREATE TABLE turmaalunos(
   fk_turma integer not null,
   fk_aluno integer not null,
@@ -114,7 +123,7 @@ CREATE TABLE avaliacao (
   CONSTRAINT pk_avaliacaoID PRIMARY KEY (avl_ID),
   CONSTRAINT fk_avaliacaoTurma FOREIGN KEY(fk_turma,fk_aluno) REFERENCES turmaalunos(fk_turma, fk_aluno),
   --CONSTRAINT fk_avaliacaoAluno FOREIGN KEY(fk_aluno) REFERENCES turmaalunos(fk_aluno),
-  CONSTRAINT fk_formularioTurma FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)    
+  CONSTRAINT fk_formularioTurma FOREIGN KEY(fk_formulario) REFERENCES formulario(frm_ID)
 );
 
 DROP TABLE IF EXISTS avaliacaorespostas cascade;
@@ -136,25 +145,7 @@ CREATE TABLE avaliacaorespostas
 WITH (
   OIDS=FALSE
 );
---correcao da tabela disciplina
- DROP TABLE disciplina cascade;
 
-CREATE TABLE disciplina
-(
-  dis_id serial NOT NULL,
-  dis_nome character varying(50) NOT NULL,
-  dis_descricao text NOT NULL,
-  dis_dtainicio date,
-  dis_dtatermino date,
-  fk_turma integer,
-  CONSTRAINT pk_disciplina PRIMARY KEY (dis_id),
-  CONSTRAINT fk_discturma FOREIGN KEY (fk_turma)
-      REFERENCES turma (tur_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-WITH (
-  OIDS=FALSE
-);
 
 ALTER TABLE avaliacao
    ADD COLUMN fk_disciplina integer;
@@ -162,5 +153,3 @@ ALTER TABLE avaliacao
   ADD CONSTRAINT fk_avaliacaodisc FOREIGN KEY (fk_disciplina)
       REFERENCES disciplina (dis_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE avaliacaorespostas
-OWNER TO postgres;
